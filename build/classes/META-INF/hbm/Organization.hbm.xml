@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class table="ORGANIZATION" name="com.college.account.bean.Organization">
+	    <id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="NAME"/>
+	    <property name="code" column="CODE"/>
+	    <property name="address" column="ADDRESS"/>
+	    <property name="description" column="DESCRIPTION"/>
+	    <property name="createDate" column="CREATE_TIME"/>
+	    <property name="createBy" column="OPER_ID"/>
+	</class>
+	
+	<query name="getAllOrganization">
+		<![CDATA[
+	  		from Organization
+	  	]]>
+	</query>
+	
+	<query name="com.college.account.bean.Organization.getAllOrganizationByName">
+		<![CDATA[
+	  		from Organization where name=:name
+	  	]]>
+	</query>
+</hibernate-mapping>
