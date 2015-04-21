@@ -11,7 +11,10 @@
 	    <property name="address" column="ADDRESS"/>
 	    <property name="description" column="DESCRIPTION"/>
 	    <property name="createDate" column="CREATE_TIME"/>
-	    <property name="createBy" column="OPER_ID"/>
+	    <property name="phone" column="PHONE"/>
+	    <property name="fax" column="FAX"/>
+	    <property name="webSite" column="WEB_SITE"/>
+	    <property name="operId" column="OPER_ID"/>
 	</class>
 	
 	<query name="getAllOrganization">

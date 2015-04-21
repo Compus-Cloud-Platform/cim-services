@@ -11,15 +11,18 @@ public class Organization
     private String address;
     private String description;
     private Date createDate;
-    private Date updateDate;
-    private int createBy;
-    
-    public Organization(){};
-    
-    
+    private String phone;
+    private String fax;
+    private String webSite;
+    private int operId;
+
+    public Organization()
+    {
+    };
 
     public Organization(String name, String code, String address,
-            String description, Date createDate, Date updateDate, int createBy)
+            String description, Date createDate, String phone, String fax,
+            String webSite, int operId)
     {
         super();
         this.name = name;
@@ -27,11 +30,11 @@ public class Organization
         this.address = address;
         this.description = description;
         this.createDate = createDate;
-        this.updateDate = updateDate;
-        this.createBy = createBy;
+        this.phone = phone;
+        this.fax = fax;
+        this.webSite = webSite;
+        this.operId = operId;
     }
-
-
 
     public int getId()
     {
@@ -93,24 +96,44 @@ public class Organization
         this.createDate = createDate;
     }
 
-    public Date getUpdateDate()
+    public String getPhone()
     {
-        return updateDate;
+        return phone;
     }
 
-    public void setUpdateDate(Date updateDate)
+    public void setPhone(String phone)
     {
-        this.updateDate = updateDate;
+        this.phone = phone;
     }
 
-    public int getCreateBy()
+    public String getFax()
     {
-        return createBy;
+        return fax;
     }
 
-    public void setCreateBy(int createBy)
+    public void setFax(String fax)
     {
-        this.createBy = createBy;
+        this.fax = fax;
+    }
+
+    public String getWebSite()
+    {
+        return webSite;
+    }
+
+    public void setWebSite(String webSite)
+    {
+        this.webSite = webSite;
+    }
+
+    public int getOperId()
+    {
+        return operId;
+    }
+
+    public void setOperId(int operId)
+    {
+        this.operId = operId;
     }
 
     @Override

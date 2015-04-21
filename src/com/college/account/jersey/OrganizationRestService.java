@@ -57,8 +57,8 @@ public class OrganizationRestService
         Integer id = null;
         try
         {
-            Organization organization = new Organization("上海交通大学", "10248", "上海", "上海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学。", new Date(), new Date(), 22);
-            id = ServiceFactoryBean.getOrganizationService().createOrganization(organization);
+            //Organization organization = new Organization("上海交通大学", "10248", "上海", "上海交通大学是我国历史最悠久的高等学府之一，是教育部直属、教育部与上海市共建的全国重点大学。", new Date(), new Date(), 22);
+            //id = ServiceFactoryBean.getOrganizationService().createOrganization(organization);
         }
         catch (Exception e) {
             log.error("Save organization failed.");
