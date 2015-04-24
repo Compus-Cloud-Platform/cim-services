@@ -90,17 +90,15 @@ public class UserLoginRestService {
 	        resultMap.put("ack", "failure");
 	        
 	    }else{
+	        
 	        id = ServiceFactoryBean.getUserService().createUsers(users);
 	        
 	        dataMap.put("id", id);
 	        resultMap.put("ack", "success");
-	        resultMap.put("data", dataMap);
-	        
+	        resultMap.put("data", dataMap); 
 	    }
 	    
-	    
-	 
-	    return null;
+	    return JacksonUtils.getJsonString(resultMap);
 	}
 	
 	@POST
