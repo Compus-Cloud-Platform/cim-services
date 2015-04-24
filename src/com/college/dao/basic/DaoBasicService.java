@@ -169,4 +169,18 @@ public class DaoBasicService implements BasicDao
     {
         return getHibernateTemplate().findByNamedParam(queryName, paramNames, values);
     }
+    
+    /**
+     * 
+     * @param queryName
+     * @param values
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public List<Object> query(String queryName, String[] values)
+    {
+        return getHibernateTemplate().findByNamedQuery(queryName, values);
+    }
+    
+    
 }

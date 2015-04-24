@@ -23,9 +23,9 @@
 	  	]]>
 	</query>
 	
-	<query name="com.college.account.bean.Organization.getAllOrganizationByName">
+	<query name="getAllOrganizationByName">
 		<![CDATA[
-	  		from Organization where name=:name
+	  		from Organization where name=?
 	  	]]>
 	</query>
 </hibernate-mapping>

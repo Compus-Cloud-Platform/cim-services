@@ -7,16 +7,22 @@
 			<generator class="native"/>
 		</id>
 		
-		<property name="loginId" column="LOGINID"/>
+		<property name="loginId" column="LOGIN_ID"/>
 		<property name="name" column="NAME"/>
 		<property name="loginPassword" column="LOGIN_PASSWORD"/>
 		<property name="email" column="EMAIL"/>
-		<property name="PositionId" column="POSITION_ID"/>
+		<property name="positionId" column="POSITION_ID"/>
 		<property name="employDate" column="EMPLOY_DATE"/>
 		<property name="createTime" column="CREATE_TIME"/>
 		<property name="orgId" column="ORG_ID"/>
 		<property name="operId" column="OPER_ID"/>
 
 	</class>
+	
+	<query name="getUserByLoginId">
+		<![CDATA[
+	  		from Users where loginId=?
+	  	]]>
+	</query>
 	
 </hibernate-mapping>

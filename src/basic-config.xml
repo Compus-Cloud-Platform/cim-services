@@ -9,7 +9,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
-		<property name="url" value="jdbc:mysql://localhost:3306/test?characterEncoding=utf8">
+		<property name="url" value="jdbc:mysql://localhost:3306/campus?characterEncoding=utf8">
 		</property>
 		<property name="username" value="root"></property>
 		<property name="password" value=""></property>
@@ -20,6 +20,7 @@
 		<property name="mappingResources">
 			<list>
 				<value>/META-INF/hbm/Organization.hbm.xml</value>
+				<value>/META-INF/hbm/Users.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -50,7 +51,7 @@
 	
 	<bean id="organizationService" class="com.college.account.service.DaoOrganizationService" parent="service.abstractDao"></bean>
 	
-	<bean id="UserLoginRestService" class="com.college.account.service.DaoUsersService" parent="service.abstractDao"></bean>
+	<bean id="userService" class="com.college.account.service.DaoUsersService" parent="service.abstractDao"></bean>
 	
 	
 

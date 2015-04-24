@@ -60,6 +60,6 @@ public class DaoOrganizationService extends AbstractServiceDao implements Organi
      */
     public List findAllOrganizationsByName(String value)
     {
-        return getDao().query("getAllOrganizationByName", "name", value);
+        return getDao().query("getAllOrganizationByName", new String[]{value});
     }
 }
