@@ -116,7 +116,7 @@ public class DaoBasicService implements BasicDao
      * @param clazz
      * @param id
      */
-    public void delete(Class clazz, int id)
+    public void delete(Class clazz, Integer id)
     {
         Object obj = getHibernateTemplate().load(clazz, id);
         getHibernateTemplate().delete(obj);
@@ -128,9 +128,9 @@ public class DaoBasicService implements BasicDao
      * @param id the primary key ID.
      * @return the object.
      */
-    public Object get(@SuppressWarnings("rawtypes") Class clazz,int id)
+    public Object get(@SuppressWarnings("rawtypes") Class clazz,Integer id)
     {
-        return getHibernateTemplate().get(clazz, new Integer(id));
+        return getHibernateTemplate().get(clazz, id);
     }
     
     /**
@@ -144,29 +144,18 @@ public class DaoBasicService implements BasicDao
         return getHibernateTemplate().findByNamedQuery(queryName);
     }
     
+
     /**
-     * Find all objects from database.
+     * 
      * @param queryName
-     * @param paramName
-     * @param value
-     * @return List
+     * @param values
+     * @return
      */
     @SuppressWarnings("unchecked")
-    public List<Object> query(String queryName, String paramName, String value)
+    public List<Object> query(String queryName, Object[] values)
     {
-        return getHibernateTemplate().findByNamedParam(queryName, paramName, value);
+        return getHibernateTemplate().findByNamedQuery(queryName, values);
     }
     
-    /**
-     * Find all objects from database.
-     * @param queryName is the query string
-     * @param paramNames is the params.
-     * @param values is the param's value
-     * @return List
-     */
-    @SuppressWarnings("unchecked")
-    public List<Object> query(String queryName, String[] paramNames, String[] values)
-    {
-        return getHibernateTemplate().findByNamedParam(queryName, paramNames, values);
-    }
+    
 }

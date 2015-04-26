@@ -29,7 +29,14 @@ public class Json2Obj {
 				String fName = keyIterator.next();
 				Object tmpObj = data.get(fName);
 				
-				Field field = cls.getDeclaredField(fName);
+				Field field = null;
+				try {
+					field = cls.getDeclaredField(fName);
+				} catch (Exception e) {
+					/* if not find filed skip */
+					continue;
+				}
+				
 				String type = field.getType().toString();
 				field.setAccessible(true);
 				
@@ -59,5 +66,52 @@ public class Json2Obj {
 		
 		return null;
 	}
+	
+	public static void repalceDiffObjMem(Object obj1, Object obj2, Class<?> obj){
+	
+		try {
+			Field[] f = obj.getDeclaredFields();
+			for(Field field : f){
+				field.setAccessible(true);
+				Object objtemp = field.get(obj1);
+				if(null != objtemp){
+					field.set(obj2, objtemp);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+	
+	public static void main(String[] args) {
+		testobj a1,a2;
+		a1 = new testobj();
+		a2 = new testobj();
+		a1.setI(4);
+		a1.setName("alex");
+		a2.setI(2);
+		Json2Obj.repalceDiffObjMem(a1,a2,testobj.class);
+		
+		System.out.print(a2.getI() + a2.getName());
+	}
 
+}
+
+class testobj{
+	public testobj(){}
+	private Integer i;
+	private String name;
+	public Integer getI() {
+		return i;
+	}
+	public void setI(Integer i) {
+		this.i = i;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }

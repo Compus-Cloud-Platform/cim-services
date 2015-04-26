@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Organization
 { 
-	private int id;
+	private Integer id;
     private String name;
     private String code;
     private String address;
@@ -14,13 +14,15 @@ public class Organization
     private String fax;
     private String webSite;
     private Date createDate;
-    private int createBy;
+    private Integer operId;
     
-    public Organization(){}
+   
+
+	public Organization(){}
     
     public Organization(String name, String code, String address,
 			String description, String phone, String fax, String webSite,
-			Date createDate, int createBy) {
+			Date createDate, Integer operId) {
 		super();
 		this.name = name;
 		this.code = code;
@@ -30,16 +32,16 @@ public class Organization
 		this.fax = fax;
 		this.webSite = webSite;
 		this.createDate = createDate;
-		this.createBy = createBy;
+		this.operId = operId;
 	}
     
-    public int getId() {
+    public Integer getId() {
 		return id;
 	}
 
 
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -140,24 +142,20 @@ public class Organization
 	}
 
 
-
-	public int getCreateBy() {
-		return createBy;
+	public Integer getOperId() {
+		return operId;
 	}
+	 
 
-
-
-	public void setCreateBy(int createBy) {
-		this.createBy = createBy;
+	public void setOperId(Integer operId) {
+		this.operId = operId;
 	}
-
-    
 
     @Override
 	public String toString() {
 		return "Organization [id=" + id + ", name=" + name + ", code=" + code
 				+ ", address=" + address + ", description=" + description
 				+ ", phone=" + phone + ", fax=" + fax + ", webSite=" + webSite
-				+ ", createDate=" + createDate + ", createBy=" + createBy + "]";
+				+ ", createDate=" + createDate + ", operId=" + operId + "]";
 	}
 }

@@ -7,6 +7,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 import com.college.account.bean.Organization;
+import com.college.account.jersey.UserLoginRestService;
+import com.college.account.service.DaoUsersService;
 import com.college.account.service.OrganizationService;
 
 public class Test

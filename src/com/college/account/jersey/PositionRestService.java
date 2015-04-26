@@ -1,11 +1,11 @@
 package com.college.account.jersey;
 
-import java.util.HashMap;
-
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,8 +15,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.map.ObjectMapper;
-import com.college.account.bean.Organization;
+
+import com.college.account.bean.Position;
 import com.college.util.JacksonUtils;
 import com.college.util.Json2Obj;
 import com.college.util.Logger4j;
@@ -24,38 +24,17 @@ import com.college.util.Obj2Map;
 import com.college.util.ServiceFactoryBean;
 
 
-@Path("/organization")
-public class OrganizationRestService
-{
-	// error code  from 2000
-    private static final Logger log = Logger4j.getLogger(OrganizationRestService.class);
-    @GET
-    @Path("/getOrganizations")
-    @Consumes({MediaType.APPLICATION_JSON})
-    public String getInfo() 
-    {
-        String result = null;
-        try
-        {
-            @SuppressWarnings("unchecked")
-            List<Organization> lists = ServiceFactoryBean.getOrganizationService().findAllOrganizations();
-            
-            ObjectMapper mapper = new ObjectMapper();
-            Map<String, List<Organization>> p =new HashMap<String, List<Organization>>();
-            p.put("Organization", lists);
-            result =  mapper.writeValueAsString(p).toString();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return result;
-    }
+@Path("/position")
+public class PositionRestService {
+	// error code  from 3000
+
+    private static final Logger log = Logger4j.getLogger(PositionRestService.class);
+    
     
     @GET
     @Consumes(MediaType.APPLICATION_JSON)  
     @Path("/save")
-    public String createInfo(@QueryParam("jsonString") String jsonString) 
+    public String createGet(@QueryParam("jsonString") String jsonString) 
     {
         Integer id = null;
         Map resultMap = new HashMap();
@@ -64,42 +43,40 @@ public class OrganizationRestService
         try
         {	
         			
-        	Organization orgObj = (Organization)Json2Obj.getObj(jsonString, Organization.class);
+        	Position posiObj = (Position)Json2Obj.getObj(jsonString, Position.class);
         	
-        	String name = orgObj.getName();
-        	
-        	Date createDate = orgObj.getCreateDate();
-            Integer operId = orgObj.getOperId();
+        	String name = posiObj.getName();
+        	Date time = posiObj.getCreateTime();
+        	Integer operid = posiObj.getOperId();
         	
         	if(null == name || !StringUtils.isNotBlank(name)){
         		resultMap.put("ack", "failure");
-    			dataMap.put("code", 2001);
+    			dataMap.put("code", 3001);
     			dataMap.put("field", "name");
     			dataMap.put("description", "name not exist or null");
     			resultMap.put("errors", dataMap);
-        	}else if(null == createDate){
+        	}else if(null == time){
         		resultMap.put("ack", "failure");
-    			dataMap.put("code", 2003);
-    			dataMap.put("field", "createDate");
-    			dataMap.put("description", "createDatee can not exist");
-    			resultMap.put("errors", dataMap);;
-        	}else if(null == operId){
+    			dataMap.put("code", 3005);
+    			dataMap.put("field", "createTime");
+    			dataMap.put("description", "canot null");
+    			resultMap.put("errors", dataMap);
+        	}else if(null == operid){
         		resultMap.put("ack", "failure");
-    			dataMap.put("code", 2004);
+    			dataMap.put("code", 3006);
     			dataMap.put("field", "operId");
-    			dataMap.put("description", "operId must exist");
-    			resultMap.put("errors", dataMap);;
+    			dataMap.put("description", "oper_id canot null");
+    			resultMap.put("errors", dataMap);
         	}else{
-        		id = ServiceFactoryBean.getOrganizationService().createOrganization(orgObj);
-        	
+        		id = ServiceFactoryBean.getPositionService().create(posiObj);
         		resultMap.put("ack", "success");
     			dataMap.put("id", id);
-    			resultMap.put("data", dataMap);;
+    			resultMap.put("data", dataMap);
         	}
         	
         }
         catch (Exception e) {
-            log.error("Save organization failed.");
+            log.error("Save Position failed.");
             log.error(e);
         }
         
@@ -109,39 +86,46 @@ public class OrganizationRestService
     @POST
     @Consumes(MediaType.APPLICATION_JSON)  
     @Path("/save")
-    public String createInfoPost(@QueryParam("jsonString") String jsonString) {
+    public String createPost(@QueryParam("jsonString") String jsonString) {
     		
-    	return createInfo(jsonString);
+    	return createGet(jsonString);
     }
+    
     
     @GET
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/update")
     public String updInfoGet(@QueryParam("jsonString") String jsonString)
     {
-    	Organization org = null;
-    	Organization orgFind = null;
+    	Position posiObj = null;
+    	Position posiObjFind = null;
     	Map resultMap = new HashMap();
         Map dataMap = new HashMap();
     	
-    	org = (Organization)Json2Obj.getObj(jsonString, Organization.class);
+        posiObj = (Position)Json2Obj.getObj(jsonString, Position.class);
     	
-    	if(null != org){
-    		orgFind = ServiceFactoryBean.getOrganizationService().findAllOrganizationsById(org.getId());
+    	if(null != posiObj){
+    		posiObjFind = ServiceFactoryBean.getPositionService().searchById(posiObj.getId());
     	}
-    	//ServiceFactoryBean.getOrganizationService().
-    	if(null == org || null == orgFind){
+ 
+    	if(null == posiObj || null == posiObjFind){
     		
     		resultMap.put("ack", "failure");
-			dataMap.put("code", 2002);
+			dataMap.put("code", 3002);
 			dataMap.put("field", "id");
 			dataMap.put("description", "id not find or no id");
 			resultMap.put("errors", dataMap);
+    	}else if(null != posiObj.getName() && !StringUtils.isNotBlank(posiObj.getName())){
+    		resultMap.put("ack", "failure");
+			dataMap.put("code", 3004);
+			dataMap.put("field", "name");
+			dataMap.put("description", "can not change to blank");
+			resultMap.put("errors", dataMap);
     	}else{
     		
-    		Json2Obj.repalceDiffObjMem(org, orgFind, Organization.class);
+    		Json2Obj.repalceDiffObjMem(posiObj, posiObjFind, Position.class);
     				
-    		ServiceFactoryBean.getOrganizationService().updateOrganization(orgFind);
+    		ServiceFactoryBean.getPositionService().update(posiObjFind);
     		
     		resultMap.put("ack", "success");
     	}
@@ -164,26 +148,24 @@ public class OrganizationRestService
     @Path("/delete")
     public String deleteInfoGet(@QueryParam("id") String id)
     {
-    	Organization org = null;
-    	Organization orgFind = null;
+    	Position posiObj = null;
     	Map resultMap = new HashMap();
         Map dataMap = new HashMap();
         Integer idtemp = Integer.valueOf(id);
     	
     
-    	orgFind = ServiceFactoryBean.getOrganizationService().findAllOrganizationsById(idtemp);
+        posiObj = ServiceFactoryBean.getPositionService().searchById(idtemp);
 
     	//ServiceFactoryBean.getOrganizationService().
-    	if(null == orgFind){
+    	if(null == posiObj){
     		resultMap.put("ack", "failure");
-			dataMap.put("code", 2002);
+			dataMap.put("code", 4002);
 			dataMap.put("field", "id");
 			dataMap.put("description", "id =" + id + " not find");
 			resultMap.put("errors", dataMap);
     	}else{
     		
-    		ServiceFactoryBean.getOrganizationService().deleteOrganization(Organization.class, idtemp);
-    		
+    		ServiceFactoryBean.getPositionService().delete(idtemp);
     		resultMap.put("ack", "success");
     	}
     	
@@ -209,26 +191,22 @@ public class OrganizationRestService
     	Map resultMap = new HashMap();
         Map dataMap = new HashMap();
         
-        Organization org = null;
+        Position posiObj = null;
         
-        org= ServiceFactoryBean.getOrganizationService().findAllOrganizationsById(idtemp);
+        posiObj= ServiceFactoryBean.getPositionService().searchById(idtemp);
         
-        if(null == org){
+        if(null == posiObj){
         	resultMap.put("ack", "failure");
-			dataMap.put("code", 2002);
+			dataMap.put("code", 4002);
 			dataMap.put("field", "id");
 			dataMap.put("description", "id =" + id + " not find");
 			resultMap.put("errors", dataMap);
         }else{
         	
-        	Map userMap = Obj2Map.toMap(org, Organization.class);
-        	
-
+        	Map posiMap = Obj2Map.toMap(posiObj, Position.class);
 			List data = new ArrayList();
-			data.add(userMap);
-			
+			data.add(posiMap);
 			resultMap.put("ack", "success");
-			
 			resultMap.put("data", data);
 			resultMap.put("datanum", 1);
         }

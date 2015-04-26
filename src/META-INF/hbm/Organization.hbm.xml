@@ -14,7 +14,7 @@
 	    <property name="fax" column="FAX"/>
 	    <property name="webSite" column="WEB_SITE"/>
 	    <property name="createDate" column="CREATE_TIME"/>
-	    <property name="createBy" column="OPER_ID"/>
+	    <property name="operId" column="OPER_ID"/>
 	</class>
 	
 	<query name="getAllOrganization">
@@ -23,9 +23,15 @@
 	  	]]>
 	</query>
 	
-	<query name="com.college.account.bean.Organization.getAllOrganizationByName">
+	<query name="getAllOrganizationByName">
 		<![CDATA[
-	  		from Organization where name=:name
+	  		from Organization where name=?
+	  	]]>
+	</query>
+	
+	<query name="getAllOrganizationById">
+		<![CDATA[
+	  		from Organization where id=?
 	  	]]>
 	</query>
 </hibernate-mapping>

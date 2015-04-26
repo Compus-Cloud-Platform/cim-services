@@ -39,10 +39,6 @@ public class DaoOrganizationService extends AbstractServiceDao implements Organi
         this.getDao().delete(organization);
     }
     
-    public void deleteOrganization(Class clazz, int id)
-    {
-        this.getDao().delete(clazz, id);
-    }
     
     /**
      * find all organization
@@ -60,6 +56,29 @@ public class DaoOrganizationService extends AbstractServiceDao implements Organi
      */
     public List findAllOrganizationsByName(String value)
     {
-        return getDao().query("getAllOrganizationByName", "name", value);
+        return getDao().query("getAllOrganizationByName", new String[]{value});
     }
+
+	@Override
+	public void deleteOrganization(Class clazz, Integer id) {
+		// TODO Auto-generated method stub
+		this.getDao().delete(clazz, id);
+		
+	}
+
+	@Override
+	public Organization findAllOrganizationsById(Integer id) {
+		// TODO Auto-generated method stub
+		
+		if(null == id ) return null;
+		
+		List<Organization> datalist= (List)getDao().query("getAllOrganizationById", new Integer[]{id});
+		
+		if(datalist.size() > 0)
+			return datalist.get(0);
+		else
+			return null;
+		
+	}
+
 }

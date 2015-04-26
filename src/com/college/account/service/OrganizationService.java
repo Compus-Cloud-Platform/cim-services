@@ -29,7 +29,6 @@ public interface OrganizationService
      */
     public void deleteOrganization(Organization organization);
     
-    public void deleteOrganization(Class clazz, int id);
     
     /**
      * find all organization
@@ -43,4 +42,20 @@ public interface OrganizationService
      * @return List
      */
     public List findAllOrganizationsByName(String value);
+    
+    /**
+     * 
+     * @param clazz
+     * @param id
+     */
+    public void deleteOrganization(Class clazz, Integer id);
+    
+    /**
+     * 
+     * @param value
+     * @return
+     */
+    public Organization findAllOrganizationsById(Integer id);
+    
+    
 }

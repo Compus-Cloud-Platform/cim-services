@@ -4,23 +4,23 @@ import java.util.Date;
 
 public class Users {
 	
-	private int id;
+	private Integer id;
 	private String loginId;
 	private String name;
 	private String loginPassword;
 	private String email;
-	private int PositionId;
+	private Integer PositionId;
 	private Date employDate;
 	private Date createTime;
-	private int orgId;
-	private int operId;
+	private Integer orgId;
+	private Integer operId;
 	
-	
+
 	public Users(){}
 	
 	public Users(String loginId, String name, String loginPassword,
-			String email, int positionId, Date employDate, Date createTime,
-			int orgId, int operId) {
+			String email, Integer positionId, Date employDate, Date createTime,
+			int orgId, Integer operId) {
 		super();
 		this.loginId = loginId;
 		this.name = name;
@@ -33,7 +33,7 @@ public class Users {
 		this.operId = operId;
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {
@@ -63,7 +63,7 @@ public class Users {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getPositionId() {
+	public Integer getPositionId() {
 		return PositionId;
 	}
 	public void setPositionId(int positionId) {
@@ -81,13 +81,13 @@ public class Users {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	public int getOrgId() {
+	public Integer getOrgId() {
 		return orgId;
 	}
 	public void setOrgId(int orgId) {
 		this.orgId = orgId;
 	}
-	public int getOperId() {
+	public Integer getOperId() {
 		return operId;
 	}
 	public void setOperId(int operId) {
