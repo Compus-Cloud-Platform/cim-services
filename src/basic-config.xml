@@ -9,7 +9,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
-		<property name="url" value="jdbc:mysql://localhost:3306/compus?characterEncoding=utf8">
+		<property name="url" value="jdbc:mysql://localhost:3306/test?characterEncoding=utf8">
 		</property>
 		<property name="username" value="root"></property>
 		<property name="password" value=""></property>
@@ -20,9 +20,6 @@
 		<property name="mappingResources">
 			<list>
 				<value>/META-INF/hbm/Organization.hbm.xml</value>
-				<value>/META-INF/hbm/Users.hbm.xml</value>
-				<value>/META-INF/hbm/UsersExt.hbm.xml</value>
-				<value>/META-INF/hbm/Position.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -51,10 +48,7 @@
 		<property name="dao" ref="basicDao" />
 	</bean>
 	
-	<bean id="organizationService" class="com.college.account.service.DaoOrganizationService" parent="service.abstractDao"></bean>
-	<bean id="userService" class="com.college.account.service.DaoUsersService" parent="service.abstractDao"></bean>
-	<bean id="userServiceExt" class="com.college.account.service.DaoUsersServiceExt" parent="service.abstractDao"></bean>
-	<bean id="positionService" class="com.college.account.service.DaoPositionService" parent="service.abstractDao"></bean>
-
+	<bean id="organizationService" class="com.college.account.service.DaoOrganizationService" parent="service.abstractDao">
+	</bean>
 
 </beans>
