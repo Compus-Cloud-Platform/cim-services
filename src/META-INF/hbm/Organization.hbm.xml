@@ -10,20 +10,17 @@
 	    <property name="code" column="CODE"/>
 	    <property name="address" column="ADDRESS"/>
 	    <property name="description" column="DESCRIPTION"/>
-	    <property name="createDate" column="CREATE_DATE"/>
-	    <property name="updateDate" column="UPDATETIME"/>
-	    <property name="createBy" column="CREATE_BY"/>
+	    <property name="phone" column="PHONE"/>
+	    <property name="fax" column="FAX"/>
+	    <property name="webSite" column="WEB_SITE"/>
+	    <property name="createDate" column="CREATE_TIME"/>
+	    <property name="createBy" column="OPER_ID"/>
 	</class>
 	
-	<query name="getAllOrganization">
-		<![CDATA[
-	  		from Organization
-	  	]]>
-	</query>
 	
-	<query name="com.college.account.bean.Organization.getAllOrganizationByName">
+	<query name="getOrganizationById">
 		<![CDATA[
-	  		from Organization where name=:name
+	  		from Organization where id=?
 	  	]]>
 	</query>
 </hibernate-mapping>

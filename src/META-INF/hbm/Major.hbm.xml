@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class table="MAJOR" name="com.college.account.bean.Major">
+	    <id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		
+		<property name="name" column="NAME"/>
+		<property name="code" column="CODE"/>
+		<property name="description" column="DESCRIPTION"/>
+		<property name="createTime" column="CREATE_TIME"/>
+		<property name="operId" column="OPER_ID"/>
+	</class>
+	
+	<query name="getMajorById">
+		<![CDATA[
+	  		from Major where id=?
+	  	]]>
+	</query>
+	
+	<query name="getAllMajor">
+		<![CDATA[
+	  		from Major
+	  	]]>
+	</query>
+	
+</hibernate-mapping>

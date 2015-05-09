@@ -70,21 +70,12 @@ public interface BasicDao
      */
     public List<Object> query(String queryName);
     
-    /**
-     * Find all objects from database.
-     * @param queryName
-     * @param paramName
-     * @param value
-     * @return List
-     */
-    public List<Object> query(String queryName, String paramName, String value);
     
     /**
-     * Find all objects from database.
-     * @param queryName is the query string
-     * @param paramNames is the params.
-     * @param values is the param's value
-     * @return List
+     * 
+     * @param queryName
+     * @param values
+     * @return
      */
-    public List<Object> query(String queryName, String[] paramNames, String[] values);
+    public List<Object> query(String queryName, Object[] values);
 }

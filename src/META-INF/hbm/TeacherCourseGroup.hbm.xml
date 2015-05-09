@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class table="CLUB" name="com.college.account.bean.TeacherCourseGroup">
+	    <id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		
+		<property name="name" column="NAME"/>
+		<property name="teacherCourseId" column="TEACHER_COURSE_ID"/>
+		<property name="createTime" column="CREATE_TIME"/>
+		<property name="operId" column="OPER_ID"/>
+	</class>
+	
+	<query name="getTeacherCourseGroupById">
+		<![CDATA[
+	  		from TeacherCourseGroup where id=?
+	  	]]>
+	</query>
+	
+</hibernate-mapping>
