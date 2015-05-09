@@ -19,7 +19,13 @@
 
 	</class>
 	
-	<query name="getUserByLoginId">
+	<query name="getUsersById">
+		<![CDATA[
+	  		from Users where id=?
+	  	]]>
+	</query>
+	
+	<query name="getUsersloginId">
 		<![CDATA[
 	  		from Users where loginId=?
 	  	]]>

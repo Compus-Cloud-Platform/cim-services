@@ -1,42 +1,54 @@
 package com.college.account.service;
 
-import java.util.List;
-
-import com.college.account.bean.Users;
 import com.college.account.bean.UsersExt;
-import com.college.dao.basic.AbstractServiceDao;
+import com.college.util.Cause;
+import com.college.util.Json2Obj;
 
-public class DaoUsersServiceExt extends AbstractServiceDao implements UsersServiceExt{
+public class DaoUsersServiceExt extends DaoService<UsersExt>{
+	
+	private int USEEXTIDNOTEXIST = 2001;
+	
+	private String tablename = "UsersExt";
 
-	@Override
-	public Integer createUsersServiceExt(UsersExt usersext) {
-		// TODO Auto-generated method stub
-		 return (Integer) this.getDao().create(usersext);
-	}
-
-	@Override
-	public UsersExt updateUsersServiceExt(UsersExt usersext) {
-		// TODO Auto-generated method stub
-		return (UsersExt)this.getDao().update(usersext);
-	}
-
-	@Override
-	public UsersExt search(String loginId) {
-		// TODO Auto-generated method stub
+	public String save(String jsonString){
 		
-		List<UsersExt> usersextList = (List)getDao().query("getUserExtByLoginId", new String[]{loginId});
-		if(usersextList.size() > 0)
-			return usersextList.get(0);
-		else
-			return null;
+		UsersExt usersext = null;
+		UsersExt usersextind = null;
+		Integer id = null;
 		
-		
-	}
+		usersext=(UsersExt)Json2Obj.getObj(jsonString, UsersExt.class);
+	    
+		usersextind = searchByFeild(tablename, "loginId", usersext.getLoginId());
+	    
+	    if(null != usersextind){
+	    	/* 删除原先的 再次插入 */
+	    	delete(UsersExt.class, usersextind.getId());
+	    }
 
-	@Override
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+	    
+	    id = create(usersext);
+	    
+	    return Cause.getSuccess(id);
 	}
-
+	
+	public String upd(String loginId, String jsonString){
+		
+		UsersExt usersext = null;
+		UsersExt usersextfind = null;
+		
+		usersext=(UsersExt)Json2Obj.getObj(jsonString, UsersExt.class);
+		
+		usersextfind = searchByFeild(tablename, "loginId", loginId);
+		
+		if(null == usersextfind)
+		{
+	    	return Cause.getFailcode(USEEXTIDNOTEXIST, "Id", "id not find");
+	    }
+		
+		Json2Obj.repalceDiffObjMem(usersext, usersextfind, UsersExt.class);
+		
+		update(usersextfind);
+		
+		return Cause.getSuccess(usersextfind.getId());
+	}
 }

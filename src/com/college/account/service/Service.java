@@ -12,6 +12,8 @@ public interface Service<T> {
 	
 	public T searchByid(Integer id, String tableName);
 	
-	public List searchAll(String tableName);
+	public List<Object> searchAll(String tableName);
+	
+	public T searchByFeild(String tableName, String feild, String feildValue);
 
 }

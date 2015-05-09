@@ -17,7 +17,14 @@
 
 	</class>
 	
-	<query name="getUserExtByLoginId">
+	
+	<query name="getUsersExtById">
+		<![CDATA[
+	  		from UsersExt where id=?
+	  	]]>
+	</query>
+	
+	<query name="getUsersExtloginId">
 		<![CDATA[
 	  		from UsersExt where loginId=?
 	  	]]>

@@ -11,8 +11,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.college.account.bean.Department;
@@ -30,24 +28,6 @@ public class DepartmentRestService {
 	
 	private static String tablename = "Department";
 
-//	@POST
-//    @Path("/save")
-//	@Consumes({MediaType.APPLICATION_JSON})
-//	public String save(@QueryParam("jsonString") String jsonString){
-//		Integer id = null;
-//		Department department = null;
-//		department = (Department)Json2Obj.getObj(jsonString, Department.class);
-//		
-//		if(null == department.getName()){
-//			return Cause.getFailcode(DEPLOSTNAME, "name", null);
-//		}
-//		
-//		department.setCreateTime(new Date());
-//		
-//		id = ServiceFactoryBean.getDepartmentService().create(department);
-//		
-//		return Cause.getSuccess(id);
-//	}
 	
 	@POST
     @Consumes(MediaType.APPLICATION_JSON)  
