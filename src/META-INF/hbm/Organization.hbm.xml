@@ -10,11 +10,9 @@
 	    <property name="code" column="CODE"/>
 	    <property name="address" column="ADDRESS"/>
 	    <property name="description" column="DESCRIPTION"/>
-	    <property name="phone" column="PHONE"/>
-	    <property name="fax" column="FAX"/>
-	    <property name="webSite" column="WEB_SITE"/>
-	    <property name="createDate" column="CREATE_TIME"/>
-	    <property name="operId" column="OPER_ID"/>
+	    <property name="createDate" column="CREATE_DATE"/>
+	    <property name="updateDate" column="UPDATETIME"/>
+	    <property name="createBy" column="CREATE_BY"/>
 	</class>
 	
 	<query name="getAllOrganization">
@@ -23,15 +21,9 @@
 	  	]]>
 	</query>
 	
-	<query name="getAllOrganizationByName">
+	<query name="com.college.account.bean.Organization.getAllOrganizationByName">
 		<![CDATA[
-	  		from Organization where name=?
-	  	]]>
-	</query>
-	
-	<query name="getAllOrganizationById">
-		<![CDATA[
-	  		from Organization where id=?
+	  		from Organization where name=:name
 	  	]]>
 	</query>
 </hibernate-mapping>

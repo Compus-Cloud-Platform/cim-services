@@ -53,7 +53,7 @@ public interface BasicDao
      * @param clazz
      * @param id
      */
-    public void delete(Class clazz, Integer id);
+    public void delete(Class clazz, int id);
 
     /**
      * Finds an object from the database using the primary key.
@@ -61,7 +61,7 @@ public interface BasicDao
      * @param id the primary key ID.
      * @return the object.
      */
-    public Object get(@SuppressWarnings("rawtypes") Class clazz,Integer id);
+    public Object get(@SuppressWarnings("rawtypes") Class clazz,int id);
     
     /**
      * Find all objects from database.
@@ -70,12 +70,21 @@ public interface BasicDao
      */
     public List<Object> query(String queryName);
     
+    /**
+     * Find all objects from database.
+     * @param queryName
+     * @param paramName
+     * @param value
+     * @return List
+     */
+    public List<Object> query(String queryName, String paramName, String value);
     
     /**
-     * 
-     * @param queryName
-     * @param values
-     * @return
+     * Find all objects from database.
+     * @param queryName is the query string
+     * @param paramNames is the params.
+     * @param values is the param's value
+     * @return List
      */
-    public List<Object> query(String queryName, Object[] values);
+    public List<Object> query(String queryName, String[] paramNames, String[] values);
 }
