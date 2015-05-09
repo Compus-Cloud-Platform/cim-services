@@ -5,8 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
@@ -25,29 +30,48 @@ public class DepartmentRestService {
 	
 	private static String tablename = "Department";
 
-	@GET
-    @Path("/save")
-	@Consumes({MediaType.APPLICATION_JSON})
-	public String save(@QueryParam("jsonString") String jsonString){
-		Integer id = null;
-		Department department = null;
-		department = (Department)Json2Obj.getObj(jsonString, Department.class);
-		
-		if(null == department.getName()){
-			return Cause.getFailcode(DEPLOSTNAME, "name", null);
-		}
-		
-		department.setCreateTime(new Date());
-		
-		id = ServiceFactoryBean.getDepartmentService().create(department);
-		
-		return Cause.getSuccess(id);
+//	@POST
+//    @Path("/save")
+//	@Consumes({MediaType.APPLICATION_JSON})
+//	public String save(@QueryParam("jsonString") String jsonString){
+//		Integer id = null;
+//		Department department = null;
+//		department = (Department)Json2Obj.getObj(jsonString, Department.class);
+//		
+//		if(null == department.getName()){
+//			return Cause.getFailcode(DEPLOSTNAME, "name", null);
+//		}
+//		
+//		department.setCreateTime(new Date());
+//		
+//		id = ServiceFactoryBean.getDepartmentService().create(department);
+//		
+//		return Cause.getSuccess(id);
+//	}
+	
+	@POST
+    @Consumes(MediaType.APPLICATION_JSON)  
+	public String save(String jsonString){
+	     
+	  Integer id = null;
+      Department department = null;
+      department = (Department)Json2Obj.getObj(jsonString, Department.class);
+      
+      if(null == department.getName()){
+          return Cause.getFailcode(DEPLOSTNAME, "name", null);
+      }
+      
+      department.setCreateTime(new Date());
+      
+      id = ServiceFactoryBean.getDepartmentService().create(department);
+      
+      return Cause.getSuccess(id);
 	}
 	
 	 @GET
 	 @Consumes({MediaType.APPLICATION_JSON})
-	 @Path("/id")
-	 public String searchInfo(@QueryParam("id") String id)
+	 @Path("/{id}")
+	 public String searchInfo(@PathParam("id") String id)
 	 {
 		 Department department = null;
 		 List list = new ArrayList(1);
@@ -61,14 +85,17 @@ public class DepartmentRestService {
 		 return Cause.getData(list);
 	 }
 	 
-	 @GET
+	 @PUT
 	 @Consumes({MediaType.APPLICATION_JSON})
-	 @Path("/update")
-	 public String updateInfo(@QueryParam("jsonString") String jsonString){
+	 @Path("/{id}")
+	 public String updateInfo(@PathParam("id") String id,
+	                                           String jsonString){
 		 
 		 Department department = null;
 		 Department departmentfind = null;
 		 department = (Department)Json2Obj.getObj(jsonString, Department.class);
+		 
+		 department.setId(Integer.parseInt(id));
 		 
 		 departmentfind = ServiceFactoryBean.getDepartmentService().searchByid(department.getId(), tablename);
 		 
@@ -81,14 +108,14 @@ public class DepartmentRestService {
 		 return Cause.getSuccess(null);
 	 }
 	 
-//	 @GET
-//	 @Consumes({MediaType.APPLICATION_JSON})
-//	 @Path("/id")
-//	 public String deleteInfo(@QueryParam("id") String id){
-//		 
-//		 ServiceFactoryBean.getDepartmentService().delete(Department.class, Integer.parseInt(id));
-//		 
-//		 return Cause.getSuccess(null);
-//	 }
+	 @DELETE
+	 @Consumes({MediaType.APPLICATION_JSON})
+	 @Path("{id}")
+	 public String deleteInfo(@PathParam("id") String id){
+		 
+		 ServiceFactoryBean.getDepartmentService().delete(Department.class, Integer.parseInt(id));
+		 
+		 return Cause.getSuccess(null);
+	 }
 
 }
