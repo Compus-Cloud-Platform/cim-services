@@ -40,16 +40,9 @@ public class DaoOrganizationService extends  DaoService<Organization>
 	    return Cause.getSuccess(id);
 	}
 	
-	public String selIsExist(Integer id){
+	public boolean selIsExist(Integer id){
 		
-		Organization organization = searchByid(id, tablename);
-		
-		if(null == organization){
-			
-			return Cause.getFailcode(ORGIDNOTFIND, "id", "org id not find");
-		}
-		
-		return Cause.getSuccess(id);
+		return (null != searchByid(id, tablename))?true:false;
 	}
 	
 	public String sel(Integer id){

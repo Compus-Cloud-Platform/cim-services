@@ -75,17 +75,14 @@ public class DaoUsersService extends DaoService<Users>{
 	    /* if org id exist must find it */
 	    
 	    if(null != users.getOrgId()){
-	  
-	    	String result = ServiceFactoryBean.getOrganizationService().selIsExist(users.getOrgId());
 	    	
-	    	if(!Cause.isSuccess(result)){
+	    	if(!ServiceFactoryBean.getOrganizationService().selIsExist(users.getOrgId())){
 	    		return Cause.getFailcode(USEORGIDWRONG, "orgId", "orgId must exist in Organization table");
 	    	}
 	    }
 	    
 	    if(null != users.getPositionId()){
-	    	String result = ServiceFactoryBean.getPositionService().search(users.getPositionId());
-	    	if(!Cause.isSuccess(result)){
+	    	if(!ServiceFactoryBean.getPositionService().selIsExist(users.getPositionId())){
 	    		return Cause.getFailcode(USEPOSIDWRONG, "PositionId", "PositionId must exist in Position table");
 	    	}
 	    }
@@ -125,17 +122,14 @@ public class DaoUsersService extends DaoService<Users>{
 		
 
 		if(null != users.getOrgId()){
-			  
-	    	String result = ServiceFactoryBean.getOrganizationService().selIsExist(users.getOrgId());
-	    	
-	    	if(!Cause.isSuccess(result)){
+
+	    	if(!ServiceFactoryBean.getOrganizationService().selIsExist(users.getOrgId())){
 	    		return new String[]{Cause.getFailcode(USEORGIDWRONG, "orgId", "orgId must exist in Organization table"),null};
 	    	}
 	    }
 	    
 	    if(null != users.getPositionId()){
-	    	String result = ServiceFactoryBean.getPositionService().search(users.getPositionId());
-	    	if(!Cause.isSuccess(result)){
+	    	if(!ServiceFactoryBean.getPositionService().selIsExist(users.getPositionId())){
 	    		return new String[]{Cause.getFailcode(USEPOSIDWRONG, "PositionId", "PositionId must exist in Position table"),null};
 	    	}
 	    }
