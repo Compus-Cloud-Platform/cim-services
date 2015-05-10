@@ -1,14 +1,15 @@
 package com.college.account.service;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import com.college.account.bean.Organization;
-
 import com.college.util.Cause;
-import com.college.util.JacksonUtils;
 import com.college.util.Json2Obj;
+import com.college.util.Obj2Map;
 
 /**
  * @author Dennis Dai
@@ -39,7 +40,7 @@ public class DaoOrganizationService extends  DaoService<Organization>
 	    return Cause.getSuccess(id);
 	}
 	
-	public String search(Integer id){
+	public String selIsExist(Integer id){
 		
 		Organization organization = searchByid(id, tablename);
 		
@@ -47,6 +48,59 @@ public class DaoOrganizationService extends  DaoService<Organization>
 			
 			return Cause.getFailcode(ORGIDNOTFIND, "id", "org id not find");
 		}
+		
+		return Cause.getSuccess(id);
+	}
+	
+	public String sel(Integer id){
+		
+		Organization organization = searchByid(id, tablename);
+		
+		if(null == organization){
+			
+			return Cause.getFailcode(ORGIDNOTFIND, "id", "org id not find");
+		}
+		
+		List<Object> list = new ArrayList<Object>(1);
+		
+		Map<String, Object> map = Obj2Map.toMap(organization, Organization.class);
+		
+		list.add(map);
+		
+		return Cause.getData(list);
+	}
+	
+	public String upd(Integer id, String jsonString){
+		
+		Organization organization = null;
+		Organization organizationfind = null;
+		
+		organization= (Organization)Json2Obj.getObj(jsonString, Organization.class);
+		
+		organizationfind = searchByid(id, tablename);
+		
+		if(null == organizationfind){
+			return Cause.getFailcode(ORGIDNOTFIND, "id", "org id not find");
+		}
+		
+		Json2Obj.repalceDiffObjMem(organization, organizationfind, Organization.class);
+		
+		update(organizationfind);
+		
+		return Cause.getSuccess(id);
+	}
+	
+	public String del(Integer id){
+		
+		Organization organization = null;
+
+		organization = searchByid(id, tablename);
+		
+		if(null == organization){
+			return Cause.getFailcode(ORGIDNOTFIND, "id", "org id not find");
+		}
+		
+		delete(Organization.class, id);
 		
 		return Cause.getSuccess(id);
 	}

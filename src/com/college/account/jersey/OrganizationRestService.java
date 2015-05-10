@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -51,24 +52,61 @@ public class OrganizationRestService
 		return Cause.getFailcode(2000, "", "system error");
     }
     
+    @PUT
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("/{id}")
+	public String updateInfo(@PathParam("id") String id,
+	                                          String jsonString){
+		try {
+			
+			String result=  p.upd(Integer.parseInt(id), jsonString);
+			return result;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(2000, "", "system error");
+	}
+    
+    @DELETE
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("/{id}")
+	public String deleteInfo(@PathParam("id") String id){
+		try {
+			
+			String result=  p.del(Integer.parseInt(id));
+			return result;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(2000, "", "system error");
+	}
     
     @GET
-    @Path("/getOrganizations")
-    @Consumes({MediaType.APPLICATION_JSON})
-    public String getInfo() 
-    {
-        String result = null;
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("/{id}")
+	public String searchInfo(@PathParam("id") String id)
+	{
+		try {
+			
+			return p.sel(Integer.parseInt(id));
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(1000, "", "system error");
+		
+	}
     
-        return result;
-    }
     
-    @GET
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Path("/deleteOrganization")
-    public String deleteInfo(@QueryParam("id") String idString)
-    {
-        return "success";
-    }
+    
     
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})

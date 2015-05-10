@@ -76,7 +76,7 @@ public class DaoUsersService extends DaoService<Users>{
 	    
 	    if(null != users.getOrgId()){
 	  
-	    	String result = ServiceFactoryBean.getOrganizationService().search(users.getOrgId());
+	    	String result = ServiceFactoryBean.getOrganizationService().selIsExist(users.getOrgId());
 	    	
 	    	if(!Cause.isSuccess(result)){
 	    		return Cause.getFailcode(USEORGIDWRONG, "orgId", "orgId must exist in Organization table");
@@ -126,7 +126,7 @@ public class DaoUsersService extends DaoService<Users>{
 
 		if(null != users.getOrgId()){
 			  
-	    	String result = ServiceFactoryBean.getOrganizationService().search(users.getOrgId());
+	    	String result = ServiceFactoryBean.getOrganizationService().selIsExist(users.getOrgId());
 	    	
 	    	if(!Cause.isSuccess(result)){
 	    		return new String[]{Cause.getFailcode(USEORGIDWRONG, "orgId", "orgId must exist in Organization table"),null};
