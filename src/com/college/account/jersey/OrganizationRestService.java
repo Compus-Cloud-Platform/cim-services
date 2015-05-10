@@ -20,6 +20,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.college.account.bean.Department;
 import com.college.account.bean.DeptOrg;
 import com.college.account.bean.Organization;
+import com.college.account.service.DaoOrganizationService;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
 import com.college.util.Logger4j;
@@ -32,8 +33,25 @@ public class OrganizationRestService
 {
     private int ORGANIZATIONLOSTID = 2001;
     private int ORGANIZATIONLOSTNAME = 2002;
-    
+    private static DaoOrganizationService p = ServiceFactoryBean.getOrganizationService();
     private static final Logger log = Logger4j.getLogger(OrganizationRestService.class);
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON) 
+	public String save(String jsonString){
+    	
+    	try {
+			
+			return p.save(jsonString);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(2000, "", "system error");
+    }
+    
+    
     @GET
     @Path("/getOrganizations")
     @Consumes({MediaType.APPLICATION_JSON})
@@ -42,33 +60,6 @@ public class OrganizationRestService
         String result = null;
     
         return result;
-    }
-    
-    @GET
-    @Consumes(MediaType.APPLICATION_JSON)  
-    @Path("/save")
-    public String createInfo(@QueryParam("jsonString") String jsonString) 
-    {
-        Integer id = null;
-        
-        try
-        {
-        	Organization orgObj = (Organization)Json2Obj.getObj(jsonString, Organization.class);
-        	id = ServiceFactoryBean.getOrganizationService().create(orgObj);
-        }
-        catch (Exception e) {
-            log.error("Save organization failed.");
-            log.error(e);
-        }
-        System.out.println(id);
-        return "success";
-    }
-    
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)  
-    @Path("/save")
-    public String createInfoPost(@QueryParam("jsonString") String jsonString) {
-    	return createInfo(jsonString);
     }
     
     @GET

@@ -14,13 +14,13 @@ public class Organization
     private String fax;
     private String webSite;
     private Date createDate;
-    private Integer createBy;
+    private Integer operId;
     
     public Organization(){}
     
     public Organization(String name, String code, String address,
 			String description, String phone, String fax, String webSite,
-			Date createDate, Integer createBy) {
+			Date createDate, Integer operId) {
 		super();
 		this.name = name;
 		this.code = code;
@@ -30,7 +30,7 @@ public class Organization
 		this.fax = fax;
 		this.webSite = webSite;
 		this.createDate = createDate;
-		this.createBy = createBy;
+		this.operId = operId;
 	}
     
     public Integer getId() {
@@ -141,14 +141,14 @@ public class Organization
 
 
 
-	public int getCreateBy() {
-		return createBy;
+	public Integer getOperId() {
+		return operId;
 	}
 
 
 
-	public void setCreateBy(int createBy) {
-		this.createBy = createBy;
+	public void setOperId(Integer operId) {
+		this.operId = operId;
 	}
 
     
@@ -158,6 +158,6 @@ public class Organization
 		return "Organization [id=" + id + ", name=" + name + ", code=" + code
 				+ ", address=" + address + ", description=" + description
 				+ ", phone=" + phone + ", fax=" + fax + ", webSite=" + webSite
-				+ ", createDate=" + createDate + ", createBy=" + createBy + "]";
+				+ ", createDate=" + createDate + ", createBy=" + operId + "]";
 	}
 }
