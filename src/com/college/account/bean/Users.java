@@ -14,7 +14,16 @@ public class Users {
 	private Date createTime;
 	private Integer orgId;
 	private Integer operId;
+	private UsersExt userExt;
 	
+
+	public UsersExt getUserExt() {
+		return userExt;
+	}
+
+	public void setUserExt(UsersExt userExt) {
+		this.userExt = userExt;
+	}
 
 	public Users(){}
 	

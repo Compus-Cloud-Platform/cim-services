@@ -1,6 +1,8 @@
 package com.college.account.jersey;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -8,6 +10,8 @@ import javax.ws.rs.PathParam;
 
 import javax.ws.rs.core.MediaType;
 import org.apache.log4j.Logger;
+
+import com.college.account.bean.Department;
 import com.college.account.service.DaoUsersService;
 import com.college.account.service.DaoUsersServiceExt;
 import com.college.util.Cause;
@@ -68,5 +72,48 @@ public class UserRestService {
 		}
 		
 		return Cause.getFailcode(1000, "", "system error");
+	}
+	
+	@DELETE
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("{id}")
+	public String deleteInfo(@PathParam("id") String id){
+		 
+		try {
+			
+			String result[]=  p.del(Integer.parseInt(id));
+			
+			if(!Cause.isSuccess(result[0])){
+				return result[0];
+			}
+			
+			pext.del(result[1]);
+			
+			return result[0];
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(1000, "", "system error");
+	}
+	
+	@GET
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("/{id}")
+	public String searchInfo(@PathParam("id") String id)
+	{
+		try {
+			
+			return null;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(1000, "", "system error");
+		
 	}
 }

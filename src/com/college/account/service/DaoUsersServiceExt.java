@@ -51,4 +51,20 @@ public class DaoUsersServiceExt extends DaoService<UsersExt>{
 		
 		return Cause.getSuccess(usersextfind.getId());
 	}
+	
+	public String del(String loginId){
+		
+		/* search */
+		UsersExt usersextfind = null;
+		
+		usersextfind = searchByFeild(tablename, "loginId", loginId);
+		
+		if(null == usersextfind){
+			return Cause.getFailcode(USEEXTIDNOTEXIST, "Id", "id not find");
+		}
+		
+		delete(UsersExt.class, usersextfind.getId());
+		
+		return Cause.getSuccess(usersextfind.getId());
+	}
 }

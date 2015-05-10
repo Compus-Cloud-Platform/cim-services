@@ -2,6 +2,7 @@ package com.college.account.service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.college.account.bean.Users;
@@ -140,5 +141,33 @@ public class DaoUsersService extends DaoService<Users>{
 		update(usersfind);
 		
 		return new String[]{Cause.getSuccess(id), usersfind.getLoginId()};
+	}
+	
+	public String[] del(Integer id){
+		
+		/* search */
+		Users usersfind = null;
+		
+		usersfind = searchByid(id, tablename);
+		
+		if(null == usersfind){
+			return new String[]{Cause.getFailcode(USEIDNOTEXIST, "Id", "id not find"),null};
+		}
+		
+		delete(Users.class, usersfind.getId());
+		
+		return new String[]{Cause.getSuccess(id), usersfind.getLoginId()};
+	}
+	
+	
+	/************************************************************************************************************************/
+	/* 直接使用dao service 实现具体的dao */
+	public String selDao(Integer id){
+//		List<Object> list = (List<Object>)getDao().query("getUsersUserExtInfo", new Integer[]{id});
+//		if(list.size() > 0)
+//			return list.get(0);
+//		else
+//			return null;
+		return null;
 	}
 }
