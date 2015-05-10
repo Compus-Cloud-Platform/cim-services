@@ -5,8 +5,14 @@
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
 	http://www.springframework.org/schema/tx 
   	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
-
-	<import resource="classpath:/META-INF/config/datasource-config.xml" />
-	<import resource="classpath:/META-INF/config/system-dao.xml" />
-	<import resource="classpath:/META-INF/config/system-service.xml" />
+  	
+  	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://localhost:3306/campus?characterEncoding=utf8">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
+	</bean>
 </beans>

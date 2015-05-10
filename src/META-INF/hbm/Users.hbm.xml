@@ -31,10 +31,4 @@
 	  	]]>
 	</query>
 	
-	<query name="getUsersUserExtInfo">
-		<![CDATA[
-	  		from Users u left join UsersExt ue on u.loginId = ue.loginId where u.loginId=?
-	  	]]>
-	</query>
-	
 </hibernate-mapping>

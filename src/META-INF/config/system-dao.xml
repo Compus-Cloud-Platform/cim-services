@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+	http://www.springframework.org/schema/tx 
+  	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+  	
+  	<bean id="basicDao" class="com.college.dao.basic.DaoBasicService">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean name="service.abstractDao" abstract="true">
+		<property name="dao" ref="basicDao" />
+	</bean>
+  	
+  	<!-- 配置session工场 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mappingResources">
+			<list>
+				<value>/META-INF/hbm/Organization.hbm.xml</value>
+				<value>/META-INF/hbm/Users.hbm.xml</value>
+				<value>/META-INF/hbm/UsersExt.hbm.xml</value>
+				
+				<value>/META-INF/hbm/Position.hbm.xml</value>
+				<value>/META-INF/hbm/Department.hbm.xml</value>
+				<value>/META-INF/hbm/Major.hbm.xml</value>
+				<value>/META-INF/hbm/Course.hbm.xml</value>
+				<value>/META-INF/hbm/Club.hbm.xml</value>
+				<value>/META-INF/hbm/Role.hbm.xml</value>
+				<value>/META-INF/hbm/Permission.hbm.xml</value>
+				<value>/META-INF/hbm/DeptOrg.hbm.xml</value>
+				<value>/META-INF/hbm/MajorDept.hbm.xml</value>
+				<value>/META-INF/hbm/StudentCourse.hbm.xml</value>
+				
+
+				
+				<value>/META-INF/hbm/TeacherCourse.hbm.xml</value>
+				<value>/META-INF/hbm/TeacherCourseGroup.hbm.xml</value>
+				<value>/META-INF/hbm/UserAdminOrg.hbm.xml</value>
+				<value>/META-INF/hbm/UserStudentMajor.hbm.xml</value>
+				<value>/META-INF/hbm/UserTeacherDept.hbm.xml</value>
+				
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+ </beans>
