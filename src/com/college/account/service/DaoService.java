@@ -46,11 +46,11 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public T searchByFeild(String tableName, String feild, String feildValue) {
+	public T searchByFeild(String tableName, String feild, Object feildValue) {
 		if(null == feildValue) return null;
 		if("".equals(feildValue)) return null;
 		String query = "get" + tableName + feild;
-		List<T> list = (List<T>)getDao().query(query, new String[]{feildValue});
+		List<T> list = (List<T>)getDao().query(query, new Object[]{feildValue});
 		if(list.size() > 0)
 			return list.get(0);
 		else

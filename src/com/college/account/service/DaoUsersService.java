@@ -1,14 +1,18 @@
 package com.college.account.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.college.account.bean.Department;
 import com.college.account.bean.Users;
+import com.college.account.bean.UsersExt;
 import com.college.util.Cause;
 import com.college.util.JacksonUtils;
 import com.college.util.Json2Obj;
+import com.college.util.Obj2Map;
 import com.college.util.ServiceFactoryBean;
 
 
@@ -140,7 +144,7 @@ public class DaoUsersService extends DaoService<Users>{
 		
 		update(usersfind);
 		
-		return new String[]{Cause.getSuccess(id), usersfind.getLoginId()};
+		return new String[]{Cause.getSuccess(id), usersfind.getId().toString()};
 	}
 	
 	public String[] del(Integer id){
@@ -156,18 +160,33 @@ public class DaoUsersService extends DaoService<Users>{
 		
 		delete(Users.class, usersfind.getId());
 		
-		return new String[]{Cause.getSuccess(id), usersfind.getLoginId()};
+		return new String[]{Cause.getSuccess(id), usersfind.getId().toString()};
 	}
 	
-	
-	/************************************************************************************************************************/
-	/* 直接使用dao service 实现具体的dao */
-	public String selDao(Integer id){
-//		List<Object> list = (List<Object>)getDao().query("getUsersUserExtInfo", new Integer[]{id});
-//		if(list.size() > 0)
-//			return list.get(0);
-//		else
-//			return null;
-		return null;
+	public String sel(Integer id){
+		
+		Users usersfind = null;
+		
+		usersfind = searchByid(id, tablename);
+		
+		if(null == usersfind){
+			
+			return Cause.getFailcode(USEIDNOTEXIST, "Id", "id not find");
+		}
+		
+		List list = new ArrayList(1);
+		
+		Map user = Obj2Map.toMap(usersfind, Users.class);
+		
+		Map userext = Obj2Map.toMap(usersfind.getUsersExt(), UsersExt.class);
+		userext.remove("id");
+		userext.remove("loginId");
+		
+		user.putAll(userext);
+        
+        list.add(user);
+        
+        return Cause.getData(list);
+		
 	}
 }

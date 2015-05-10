@@ -5,19 +5,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Obj2Map {
-	
-	public  static Map  toMap(Object temp, Class<?> obj){
+	private static String[] typeJava = new String[]{"class java.lang.Integer",
+									    "class java.lang.Float",
+									    "class java.lang.Long",
+									    "class java.lang.Double",
+									    "class java.util.Date",
+									    "class java.lang.String"};
+	public  static Map<String, Object>  toMap(Object temp, Class<?> obj){
 
 		try {
 			
-			Map map = new HashMap();
+			Map<String, Object> map = new HashMap<String, Object>();
 			
 			Field[] f = obj.getDeclaredFields();
 			for(Field field : f){
 				field.setAccessible(true);
+				
 				Object objtemp = field.get(temp);
 				
-				map.put(field.getName(), objtemp);
+				/* filter */
+				String type = field.getType().toString();
+			
+				if(isExistType(type)){
+					map.put(field.getName(), objtemp);
+				}
+				
 			}
 			return map;
 		} catch (Exception e) {
@@ -26,4 +38,15 @@ public class Obj2Map {
 		
 		return null;
 	}
+	
+	private static boolean isExistType(String type){
+		
+		for(String s:typeJava){
+			if(s.equals(type)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }

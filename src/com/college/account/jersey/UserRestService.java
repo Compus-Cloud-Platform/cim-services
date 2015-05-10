@@ -11,7 +11,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import org.apache.log4j.Logger;
 
-import com.college.account.bean.Department;
 import com.college.account.service.DaoUsersService;
 import com.college.account.service.DaoUsersServiceExt;
 import com.college.util.Cause;
@@ -38,7 +37,7 @@ public class UserRestService {
 				return result;
 			}
 			
-			pext.save(jsonString);
+			pext.save(Cause.getResultId(result), jsonString);
 			
 			return result;
 			
@@ -106,7 +105,7 @@ public class UserRestService {
 	{
 		try {
 			
-			return null;
+			return p.sel(Integer.parseInt(id));
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

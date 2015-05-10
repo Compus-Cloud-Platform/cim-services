@@ -5,7 +5,7 @@ import java.util.Date;
 public class UsersExt
 {
     private Integer id;
-    private String loginId;
+    private Integer loginId;
     private String sex;
     private Date brithday;
     private String thumb;
@@ -14,7 +14,7 @@ public class UsersExt
 
 	public UsersExt(){}
             
-    public UsersExt(String loginId, String sex, Date brithday, String thumb,
+    public UsersExt(Integer loginId, String sex, Date brithday, String thumb,
             String phone, String address)
     {
         super();
@@ -34,11 +34,11 @@ public class UsersExt
     {
         this.id = id;
     }
-    public String getLoginId()
+    public Integer getLoginId()
     {
         return loginId;
     }
-    public void setLoginId(String loginId)
+    public void setLoginId(Integer loginId)
     {
         this.loginId = loginId;
     }

@@ -68,5 +68,26 @@ public class Cause {
 		}
 		return false;
 	}
+	
+	@SuppressWarnings("unchecked")
+	static public Integer getResultId(String result){
+		Map<String, Object> map;
+		
+		try {
+			map = JacksonUtils.objectMapper.readValue(result, Map.class);
+		} catch (Exception e) {
+			return null;
+		} 
+		
+		Object obj = map.get("data");
+		if(null != obj){
+			
+			Map mapId= (Map)obj;
+			
+			return Integer.parseInt(mapId.get("id").toString());
+		
+		}
+		return null;
+	}
 
 }

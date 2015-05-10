@@ -52,6 +52,8 @@ public class Json2Obj {
 					SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
 					Date date = format.parse(tmpObj.toString());
 					field.set(tempObject, date);
+				}else if("String".equals(type) || "class java.lang.String".equals(type)){
+					field.set(tempObject, tmpObj.toString());
 				}else{
 					field.set(tempObject, tmpObj.toString());
 				}
