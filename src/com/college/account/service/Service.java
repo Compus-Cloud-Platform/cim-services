@@ -16,6 +16,8 @@ public interface Service<T> {
 	
 	public T searchByFeild(String tableName, String feild, Object feildValue);
 	
+	public List<Object> searchByFeildList(String tableName, String feild, Object feildValue);
+	
 	public T searchByMutiFeild(String tableName, String feild, Object[] feildValue);
 
 }

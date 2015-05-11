@@ -66,6 +66,10 @@ public class DaoDepartmentService extends  DaoService<Department>{
 		return Cause.getData(list);
 	}
 	
+	public Department selObj(Integer id){
+		return searchByid(id, tablename);
+	}
+	
 	public String upd(Integer id, String jsonString){
 		
 		Department department = null;

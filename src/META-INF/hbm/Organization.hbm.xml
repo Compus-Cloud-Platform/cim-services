@@ -23,4 +23,11 @@
 	  		from Organization where id=?
 	  	]]>
 	</query>
+	
+	<query name="getAllOrganization">
+		<![CDATA[
+	  		from Organization
+	  	]]>
+	</query>
+	
 </hibernate-mapping>

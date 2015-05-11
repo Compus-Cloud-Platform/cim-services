@@ -31,4 +31,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getDeptOrgorgId">
+		<![CDATA[
+	  		from DeptOrg where orgId=?
+	  	]]>
+	</query>
+	
 </hibernate-mapping>

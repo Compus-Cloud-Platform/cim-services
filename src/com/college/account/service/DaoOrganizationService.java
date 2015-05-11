@@ -98,4 +98,11 @@ public class DaoOrganizationService extends  DaoService<Organization>
 		
 		return Cause.getSuccess(id);
 	}
+	
+	public String getAllObject(){
+		
+		List<Object> list = searchAll(tablename);
+		
+		return Cause.getData(list);
+	}
 }

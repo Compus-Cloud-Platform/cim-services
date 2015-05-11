@@ -51,6 +51,16 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 		return list == null ? null : list.get(0);
 	}
 	
+	@Override
+	public List<Object> searchByFeildList(String tableName, String feild, Object feildValue) {
+
+		String query = "get" + tableName + feild;
+		List<Object> list = (List<Object>)getDao().query(query, new Object[]{feildValue});
+
+		return list;
+
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public T searchByMutiFeild(String tableName, String feild, Object[] feildValue) {

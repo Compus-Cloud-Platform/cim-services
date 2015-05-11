@@ -153,7 +153,6 @@ public class OrganizationRestService
     }
     
     @DELETE
-    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}/departments/{idD}")
     public String deleteDep(@PathParam("id") String id,
     		                @PathParam("idD") String idD){
@@ -167,4 +166,54 @@ public class OrganizationRestService
 		return Cause.getFailcode(3000, "", "system error");
     	
     }
+    
+    @GET
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/{id}/departments")
+    public String getDep(@PathParam("id") String id){
+    	
+    	try{
+    		
+    		return pDO.get(id);
+    		
+    	}catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(3000, "", "system error");
+    }
+    
+    @DELETE
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/{id}/departments/{idD}")
+    public String getOneDep(@PathParam("id") String id,
+                            @PathParam("idD") String idD){
+    	try{
+    		
+    		return pDO.get(id);
+    		
+    	}catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(3000, "", "system error");
+    }
+    
+    @GET
+    @Path("")
+    public String getAll(){
+    	try{
+    		
+    		return p.getAllObject();
+    		
+    	}catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(3000, "", "system error");
+    }
+    
+    
+    
+    
 }
