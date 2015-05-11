@@ -32,10 +32,7 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 	public T searchByid(Integer id, String tableName) {
 		String name = "get" + tableName + "ById";
 		List<T> list = (List<T>)getDao().query(name, new Integer[]{id});
-		if(list.size() > 0)
-			return list.get(0);
-		else
-			return null;
+		return list == null ? null : list.get(0);
 	}
 
 	@Override
@@ -51,10 +48,7 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 		if("".equals(feildValue)) return null;
 		String query = "get" + tableName + feild;
 		List<T> list = (List<T>)getDao().query(query, new Object[]{feildValue});
-		if(list.size() > 0)
-			return list.get(0);
-		else
-			return null;
+		return list == null ? null : list.get(0);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -63,10 +57,7 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 
 		String query = "get" + tableName + feild;
 		List<T> list = (List<T>)getDao().query(query, feildValue);
-		if(list.size() > 0)
-			return list.get(0);
-		else
-			return null;
+		return list == null ? null : list.get(0);
 	}
 
 
