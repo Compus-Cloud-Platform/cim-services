@@ -84,7 +84,7 @@ public class DaoRoleService extends  DaoService<Role>{
 			return Cause.getFailcode(ROLENAMEEXIST, "name", "name is exist");
 		}
 		
-		Json2Obj.repalceDiffObjMem(role, rolefind, Role.class);
+		Json2Obj.updateObject(role, rolefind);
 		
 		update(rolefind);
 		

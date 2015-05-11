@@ -85,7 +85,7 @@ public class DaoPositionService extends  DaoService<Position>{
 			return Cause.getFailcode(POSITIONNAMEEXIST, "name", "name is exist");
 		}
 		
-		Json2Obj.repalceDiffObjMem(position, positionfind, Position.class);
+		Json2Obj.updateObject(position, positionfind);
 		
 		update(positionfind);
 		

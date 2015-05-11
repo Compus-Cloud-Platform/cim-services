@@ -86,7 +86,7 @@ public class DaoDepartmentService extends  DaoService<Department>{
 			return Cause.getFailcode(DEPARTMENTNAMEEXIST, "name", "name is exist");
 		}
 		
-		Json2Obj.repalceDiffObjMem(department, departmentfind, Department.class);
+		Json2Obj.updateObject(department, departmentfind);
 		
 		update(departmentfind);
 		

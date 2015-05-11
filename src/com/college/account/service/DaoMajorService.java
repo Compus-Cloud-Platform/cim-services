@@ -85,7 +85,7 @@ public class DaoMajorService extends  DaoService<Major>{
 			return Cause.getFailcode(MAJORNAMEEXIST, "name", "name is exist");
 		}
 		
-		Json2Obj.repalceDiffObjMem(major, majorfind, Major.class);
+		Json2Obj.updateObject(major, majorfind);
 		
 		update(majorfind);
 		

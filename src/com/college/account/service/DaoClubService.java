@@ -85,7 +85,7 @@ public class DaoClubService extends  DaoService<Club>{
 			return Cause.getFailcode(CLUBNAMEEXIST, "name", "name is exist");
 		}
 		
-		Json2Obj.repalceDiffObjMem(club, clubfind, Club.class);
+		Json2Obj.updateObject(club, clubfind);
 		
 		update(clubfind);
 		

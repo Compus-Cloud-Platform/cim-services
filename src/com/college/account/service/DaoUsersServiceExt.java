@@ -48,7 +48,7 @@ public class DaoUsersServiceExt extends DaoService<UsersExt>{
 	    	return Cause.getFailcode(USEEXTIDNOTEXIST, "Id", "id not find");
 	    }
 		
-		Json2Obj.repalceDiffObjMem(usersext, usersextfind, UsersExt.class);
+		Json2Obj.updateObject(usersext, usersextfind);
 		
 		update(usersextfind);
 		

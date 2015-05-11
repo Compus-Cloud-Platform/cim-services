@@ -77,7 +77,7 @@ public class DaoOrganizationService extends  DaoService<Organization>
 			return Cause.getFailcode(ORGIDNOTFIND, "id", "org id not find");
 		}
 		
-		Json2Obj.repalceDiffObjMem(organization, organizationfind, Organization.class);
+		Json2Obj.updateObject(organization, organizationfind);
 		
 		update(organizationfind);
 		

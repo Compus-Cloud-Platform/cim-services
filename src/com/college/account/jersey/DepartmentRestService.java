@@ -81,7 +81,7 @@ public class DepartmentRestService {
 		 
 		 if(null == department){ return Cause.getFailcode(DEPIDNOTFIND, "id", null);}
 		 
-		 Json2Obj.repalceDiffObjMem(department, departmentfind, Department.class);
+		 Json2Obj.updateObject(department, departmentfind);
 		 
 		 ServiceFactoryBean.getDepartmentService().update(departmentfind);
 		 

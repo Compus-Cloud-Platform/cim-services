@@ -85,7 +85,7 @@ public class DaoPermissionService extends  DaoService<Permission>{
 			return Cause.getFailcode(PERMISSIONNAMEEXIST, "name", "name is exist");
 		}
 		
-		Json2Obj.repalceDiffObjMem(permission, permissionfind, Permission.class);
+		Json2Obj.updateObject(permission, permissionfind);
 		
 		update(permissionfind);
 		

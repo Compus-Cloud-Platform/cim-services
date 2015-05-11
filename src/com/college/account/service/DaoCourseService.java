@@ -85,7 +85,7 @@ public class DaoCourseService extends  DaoService<Course>{
 			return Cause.getFailcode(COURSENAMEEXIST, "name", "name is exist");
 		}
 		
-		Json2Obj.repalceDiffObjMem(course, coursefind, Course.class);
+		Json2Obj.updateObject(course, coursefind);
 		
 		update(coursefind);
 		

@@ -133,7 +133,7 @@ public class DaoUsersService extends DaoService<Users>{
 	    	}
 	    }
 	    
-		Json2Obj.repalceDiffObjMem(users, usersfind, Users.class);
+		Json2Obj.updateObject(users, usersfind);
 		
 		update(usersfind);
 		
