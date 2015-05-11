@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.ws.rs.PathParam;
-
-import com.college.account.bean.Department;
 import com.college.account.bean.DeptOrg;
 import com.college.util.Cause;
 import com.college.util.ServiceFactoryBean;

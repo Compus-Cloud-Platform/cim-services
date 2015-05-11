@@ -3,12 +3,7 @@ package com.college.util;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.college.account.bean.Club;
-import com.college.account.bean.Department;
-import com.college.account.bean.DeptOrg;
 import com.college.account.bean.MajorDept;
-import com.college.account.bean.Permission;
-import com.college.account.bean.Role;
 import com.college.account.bean.StudentCourse;
 import com.college.account.bean.TeacherCourse;
 import com.college.account.bean.TeacherCourseGroup;

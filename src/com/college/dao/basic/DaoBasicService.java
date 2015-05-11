@@ -116,7 +116,7 @@ public class DaoBasicService implements BasicDao
      * @param clazz
      * @param id
      */
-    public void delete(Class clazz, int id)
+    public void delete(Class<?> clazz, int id)
     {
         Object obj = getHibernateTemplate().load(clazz, id);
         getHibernateTemplate().delete(obj);

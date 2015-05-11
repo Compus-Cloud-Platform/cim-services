@@ -15,14 +15,13 @@ public class Logger4j
         throw new Exception();
     }
     
-    public static Logger getLogger(Class clazz)
+    public static Logger getLogger(Class<?> clazz)
     {
         return getLog4jLogger(clazz);
     }
     
-    public static Logger getLog4jLogger(Class clazz)
+    public static Logger getLog4jLogger(Class<?> clazz)
     {
-        String logName = "";
         Logger logger = Logger.getLogger(clazz);
         logger.addAppender(getAppender(clazz.getName()));
         return logger;

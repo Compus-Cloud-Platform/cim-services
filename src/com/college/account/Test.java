@@ -1,21 +1,10 @@
 package com.college.account;
 
-import java.util.Date;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
-
-
-
-
-import com.college.account.bean.Organization;
-import com.college.account.bean.Users;
-import com.college.account.bean.UsersExt;
-import com.college.account.jersey.UserLoginRestService;
-import com.college.account.service.DaoUsersService;
-import com.college.account.service.OrganizationService;
 
 public class Test
 {

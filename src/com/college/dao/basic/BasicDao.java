@@ -53,7 +53,7 @@ public interface BasicDao
      * @param clazz
      * @param id
      */
-    public void delete(Class clazz, int id);
+    public void delete(Class<?> clazz, int id);
 
     /**
      * Finds an object from the database using the primary key.

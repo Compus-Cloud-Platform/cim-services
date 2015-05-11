@@ -82,7 +82,7 @@ public class Cause {
 		Object obj = map.get("data");
 		if(null != obj){
 			
-			Map mapId= (Map)obj;
+			Map<String, Object> mapId= (Map<String, Object>)obj;
 			
 			return Integer.parseInt(mapId.get("id").toString());
 		
