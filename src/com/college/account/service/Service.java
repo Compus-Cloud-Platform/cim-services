@@ -8,12 +8,14 @@ public interface Service<T> {
 	
 	public T update(T t);
 	
-	public  void delete(Class cls , Integer id);
+	public  void delete(Class<?> cls , Integer id);
 	
 	public T searchByid(Integer id, String tableName);
 	
 	public List<Object> searchAll(String tableName);
 	
 	public T searchByFeild(String tableName, String feild, Object feildValue);
+	
+	public T searchByMutiFeild(String tableName, String feild, Object[] feildValue);
 
 }

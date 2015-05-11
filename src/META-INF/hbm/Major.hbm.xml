@@ -20,9 +20,9 @@
 	  	]]>
 	</query>
 	
-	<query name="getAllMajor">
+	<query name="getMajorname">
 		<![CDATA[
-	  		from Major
+	  		from Position where name=?
 	  	]]>
 	</query>
 	

@@ -20,9 +20,9 @@
 	  	]]>
 	</query>
 	
-	<query name="getAllCourse">
+	<query name="getCoursename">
 		<![CDATA[
-	  		from Course
+	  		from Course where name=?
 	  	]]>
 	</query>
 	

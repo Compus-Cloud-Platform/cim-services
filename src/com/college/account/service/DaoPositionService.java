@@ -5,12 +5,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.college.account.bean.Organization;
 import com.college.account.bean.Position;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
 import com.college.util.Obj2Map;
-import com.college.util.TextUtil;
 
 public class DaoPositionService extends  DaoService<Position>{
 
@@ -87,7 +85,7 @@ public class DaoPositionService extends  DaoService<Position>{
 			return Cause.getFailcode(POSITIONNAMEEXIST, "name", "name is exist");
 		}
 		
-		Json2Obj.repalceDiffObjMem(position, positionfind, Organization.class);
+		Json2Obj.repalceDiffObjMem(position, positionfind, Position.class);
 		
 		update(positionfind);
 		

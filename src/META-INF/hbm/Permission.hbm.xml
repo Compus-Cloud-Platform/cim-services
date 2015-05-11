@@ -19,4 +19,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getPermissionname">
+		<![CDATA[
+	  		from Permission where name=?
+	  	]]>
+	</query>
+	
 </hibernate-mapping>

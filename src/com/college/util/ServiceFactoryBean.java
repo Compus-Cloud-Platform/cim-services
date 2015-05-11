@@ -4,14 +4,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.college.account.bean.Club;
-import com.college.account.bean.Course;
 import com.college.account.bean.Department;
 import com.college.account.bean.DeptOrg;
-import com.college.account.bean.Major;
 import com.college.account.bean.MajorDept;
-import com.college.account.bean.Organization;
 import com.college.account.bean.Permission;
-import com.college.account.bean.Position;
 import com.college.account.bean.Role;
 import com.college.account.bean.StudentCourse;
 import com.college.account.bean.TeacherCourse;
@@ -19,10 +15,15 @@ import com.college.account.bean.TeacherCourseGroup;
 import com.college.account.bean.UserAdminOrg;
 import com.college.account.bean.UserStudentMajor;
 import com.college.account.bean.UserTeacherDept;
-import com.college.account.bean.Users;
-import com.college.account.bean.UsersExt;
+import com.college.account.service.DaoClubService;
+import com.college.account.service.DaoCourseService;
+import com.college.account.service.DaoDepartmentService;
+import com.college.account.service.DaoDeptOrgService;
+import com.college.account.service.DaoMajorService;
 import com.college.account.service.DaoOrganizationService;
+import com.college.account.service.DaoPermissionService;
 import com.college.account.service.DaoPositionService;
+import com.college.account.service.DaoRoleService;
 import com.college.account.service.DaoUsersService;
 import com.college.account.service.DaoUsersServiceExt;
 import com.college.account.service.Service;
@@ -43,20 +44,14 @@ public class ServiceFactoryBean
     public static DaoUsersService getUserService(){return (DaoUsersService) getService("userService");}
     public static DaoUsersServiceExt getUserServiceExt(){return (DaoUsersServiceExt) getService("userServiceExt");}
     public static DaoPositionService getPositionService(){return (DaoPositionService) getService("positionService");}
-    @SuppressWarnings("unchecked")
-	public static Service<Department> getDepartmentService(){return (Service<Department>) getService("departmentService");}
-    @SuppressWarnings("unchecked")
-    public static Service<Major> getMajorService(){return (Service<Major>) getService("majorService");}
-    @SuppressWarnings("unchecked")
-    public static Service<Course> getCourseService(){return (Service<Course>) getService("courseService");}
-    @SuppressWarnings("unchecked")
-    public static Service<Club> getClubService(){return (Service<Club>) getService("clubService");}
-    @SuppressWarnings("unchecked")
-    public static Service<Role> getRoleService(){return (Service<Role>) getService("roleService");}
-    @SuppressWarnings("unchecked")
-    public static Service<Permission> getPermissionService(){return (Service<Permission>) getService("permissionService");}
-    @SuppressWarnings("unchecked")
-    public static Service<DeptOrg> getDeptOrgService(){return (Service<DeptOrg>) getService("deptOrgService");}
+	public static DaoDepartmentService getDepartmentService(){return (DaoDepartmentService) getService("departmentService");}
+    public static DaoMajorService getMajorService(){return (DaoMajorService) getService("majorService");}
+    public static DaoCourseService getCourseService(){return (DaoCourseService) getService("courseService");}
+    public static DaoClubService getClubService(){return (DaoClubService) getService("clubService");}
+    public static DaoRoleService getRoleService(){return (DaoRoleService) getService("roleService");}
+    public static DaoPermissionService getPermissionService(){return (DaoPermissionService) getService("permissionService");}
+    public static DaoDeptOrgService getDeptOrgService(){return (DaoDeptOrgService) getService("deptOrgService");}
+    
     @SuppressWarnings("unchecked")
     public static Service<MajorDept> getMajorDeptService(){return (Service<MajorDept>) getService("majorDeptService");}
     @SuppressWarnings("unchecked")

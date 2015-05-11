@@ -19,9 +19,9 @@
 	  	]]>
 	</query>
 	
-	<query name="getAllClub">
+	<query name="getClubname">
 		<![CDATA[
-	  		from Club
+	  		from Club where name=?
 	  	]]>
 	</query>
 	

@@ -16,10 +16,10 @@ import com.college.util.Obj2Map;
  */
 public class DaoOrganizationService extends  DaoService<Organization>
 {
-	private int ORGIDNOTFIND = 3001;
-	private int ORGNAMENULL = 3002;
-	private int ORGOPERIDNULL = 3003;
-	private String tablename = "Organization";
+	public static int ORGIDNOTFIND = 3001;
+	public static int ORGNAMENULL = 3002;
+	public static int ORGOPERIDNULL = 3003;
+	public String tablename = "Organization";
 	
 	public String save(String jsonString){
 
@@ -44,6 +44,7 @@ public class DaoOrganizationService extends  DaoService<Organization>
 		
 		return (null != searchByid(id, tablename))?true:false;
 	}
+	
 	
 	public String sel(Integer id){
 		

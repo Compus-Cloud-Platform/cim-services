@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.college.account.bean.Department;
 import com.college.account.bean.Users;
 import com.college.account.bean.UsersExt;
 import com.college.util.Cause;
@@ -168,11 +167,11 @@ public class DaoUsersService extends DaoService<Users>{
 			return Cause.getFailcode(USEIDNOTEXIST, "Id", "id not find");
 		}
 		
-		List list = new ArrayList(1);
+		List<Object> list = new ArrayList<Object>(1);
 		
-		Map user = Obj2Map.toMap(usersfind, Users.class);
+		Map<String , Object> user = Obj2Map.toMap(usersfind, Users.class);
 		
-		Map userext = Obj2Map.toMap(usersfind.getUsersExt(), UsersExt.class);
+		Map<String , Object> userext = Obj2Map.toMap(usersfind.getUsersExt(), UsersExt.class);
 		userext.remove("id");
 		userext.remove("loginId");
 		

@@ -19,4 +19,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getRolename">
+		<![CDATA[
+	  		from Role where name=?
+	  	]]>
+	</query>
+	
 </hibernate-mapping>

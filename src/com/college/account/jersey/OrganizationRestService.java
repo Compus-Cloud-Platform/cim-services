@@ -1,11 +1,9 @@
 package com.college.account.jersey;
 
-import java.util.HashMap;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -13,14 +11,14 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import com.college.account.bean.Department;
 import com.college.account.bean.DeptOrg;
 import com.college.account.bean.Organization;
+import com.college.account.service.DaoDepartmentService;
+import com.college.account.service.DaoDeptOrgService;
 import com.college.account.service.DaoOrganizationService;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
@@ -32,9 +30,10 @@ import com.college.util.ServiceFactoryBean;
 @Path("/organizations")
 public class OrganizationRestService
 {
-    private int ORGANIZATIONLOSTID = 2001;
-    private int ORGANIZATIONLOSTNAME = 2002;
     private static DaoOrganizationService p = ServiceFactoryBean.getOrganizationService();
+    private static DaoDepartmentService pD = ServiceFactoryBean.getDepartmentService();
+    private static DaoDeptOrgService pDO = ServiceFactoryBean.getDeptOrgService();
+    
     private static final Logger log = Logger4j.getLogger(OrganizationRestService.class);
     
     @POST
@@ -49,7 +48,7 @@ public class OrganizationRestService
 			// TODO Auto-generated catch block
 			log.error(e);
 		}
-		return Cause.getFailcode(2000, "", "system error");
+		return Cause.getFailcode(3000, "", "system error");
     }
     
     @PUT
@@ -67,7 +66,7 @@ public class OrganizationRestService
 			log.error(e);
 		}
 		
-		return Cause.getFailcode(2000, "", "system error");
+		return Cause.getFailcode(3000, "", "system error");
 	}
     
     @DELETE
@@ -84,7 +83,7 @@ public class OrganizationRestService
 			log.error(e);
 		}
 		
-		return Cause.getFailcode(2000, "", "system error");
+		return Cause.getFailcode(3000, "", "system error");
 	}
     
     @GET
@@ -101,52 +100,71 @@ public class OrganizationRestService
 			log.error(e);
 		}
 		
-		return Cause.getFailcode(1000, "", "system error");
+		return Cause.getFailcode(3000, "", "system error");
 		
 	}
-    
-    
     
     
     @PUT
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/{id}/departments")
-    public String saveOgaDep(@PathParam("id") String id,
-                                              String jsonString)
-    {
-        Integer idtemp = null;
-        
-        Organization organization = ServiceFactoryBean.getOrganizationService().searchByid(Integer.parseInt(id), "Organization");
-        
-        if(null == organization){
-            Cause.getFailcode(ORGANIZATIONLOSTID, "id", null);
-        }
-        
-        Department department = null;
-        department = (Department)Json2Obj.getObj(jsonString, Department.class);
-        
-        if(null == department.getName()){
-            return Cause.getFailcode(ORGANIZATIONLOSTNAME, "name", null);
-        }
-        
-        department.setCreateTime(new Date());
-        
-        idtemp = ServiceFactoryBean.getDepartmentService().create(department);
-        
-        department.setId(idtemp);
-        
-        DeptOrg deptorg = new DeptOrg();
-        
-        deptorg.setCreateTime(new Date());
-        deptorg.setDeptId(idtemp);
-        deptorg.setOrgId(Integer.parseInt(id));
-        
-        ServiceFactoryBean.getDeptOrgService().create(deptorg);
-        
-        List list = new ArrayList(1);
-        
-        list.add(Obj2Map.toMap(department, Department.class));
-        
-        return Cause.getData(list);
+    public String saveDep(@PathParam("id") String id,
+                                           String jsonString){
+    	try {
+			
+			if(!p.selIsExist(Integer.parseInt(id))){
+				return Cause.getFailcode(DaoOrganizationService.ORGIDNOTFIND, "id", "id not find");
+			}
+			
+			Department department = (Department)Json2Obj.getObj(jsonString, Department.class);
+			
+			if(null == department.getId()){
+				/* need save*/
+				if(null == department.getName()){
+					return Cause.getFailcode(DaoDepartmentService.DEPARTMENTLOSTNAME, "name", "must has name");
+				}else{
+					Integer resultid = null;
+					if(pD.selNameUniq(department.getName())){
+						resultid = Cause.getResultId(pD.save(jsonString));
+					}else{
+						resultid = ((Department)pD.searchByFeild(pD.tablename, "name", department.getName())).getId();
+					}
+					
+					pDO.save(Integer.parseInt(id), resultid, department.getOperId());
+					
+					return Cause.getSuccess(resultid);
+				}
+			}
+			
+			if(!pD.selIsExist(department.getId())){
+				return Cause.getFailcode(DaoOrganizationService.ORGIDNOTFIND, "id", "id not find");
+			}
+			
+			pDO.save(Integer.parseInt(id), department.getId(), department.getOperId());
+			
+			return Cause.getSuccess(department.getId());
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(3000, "", "system error");
+    }
+    
+    @DELETE
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/{id}/departments/{idD}")
+    public String deleteDep(@PathParam("id") String id,
+    		                @PathParam("idD") String idD){
+    	
+    	try{
+    		return pDO.del(id, idD);
+    	}catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(3000, "", "system error");
+    	
     }
 }
