@@ -14,6 +14,7 @@ import com.college.account.service.DaoClubService;
 import com.college.account.service.DaoCourseService;
 import com.college.account.service.DaoDepartmentService;
 import com.college.account.service.DaoDeptOrgService;
+import com.college.account.service.DaoMajorDeptService;
 import com.college.account.service.DaoMajorService;
 import com.college.account.service.DaoOrganizationService;
 import com.college.account.service.DaoPermissionService;
@@ -46,9 +47,8 @@ public class ServiceFactoryBean
     public static DaoRoleService getRoleService(){return (DaoRoleService) getService("roleService");}
     public static DaoPermissionService getPermissionService(){return (DaoPermissionService) getService("permissionService");}
     public static DaoDeptOrgService getDeptOrgService(){return (DaoDeptOrgService) getService("deptOrgService");}
+    public static DaoMajorDeptService getMajorDeptService(){return (DaoMajorDeptService) getService("majorDeptService");}
     
-    @SuppressWarnings("unchecked")
-    public static Service<MajorDept> getMajorDeptService(){return (Service<MajorDept>) getService("majorDeptService");}
     @SuppressWarnings("unchecked")
     public static Service<StudentCourse> getStudentCourseService(){return (Service<StudentCourse>) getService("studentCourseService");}
     @SuppressWarnings("unchecked")

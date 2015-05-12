@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 import com.college.account.bean.Major;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
 import com.college.util.Obj2Map;
+
 
 public class DaoMajorService extends  DaoService<Major>{
 
 	private int MAJORIDNOTFIND = 5001;
 	private int MAJORNAMENULL = 5002;
 	private int MAJORNAMEEXIST = 5003;
+
 	
 	private String tablename = "Major";
+	
+	
 	
 	public boolean selIsExist(Integer id){		
 		return (null != searchByid(id, tablename))?true:false;
@@ -106,4 +109,5 @@ public class DaoMajorService extends  DaoService<Major>{
 		
 		return Cause.getSuccess(id);
 	}
+	
 }
