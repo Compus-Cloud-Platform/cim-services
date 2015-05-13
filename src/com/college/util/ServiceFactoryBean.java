@@ -3,13 +3,10 @@ package com.college.util;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.college.account.bean.MajorDept;
+
 import com.college.account.bean.StudentCourse;
 import com.college.account.bean.TeacherCourse;
 import com.college.account.bean.TeacherCourseGroup;
-import com.college.account.bean.UserAdminOrg;
-import com.college.account.bean.UserStudentMajor;
-import com.college.account.bean.UserTeacherDept;
 import com.college.account.service.DaoClubService;
 import com.college.account.service.DaoCourseService;
 import com.college.account.service.DaoDepartmentService;
