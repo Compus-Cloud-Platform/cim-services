@@ -20,6 +20,9 @@ import com.college.account.service.DaoOrganizationService;
 import com.college.account.service.DaoPermissionService;
 import com.college.account.service.DaoPositionService;
 import com.college.account.service.DaoRoleService;
+import com.college.account.service.DaoUserAdminOrgService;
+import com.college.account.service.DaoUserStudentMajorService;
+import com.college.account.service.DaoUserTeacherDeptService;
 import com.college.account.service.DaoUsersService;
 import com.college.account.service.DaoUsersServiceExt;
 import com.college.account.service.Service;
@@ -48,6 +51,9 @@ public class ServiceFactoryBean
     public static DaoPermissionService getPermissionService(){return (DaoPermissionService) getService("permissionService");}
     public static DaoDeptOrgService getDeptOrgService(){return (DaoDeptOrgService) getService("deptOrgService");}
     public static DaoMajorDeptService getMajorDeptService(){return (DaoMajorDeptService) getService("majorDeptService");}
+    public static DaoUserAdminOrgService getUserAdminOrgService(){return (DaoUserAdminOrgService) getService("userAdminOrgService");}
+    public static DaoUserStudentMajorService getUserStudentMajorService(){return (DaoUserStudentMajorService) getService("userStudentMajorService");}
+    public static DaoUserTeacherDeptService getUserTeacherDeptService(){return (DaoUserTeacherDeptService) getService("userTeacherDeptService");}
     
     @SuppressWarnings("unchecked")
     public static Service<StudentCourse> getStudentCourseService(){return (Service<StudentCourse>) getService("studentCourseService");}
@@ -55,11 +61,7 @@ public class ServiceFactoryBean
     public static Service<TeacherCourse> getTeacherCourseService(){return (Service<TeacherCourse>) getService("teacherCourseService");}
     @SuppressWarnings("unchecked")
     public static Service<TeacherCourseGroup> getTeacherCourseGroupService(){return (Service<TeacherCourseGroup>) getService("teacherCourseGroupService");}
-    @SuppressWarnings("unchecked")
-    public static Service<UserAdminOrg> getUserAdminOrgService(){return (Service<UserAdminOrg>) getService("userAdminOrgService");}
-    @SuppressWarnings("unchecked")
-    public static Service<UserStudentMajor> getUserStudentMajorService(){return (Service<UserStudentMajor>) getService("userStudentMajorService");}
-    @SuppressWarnings("unchecked")
-    public static Service<UserTeacherDept> getUserTeacherDeptService(){return (Service<UserTeacherDept>) getService("userTeacherDeptService");}
+    
+    
     
 }

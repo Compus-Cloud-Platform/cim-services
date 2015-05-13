@@ -49,6 +49,14 @@ public class DaoMajorService extends  DaoService<Major>{
 	    return Cause.getSuccess(id);
 	}
 	
+	public String getMajorBylistId(List<Integer> list){
+		List<Object> majorList = new ArrayList<Object>();
+		for(Integer id:list){
+			majorList.add(searchByid(id, tablename));
+		}
+		return Cause.getData(majorList);
+	}
+	
 	
 	public String sel(Integer id){
 		

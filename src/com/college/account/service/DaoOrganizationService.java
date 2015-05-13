@@ -19,7 +19,7 @@ public class DaoOrganizationService extends  DaoService<Organization>
 	public static int ORGIDNOTFIND = 3001;
 	public static int ORGNAMENULL = 3002;
 	public static int ORGOPERIDNULL = 3003;
-	public String tablename = "Organization";
+	public static String tablename = "Organization";
 	
 	public String save(String jsonString){
 

@@ -26,7 +26,7 @@ public class DaoUsersService extends DaoService<Users>{
 	private int USEIDNOTEXIST = 1007;
 	private int USELOGIDNOTUPT = 1007;
 	
-	private String tablename = "Users";
+	public static String tablename = "Users";
 	
 	public String login(String jsonString) throws Exception{
 		

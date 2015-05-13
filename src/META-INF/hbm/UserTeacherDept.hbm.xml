@@ -19,4 +19,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getUserTeacherDeptloginIddeptOrgId">
+		<![CDATA[
+	  		from UserTeacherDept where loginId=? and deptOrgId=?
+	  	]]>
+	</query>
+	
 </hibernate-mapping>
