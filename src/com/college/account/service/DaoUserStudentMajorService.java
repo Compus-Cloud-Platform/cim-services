@@ -19,7 +19,7 @@ public class DaoUserStudentMajorService extends  DaoService<UserStudentMajor>{
 
 	public String save(Integer userId, Integer relationId, Integer operId){
 		
-		if(null != getObj(userId, operId)){
+		if(null != getObj(userId, relationId)){
 			
 			return Cause.getFailcode(USERSTUDENTMAJORRELATIONEXIST, "id", "relation is exist");
 		}
