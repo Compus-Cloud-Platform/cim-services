@@ -10,8 +10,8 @@ public class Users
     private String name;
     private String loginPassword;
     private String email;
-    private Integer PositionId;
-    private Date employDate;
+    private Integer positionId;
+    private String employDate;
     private Date createTime;
     private Integer orgId;
     private Integer operId;
@@ -22,7 +22,7 @@ public class Users
     }
 
     public Users(String loginId, String name, String loginPassword,
-            String email, Integer positionId, Date employDate, Date createTime,
+            String email, Integer positionId, String employDate, Date createTime,
             int orgId, Integer operId)
     {
         super();
@@ -30,7 +30,7 @@ public class Users
         this.name = name;
         this.loginPassword = loginPassword;
         this.email = email;
-        PositionId = positionId;
+        this.positionId = positionId;
         this.employDate = employDate;
         this.createTime = createTime;
         this.orgId = orgId;
@@ -89,20 +89,20 @@ public class Users
 
     public Integer getPositionId()
     {
-        return PositionId;
+        return positionId;
     }
 
     public void setPositionId(int positionId)
     {
-        PositionId = positionId;
+        this.positionId = positionId;
     }
 
-    public Date getEmployDate()
+    public String getEmployDate()
     {
         return employDate;
     }
 
-    public void setEmployDate(Date employDate)
+    public void setEmployDate(String employDate)
     {
         this.employDate = employDate;
     }
@@ -152,7 +152,7 @@ public class Users
     {
         return "Users [id=" + id + ", loginId=" + loginId + ", name=" + name
                 + ", loginPassword=" + loginPassword + ", email=" + email
-                + ", PositionId=" + PositionId + ", employDate=" + employDate
+                + ", PositionId=" + positionId + ", employDate=" + employDate
                 + ", createTime=" + createTime + ", orgId=" + orgId
                 + ", operId=" + operId + "]";
     }

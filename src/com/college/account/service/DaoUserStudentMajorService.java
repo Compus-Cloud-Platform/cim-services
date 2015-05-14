@@ -30,4 +30,8 @@ public class DaoUserStudentMajorService extends  DaoService<UserStudentMajor>{
 		
 		return Cause.getSuccess(id);
 	}
+	
+	public String del(Integer userId, Integer relationId, Integer operId){
+		return null;
+	}
 }

@@ -31,4 +31,8 @@ public class DaoUserAdminOrgService extends  DaoService<UserAdminOrg>{
 		
 		return Cause.getSuccess(id);
 	}
+	
+	public String del(Integer userId, Integer relationId, Integer operId){
+		return null;
+	}
 }

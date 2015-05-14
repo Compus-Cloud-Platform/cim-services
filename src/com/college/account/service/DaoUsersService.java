@@ -82,7 +82,7 @@ public class DaoUsersService extends DaoService<Users>{
 	    
 	    if(null != users.getPositionId()){
 	    	if(!ServiceFactoryBean.getPositionService().selIsExist(users.getPositionId())){
-	    		return Cause.getFailcode(USEPOSIDWRONG, "PositionId", "PositionId must exist in Position table");
+	    		return Cause.getFailcode(USEPOSIDWRONG, "positionId", "positionId must exist in Position table");
 	    	}
 	    }
 	    

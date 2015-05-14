@@ -56,15 +56,15 @@ public class UseraddRestService {
 			}
 			
 			if(null != deptOrgId){
-				return pUT.save(Integer.parseInt(id), deptOrgId, null);
+				return pUT.del(Integer.parseInt(id), deptOrgId, null);
 			}
 			
 			if(null != majorDeptId){
-				return pUS.save(Integer.parseInt(id), majorDeptId, null);
+				return pUS.del(Integer.parseInt(id), majorDeptId, null);
 			}
 			
 			if(null != orgId){
-				return pUA.save(Integer.parseInt(id), orgId, null);
+				return pUA.del(Integer.parseInt(id), orgId, null);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
