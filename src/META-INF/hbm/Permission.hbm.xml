@@ -25,4 +25,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getAllPermission">
+		<![CDATA[
+	  		from Permission
+	  	]]>
+	</query>
+	
 </hibernate-mapping>

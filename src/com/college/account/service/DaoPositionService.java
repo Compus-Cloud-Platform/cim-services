@@ -65,6 +65,13 @@ public class DaoPositionService extends  DaoService<Position>{
 		return Cause.getData(list);
 	}
 	
+	public String getAllObject(){
+		
+		List<Object> list = searchAll(tablename);
+		
+		return Cause.getData(list);
+	}
+	
 	public String upd(Integer id, String jsonString){
 		
 		Position position = null;

@@ -65,6 +65,12 @@ public class DaoClubService extends  DaoService<Club>{
 		return Cause.getData(list);
 	}
 	
+	public String getAllObject(){
+		
+		List<Object> list = searchAll(tablename);
+		return Cause.getData(list);
+	}
+	
 	public String upd(Integer id, String jsonString){
 		
 		Club club = null;

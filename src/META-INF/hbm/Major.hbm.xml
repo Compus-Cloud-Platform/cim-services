@@ -22,7 +22,13 @@
 	
 	<query name="getMajorname">
 		<![CDATA[
-	  		from Position where name=?
+	  		from Major where name=?
+	  	]]>
+	</query>
+	
+	<query name="getAllMajor">
+		<![CDATA[
+	  		from Major
 	  	]]>
 	</query>
 	

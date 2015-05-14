@@ -88,4 +88,20 @@ public class PositionRestService {
 		return Cause.getFailcode(4000, "", "system error");
 		
 	}
+    
+    @GET
+	public String getAllObject()
+	{
+		try {
+			
+			return p.getAllObject();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(4000, "", "system error");
+		
+	}
 }

@@ -115,4 +115,20 @@ public class UserRestService {
 		return Cause.getFailcode(1000, "", "system error");
 		
 	}
+	
+	@GET
+	public String getAllObject()
+	{
+		try {
+			
+			return p.getAllObject();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(1000, "", "system error");
+		
+	}
 }

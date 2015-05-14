@@ -26,4 +26,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getAllDepartment">
+		<![CDATA[
+	  		from Department
+	  	]]>
+	</query>
+	
 </hibernate-mapping>

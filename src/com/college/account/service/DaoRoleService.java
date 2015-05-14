@@ -64,6 +64,13 @@ public class DaoRoleService extends  DaoService<Role>{
 		return Cause.getData(list);
 	}
 	
+	public String getAllObject(){
+		
+		List<Object> list = searchAll(tablename);
+		
+		return Cause.getData(list);
+	}
+	
 	public String upd(Integer id, String jsonString){
 		
 		Role role = null;

@@ -118,4 +118,11 @@ public class DaoMajorService extends  DaoService<Major>{
 		return Cause.getSuccess(id);
 	}
 	
+	public String getAllObject(){
+		
+		List<Object> list = searchAll(tablename);
+		
+		return Cause.getData(list);
+	}
+	
 }

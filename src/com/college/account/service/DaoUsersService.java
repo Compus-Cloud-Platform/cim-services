@@ -182,4 +182,24 @@ public class DaoUsersService extends DaoService<Users>{
         return Cause.getData(list);
 		
 	}
+	
+	public String getAllObject(){
+		
+		Users usersfind = null;
+		
+		List<Object> listfind = searchAll(tablename);
+		List<Object> list = new ArrayList<Object>();
+
+		for(Object obj:listfind){
+			usersfind = (Users)obj;
+			Map<String , Object> user = Obj2Map.toMap(usersfind, Users.class);
+			Map<String , Object> userext = Obj2Map.toMap(usersfind.getUsersExt(), UsersExt.class);
+			userext.remove("id");
+			userext.remove("loginId");
+			user.putAll(userext);
+	        list.add(user);
+		}
+		
+        return Cause.getData(list);
+	}
 }

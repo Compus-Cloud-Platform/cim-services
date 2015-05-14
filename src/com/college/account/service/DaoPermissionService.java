@@ -65,6 +65,13 @@ public class DaoPermissionService extends  DaoService<Permission>{
 		return Cause.getData(list);
 	}
 	
+	public String getAllObject(){
+		
+		List<Object> list = searchAll(tablename);
+		
+		return Cause.getData(list);
+	}
+	
 	public String upd(Integer id, String jsonString){
 		
 		Permission permission = null;

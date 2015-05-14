@@ -91,4 +91,20 @@ public class PermissionRestService {
 		return Cause.getFailcode(9000, "", "system error");
 		
 	}
+    
+    @GET
+   	public String getAllObject()
+   	{
+   		try {
+   			
+   			return p.getAllObject();
+   			
+   		} catch (Exception e) {
+   			// TODO Auto-generated catch block
+   			log.error(e);
+   		}
+   		
+   		return Cause.getFailcode(9000, "", "system error");
+   		
+   	}
 }

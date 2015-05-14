@@ -20,7 +20,7 @@ public class DaoUserAdminOrgService extends  DaoService<UserAdminOrg>{
 
 	public String save(Integer userId, Integer relationId, Integer operId){
 		
-		if(null != getObj(userId, operId)){
+		if(null != getObj(userId, relationId)){
 			
 			return Cause.getFailcode(USERADMINORGRELATIONEXIST, "id", "relation is exist");
 		}

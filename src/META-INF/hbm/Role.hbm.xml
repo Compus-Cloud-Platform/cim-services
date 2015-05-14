@@ -25,4 +25,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getAllRole">
+		<![CDATA[
+	  		from Role
+	  	]]>
+	</query>
+	
 </hibernate-mapping>

@@ -25,4 +25,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getAllPosition">
+		<![CDATA[
+	  		from Position
+	  	]]>
+	</query>
+	
 </hibernate-mapping>
