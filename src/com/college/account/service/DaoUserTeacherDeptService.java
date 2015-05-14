@@ -33,10 +33,22 @@ public class DaoUserTeacherDeptService extends  DaoService<UserTeacherDept>{
 	
 	public String del(Integer userId, Integer relationId, Integer operId){
 		
-		UserTeacherDept userteacherdept = new UserTeacherDept(userId, relationId, new Date(), operId);
+		UserTeacherDept  userteacherdept = getObj(userId, relationId);
 		
-		Integer id = create(userteacherdept);
+		if(null == userteacherdept){
+			
+			return Cause.getFailcode(USERTEACHERDEPTRELATIONEXIST, "id", "relation is exist");
+		}
 		
-		return Cause.getSuccess(id);
+		delete(UserTeacherDept.class, userteacherdept.getId());
+		
+		return Cause.getSuccess(userteacherdept.getId());
+	}
+	
+	public String sel(Integer userId, Integer relationId, Integer operId){
+		
+		//UserTeacherDept  userteacherdept = getObj(userId, relationId);
+		
+		return null;
 	}
 }

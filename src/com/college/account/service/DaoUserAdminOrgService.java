@@ -33,6 +33,22 @@ public class DaoUserAdminOrgService extends  DaoService<UserAdminOrg>{
 	}
 	
 	public String del(Integer userId, Integer relationId, Integer operId){
-		return null;
+		
+		UserAdminOrg  useradminorg = getObj(userId, relationId);
+		
+		if(null == useradminorg){
+			
+			return Cause.getFailcode(USERADMINORGRELATIONEXIST, "id", "relation is exist");
+		}
+		
+		delete(UserAdminOrg.class, useradminorg.getId());
+		
+		return  Cause.getSuccess(useradminorg.getId());
+	}
+	
+	public String sel(Integer userId, Integer relationId, Integer operId){
+		
+		//UserAdminOrg  useradminorg = getObj(userId, relationId);
+		return  null;
 	}
 }

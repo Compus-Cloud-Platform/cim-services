@@ -32,6 +32,25 @@ public class DaoUserStudentMajorService extends  DaoService<UserStudentMajor>{
 	}
 	
 	public String del(Integer userId, Integer relationId, Integer operId){
+		
+		UserStudentMajor  userstudentmajor = getObj(userId, relationId);
+		
+		if(null == userstudentmajor){
+			
+			return Cause.getFailcode(USERSTUDENTMAJORRELATIONEXIST, "id", "relation is exist");
+		}
+		
+		delete(UserStudentMajor.class, userstudentmajor.getId());
+		
+		return Cause.getSuccess(userstudentmajor.getId());
+				
+	}
+	
+	public String sel(Integer userId, Integer relationId, Integer operId){
+		
+		//UserStudentMajor  userstudentmajor = getObj(userId, relationId);
+		
 		return null;
+				
 	}
 }

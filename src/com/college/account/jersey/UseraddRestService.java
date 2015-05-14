@@ -3,6 +3,7 @@ package com.college.account.jersey;
 import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -56,15 +57,15 @@ public class UseraddRestService {
 			}
 			
 			if(null != deptOrgId){
-				return pUT.del(Integer.parseInt(id), deptOrgId, null);
+				return pUT.save(Integer.parseInt(id), deptOrgId, null);
 			}
 			
 			if(null != majorDeptId){
-				return pUS.del(Integer.parseInt(id), majorDeptId, null);
+				return pUS.save(Integer.parseInt(id), majorDeptId, null);
 			}
 			
 			if(null != orgId){
-				return pUA.del(Integer.parseInt(id), orgId, null);
+				return pUA.save(Integer.parseInt(id), orgId, null);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -95,15 +96,54 @@ public class UseraddRestService {
 			}
 			
 			if(null != deptOrgId){
-				return pUT.save(Integer.parseInt(id), deptOrgId, null);
+				return pUT.del(Integer.parseInt(id), deptOrgId, null);
 			}
 			
 			if(null != majorDeptId){
-				return pUS.save(Integer.parseInt(id), majorDeptId, null);
+				return pUS.del(Integer.parseInt(id), majorDeptId, null);
 			}
 			
 			if(null != orgId){
-				return pUA.save(Integer.parseInt(id), orgId, null);
+				return pUA.del(Integer.parseInt(id), orgId, null);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return Cause.getFailcode(1000, "", "system error");
+	}
+	
+	@GET
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON) 
+	public String getRelationship(@PathParam("id") String id,
+			                                String jsonString){
+		
+		try {
+			Integer deptOrgId = null;
+			Integer majorDeptId = null;
+			Integer orgId = null;
+			@SuppressWarnings("unchecked")
+			Map<String,Object> map = JacksonUtils.objectMapper.readValue(jsonString, Map.class);
+			
+			if(null != map.get("deptOrgId"))deptOrgId = Integer.parseInt(map.get("deptOrgId").toString());
+			if(null != map.get("majorDeptId"))majorDeptId = Integer.parseInt(map.get("majorDeptId").toString());
+			if(null != map.get("orgId"))orgId = Integer.parseInt(map.get("orgId").toString());
+			
+			if(!checkId(Integer.parseInt(id), orgId, deptOrgId, majorDeptId)){
+				return Cause.getFailcode(999, "id", "id can not find");
+			}
+			
+			if(null != deptOrgId){
+				return pUT.sel(Integer.parseInt(id), deptOrgId, null);
+			}
+			
+			if(null != majorDeptId){
+				return pUS.sel(Integer.parseInt(id), majorDeptId, null);
+			}
+			
+			if(null != orgId){
+				return pUA.sel(Integer.parseInt(id), orgId, null);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
