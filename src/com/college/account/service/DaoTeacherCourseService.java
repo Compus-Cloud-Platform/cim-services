@@ -18,6 +18,7 @@ public class DaoTeacherCourseService extends  DaoService<TeacherCourse>{
 		
 		TeacherCourse teachercourse = null;
 		teachercourse = (TeacherCourse)Json2Obj.getObj(jsonString, TeacherCourse.class);
+		
 		teachercourse.setLoginId(id);
 		teachercourse.setCreateTime(new Date());
 		teachercourse.setOperId(operId);

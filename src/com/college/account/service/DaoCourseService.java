@@ -12,9 +12,9 @@ import com.college.util.Obj2Map;
 
 public class DaoCourseService extends  DaoService<Course>{
 
-	private int COURSEIDNOTFIND = 6001;
-	private int COURSENAMENULL = 6002;
-	private int COURSENAMEEXIST = 6003;
+	public static int COURSEIDNOTFIND = 6001;
+	public static int COURSENAMENULL = 6002;
+	public static int COURSENAMEEXIST = 6003;
 	
 	private String tablename = "Course";
 	
