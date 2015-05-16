@@ -17,14 +17,14 @@ import com.college.util.ServiceFactoryBean;
 
 public class DaoUsersService extends DaoService<Users>{
 	
-	private int USELOGINLOSTNAMEORID = 1001;
-	private int USELOGINIDNOTEXIST = 1002;
-	private int USEPWDWRONG = 1003;
-	private int USELOGINEXISTORWRONG = 1004;
-	private int USEORGIDWRONG = 1005;
-	private int USEPOSIDWRONG = 1006;
-	private int USEIDNOTEXIST = 1007;
-	private int USELOGIDNOTUPT = 1007;
+	public static int USELOGINLOSTNAMEORID = 1001;
+	public static int USELOGINIDNOTEXIST = 1002;
+	public static int USEPWDWRONG = 1003;
+	public static int USELOGINEXISTORWRONG = 1004;
+	public static int USEORGIDWRONG = 1005;
+	public static int USEPOSIDWRONG = 1006;
+	public static int USEIDNOTEXIST = 1007;
+	public static int USELOGIDNOTUPT = 1007;
 	
 	public static String tablename = "Users";
 	
@@ -181,6 +181,17 @@ public class DaoUsersService extends DaoService<Users>{
         
         return Cause.getData(list);
 		
+	}
+	
+	public boolean isExist(Object id){
+		
+		Users usersfind = null;
+		
+		if(null == id)return false;
+		
+		usersfind = searchByid(Integer.parseInt(id.toString()), tablename);
+		
+		return (null == usersfind)?false:true;
 	}
 	
 	public String getAllObject(){

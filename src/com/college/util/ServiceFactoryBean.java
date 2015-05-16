@@ -17,6 +17,8 @@ import com.college.account.service.DaoOrganizationService;
 import com.college.account.service.DaoPermissionService;
 import com.college.account.service.DaoPositionService;
 import com.college.account.service.DaoRoleService;
+import com.college.account.service.DaoStudentCourseService;
+import com.college.account.service.DaoTeacherCourseService;
 import com.college.account.service.DaoUserAdminOrgService;
 import com.college.account.service.DaoUserStudentMajorService;
 import com.college.account.service.DaoUserTeacherDeptService;
@@ -51,11 +53,10 @@ public class ServiceFactoryBean
     public static DaoUserAdminOrgService getUserAdminOrgService(){return (DaoUserAdminOrgService) getService("userAdminOrgService");}
     public static DaoUserStudentMajorService getUserStudentMajorService(){return (DaoUserStudentMajorService) getService("userStudentMajorService");}
     public static DaoUserTeacherDeptService getUserTeacherDeptService(){return (DaoUserTeacherDeptService) getService("userTeacherDeptService");}
+    public static DaoTeacherCourseService getTeacherCourseService(){return (DaoTeacherCourseService) getService("teacherCourseService");}
+    public static DaoStudentCourseService getStudentCourseService(){return (DaoStudentCourseService) getService("studentCourseService");}
+
     
-    @SuppressWarnings("unchecked")
-    public static Service<StudentCourse> getStudentCourseService(){return (Service<StudentCourse>) getService("studentCourseService");}
-    @SuppressWarnings("unchecked")
-    public static Service<TeacherCourse> getTeacherCourseService(){return (Service<TeacherCourse>) getService("teacherCourseService");}
     @SuppressWarnings("unchecked")
     public static Service<TeacherCourseGroup> getTeacherCourseGroupService(){return (Service<TeacherCourseGroup>) getService("teacherCourseGroupService");}
     
