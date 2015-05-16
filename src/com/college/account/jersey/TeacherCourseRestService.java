@@ -1,5 +1,4 @@
 package com.college.account.jersey;
-
 import javax.ws.rs.Path;
 
 
