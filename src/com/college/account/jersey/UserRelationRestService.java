@@ -1,9 +1,9 @@
 package com.college.account.jersey;
 
+import java.util.List;
 import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -24,7 +24,7 @@ import com.college.util.ServiceFactoryBean;
 
 
 @Path("/organizations/users")
-public class UseraddRestService {
+public class UserRelationRestService {
 	
 	private static DaoUsersService p = ServiceFactoryBean.getUserService();
 	private static DaoDeptOrgService pDO = ServiceFactoryBean.getDeptOrgService();
@@ -113,11 +113,9 @@ public class UseraddRestService {
 		return Cause.getFailcode(1000, "", "system error");
 	}
 	
-	@GET
-	@Path("/{id}")
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON) 
-	public String getRelationship(@PathParam("id") String id,
-			                                String jsonString){
+	public String getRelationship(String jsonString){
 		
 		try {
 			Integer deptOrgId = null;
@@ -130,20 +128,19 @@ public class UseraddRestService {
 			if(null != map.get("majorDeptId"))majorDeptId = Integer.parseInt(map.get("majorDeptId").toString());
 			if(null != map.get("orgId"))orgId = Integer.parseInt(map.get("orgId").toString());
 			
-			if(!checkId(Integer.parseInt(id), orgId, deptOrgId, majorDeptId)){
-				return Cause.getFailcode(999, "id", "id can not find");
-			}
-			
 			if(null != deptOrgId){
-				return pUT.sel(Integer.parseInt(id), deptOrgId, null);
+				List<Integer> list = pUT.sel(deptOrgId, null);
+				return p.getUserByListid(list);
 			}
 			
 			if(null != majorDeptId){
-				return pUS.sel(Integer.parseInt(id), majorDeptId, null);
+				List<Integer> list = pUS.sel(majorDeptId, null);
+				return p.getUserByListid(list);
 			}
 			
 			if(null != orgId){
-				return pUA.sel(Integer.parseInt(id), orgId, null);
+				List<Integer> list = pUA.sel(orgId, null);
+				return p.getUserByListid(list);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

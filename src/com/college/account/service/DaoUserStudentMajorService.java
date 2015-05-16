@@ -1,6 +1,8 @@
 package com.college.account.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.college.account.bean.UserStudentMajor;
 import com.college.util.Cause;
@@ -46,11 +48,18 @@ public class DaoUserStudentMajorService extends  DaoService<UserStudentMajor>{
 				
 	}
 	
-	public String sel(Integer userId, Integer relationId, Integer operId){
+	public List<Integer> sel(Integer relationId, Integer operId){
 		
-		//UserStudentMajor  userstudentmajor = getObj(userId, relationId);
+		UserStudentMajor  userstudentmajor = null;
+		List<Object> list = searchByFeildList(tablename, "majorDeptId", relationId);
+		List<Integer> useridlist = new ArrayList<Integer>();
 		
-		return null;
+		for(Object obj:list){
+			userstudentmajor = (UserStudentMajor)obj;
+			useridlist.add(userstudentmajor.getLoginId());
+		}
+		
+		return useridlist;
 				
 	}
 }

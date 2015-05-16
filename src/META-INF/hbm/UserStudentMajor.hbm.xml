@@ -25,4 +25,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getUserStudentMajormajorDeptId">
+		<![CDATA[
+	  		from UserStudentMajor where majorDeptId=?
+	  	]]>
+	</query>
+	
 </hibernate-mapping>
