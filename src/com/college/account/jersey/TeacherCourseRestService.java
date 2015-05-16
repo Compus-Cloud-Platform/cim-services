@@ -4,6 +4,6 @@ import javax.ws.rs.Path;
 
 
 @Path("/teachers")
-public class TeacherRestService {
+public class TeacherCourseRestService {
 
 }
