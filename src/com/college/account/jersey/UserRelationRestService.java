@@ -118,6 +118,7 @@ public class UserRelationRestService {
 	public String getRelationship(String jsonString){
 		
 		try {
+			
 			Integer deptOrgId = null;
 			Integer majorDeptId = null;
 			Integer orgId = null;
@@ -145,7 +146,8 @@ public class UserRelationRestService {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
+		
 		return Cause.getFailcode(1000, "", "system error");
 	}
 	
