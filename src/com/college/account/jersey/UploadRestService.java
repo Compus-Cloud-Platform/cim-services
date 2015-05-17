@@ -14,11 +14,9 @@ public class UploadRestService
 {
     @POST
     @Path("uploadfile")
-    @Consumes("application/x-www-form-urlencoded") 
-    public String getTest22222(InputStream is, @Context
-    HttpServletRequest request) throws Exception
+    @Consumes("application/x-www-form-urlencoded")
+    public String getTest22222(InputStream is, @Context HttpServletRequest request) throws Exception
     {
-        //is = request.getInputStream();
         byte[] buf = new byte[is.available()];
         is.read(buf);
         System.out.println("buf:" + new String(buf));
