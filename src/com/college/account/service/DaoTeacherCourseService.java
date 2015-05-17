@@ -30,13 +30,13 @@ public class DaoTeacherCourseService extends  DaoService<TeacherCourse>{
 		return Cause.getSuccess(idTemp);
 	}
 	
-	public String upd(Integer id, Integer idC, String jsonString){
+	public String upd(Integer id, String jsonString){
 		
 		TeacherCourse teachercourse = null;
 		TeacherCourse teachercourseFind = null;
 		teachercourse = (TeacherCourse)Json2Obj.getObj(jsonString, TeacherCourse.class);
 		
-		teachercourseFind = searchByMutiFeild(tablename, "loginIdcourseId", new Integer[]{id, idC});
+		teachercourseFind = searchByid(id, tablename);
 		
 		if(null == teachercourseFind){
 			
@@ -50,11 +50,11 @@ public class DaoTeacherCourseService extends  DaoService<TeacherCourse>{
 		return Cause.getSuccess(teachercourseFind.getId());
 	}
 	
-	public String del(Integer id, Integer idC){
+	public String del(Integer id){
 		
 		TeacherCourse teachercourseFind = null;
 		
-		teachercourseFind = searchByMutiFeild(tablename, "loginIdcourseId", new Integer[]{id, idC});
+		teachercourseFind = searchByid(id, tablename);
 		
 		if(null == teachercourseFind){
 			
