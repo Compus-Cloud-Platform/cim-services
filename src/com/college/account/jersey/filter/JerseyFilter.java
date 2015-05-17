@@ -30,12 +30,12 @@ public class JerseyFilter implements ContainerRequestFilter{
             System.out.println(smap.get(ss));
         }
         
-        if(null != arg0){
-        	Response response = Response.ok("{99:\"error\"}").status(401).type(MediaType.APPLICATION_JSON).build();  
-            throw new WebApplicationException(response); // Throw new UnAuthorized  
-        }
+       // if(null != arg0){
+       // 	Response response = Response.ok("{99:\"error\"}").status(401).type(MediaType.APPLICATION_JSON).build();  
+       //     throw new WebApplicationException(response); // Throw new UnAuthorized  
+       // }
         
-		System.out.println(smap);
+		//System.out.println(smap);
 		
 		return arg0;
 	}
