@@ -21,4 +21,16 @@
 	  	]]>
 	</query>
 	
+	<query name="getTeacherCourseloginIdcourseId">
+		<![CDATA[
+	  		from TeacherCourse where loginId = ? and courseId = ?
+	  	]]>
+	</query>
+	
+	<query name="getTeacherCourseloginId">
+		<![CDATA[
+	  		from TeacherCourse where loginId = ?
+	  	]]>
+	</query>
+	
 </hibernate-mapping>

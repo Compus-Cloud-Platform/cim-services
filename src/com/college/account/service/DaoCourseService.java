@@ -113,4 +113,16 @@ public class DaoCourseService extends  DaoService<Course>{
 		
 		return Cause.getSuccess(id);
 	}
+	
+	public String getList(List<Integer> list){
+		
+		List<Object> courseList = new ArrayList<Object>();
+		
+		for(Integer id:list){
+			courseList.add(searchByid(id, tablename));
+		}
+		
+		return Cause.getData(courseList);
+		
+	}
 }
