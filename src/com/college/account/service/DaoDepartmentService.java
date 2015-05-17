@@ -118,4 +118,14 @@ public class DaoDepartmentService extends  DaoService<Department>{
 		
 		return Cause.getData(list);
 	}
+	
+	public String getObject(Integer id){
+		
+		List<Object> list = new ArrayList<Object>();
+		
+		Object obj = searchByid(id, tablename);
+		list.add(obj);
+		
+		return Cause.getData(list);
+	}
 }

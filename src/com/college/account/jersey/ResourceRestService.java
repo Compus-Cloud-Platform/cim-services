@@ -2,6 +2,7 @@ package com.college.account.jersey;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 import org.apache.log4j.Logger;
 
@@ -33,11 +34,39 @@ public class ResourceRestService {
 	}
 	
 	@GET
+	@Path("/departments/{id}")
+	public String getDepartmentOneObject(@PathParam("id") String id){
+		try {
+			
+			return pD.getObject(Integer.parseInt(id));
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(10000, "", "system error");
+	}
+	
+	@GET
 	@Path("/majors")
 	public String getMajorAllObject(){
 		try {
 			
 			return pM.getAllObject();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(10000, "", "system error");
+	}
+	
+	@GET
+	@Path("/majors/{id}")
+	public String getMajorOneObject(@PathParam("id") String id){
+		try {
+			
+			return pM.getObject(Integer.parseInt(id));
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
