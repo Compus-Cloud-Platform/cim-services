@@ -167,5 +167,4 @@ public class ResourceRestService {
 		}
 		return Cause.getFailcode(10000, "", "system error");
 	}
-	
 }
