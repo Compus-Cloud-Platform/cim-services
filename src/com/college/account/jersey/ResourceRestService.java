@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 
 import com.college.account.service.DaoDepartmentService;
 import com.college.account.service.DaoMajorService;
-import com.college.account.service.DaoTeacherCourseService;
 import com.college.util.Cause;
 import com.college.util.Logger4j;
 import com.college.util.ServiceFactoryBean;
@@ -24,7 +23,6 @@ public class ResourceRestService {
 	private static final Logger log = Logger4j.getLogger(ResourceRestService.class);
 	private static DaoDepartmentService pD = ServiceFactoryBean.getDepartmentService();
 	private static DaoMajorService pM = ServiceFactoryBean.getMajorService();
-	private static DaoTeacherCourseService pT = ServiceFactoryBean.getTeacherCourseService();
 
 	@GET
 	@Path("/departments")
@@ -170,40 +168,4 @@ public class ResourceRestService {
 		return Cause.getFailcode(10000, "", "system error");
 	}
 	
-	/* 对 teachercourses 改和删除 */
-	@PUT
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Path("/teachercourses/{idC}")
-	public String updateteachercourse(@PathParam("id")  String id,
-	                                   String jsonString){
-		try {
-			
-			String result =  pT.upd(Integer.parseInt(id), jsonString);
-			
-			return result;
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			log.error(e);
-		}
-		
-		return Cause.getFailcode(15000, "", "system error");
-	}
-    
-    @DELETE
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Path("/teachercourses/{id}")
-	public String deleteeachercourse(@PathParam("id")  String id){
-		try {
-			
-			String result =  pT.del(Integer.parseInt(id));
-			return result;
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			log.error(e);
-		}
-		
-		return Cause.getFailcode(15000, "", "system error");
-	}
 }

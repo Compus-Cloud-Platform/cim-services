@@ -13,8 +13,16 @@ import com.college.util.Json2Obj;
 public class DaoTeacherCourseService extends  DaoService<TeacherCourse>{
 
 	public static String tablename = "TeacherCourse";
-	public int TEACHERCOURSEIDNOTFIND = 15001;
+	public static int TEACHERCOURSEIDNOTFIND = 15001;
 
+	public boolean isExist(Integer id){
+		
+		if(null == id){ return false;}
+		
+		TeacherCourse teachercourseFind = null;
+		teachercourseFind = searchByid(id, tablename);
+		return (null == teachercourseFind)?false:true;
+	}
 	
 	public String save(Integer id, String jsonString, Integer operId){
 		

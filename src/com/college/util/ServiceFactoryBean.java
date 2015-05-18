@@ -4,8 +4,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
-import com.college.account.bean.StudentCourse;
-import com.college.account.bean.TeacherCourse;
 import com.college.account.bean.TeacherCourseGroup;
 import com.college.account.service.DaoClubService;
 import com.college.account.service.DaoCourseService;

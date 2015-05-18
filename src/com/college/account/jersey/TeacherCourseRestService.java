@@ -1,77 +1,38 @@
 package com.college.account.jersey;
 
-import java.util.List;
-import java.util.Map;
+
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
-
 import org.apache.log4j.Logger;
-
-
-import com.college.account.service.DaoCourseService;
 import com.college.account.service.DaoTeacherCourseService;
-import com.college.account.service.DaoUsersService;
 import com.college.util.Cause;
-import com.college.util.JacksonUtils;
 import com.college.util.Logger4j;
 import com.college.util.ServiceFactoryBean;
 
 
-@Path("/teachers/{id}")
+@Path("/teachercourses")
 public class TeacherCourseRestService {
 
-	private static DaoTeacherCourseService p = ServiceFactoryBean.getTeacherCourseService();
-	private static DaoUsersService pU = ServiceFactoryBean.getUserService();
-	private static DaoCourseService pD = ServiceFactoryBean.getCourseService();
-    private static final Logger log = Logger4j.getLogger(TeacherCourseRestService.class);
-    
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON) 
-    @Path("/courses")
-	public String save(@PathParam("id") String id,
-			           String jsonString){
-    	
-    	try {
+	private static DaoTeacherCourseService pT = ServiceFactoryBean.getTeacherCourseService();
+	private static final Logger log = Logger4j.getLogger(TeacherCourseRestService.class);
+	    
 
-    		if(!pU.isExist(Integer.parseInt(id))){
-    			
-    			return Cause.getFailcode(DaoUsersService.USEIDNOTEXIST, "Id", "id not find");
-    		}
-    		
-    		@SuppressWarnings("unchecked")
-			Map<String,Object> map = JacksonUtils.objectMapper.readValue(jsonString, Map.class);
-    		
-    		if(null == map.get("courseId")){
-    			return Cause.getFailcode(DaoCourseService.COURSEIDNOTFIND, "Id", "course id not exist");
-    		}
-    		
-    		if(!pD.selIsExist(Integer.parseInt(map.get("courseId").toString()))){
-    			return Cause.getFailcode(DaoCourseService.COURSEIDNOTFIND, "Id", "course id not find");
-    		}
-			
-			return p.save(Integer.parseInt(id),jsonString, null);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			log.error(e);
-		}
-		return Cause.getFailcode(15000, "", "system error");
-    }
-    
-    @GET
-    @Path("/courses")
-	public String searchInfo(@PathParam("id") String id)
-	{
+	/* 对 teachercourses 改和删除 */
+	@PUT
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("/{id}")
+	public String updateteachercourse(@PathParam("id")  String id,
+	                                   String jsonString){
 		try {
 			
-			List<Integer> courselist =  p.sel(Integer.parseInt(id));
+			String result =  pT.upd(Integer.parseInt(id), jsonString);
 			
-			return pD.getList(courselist);
+			return result;
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -79,8 +40,25 @@ public class TeacherCourseRestService {
 		}
 		
 		return Cause.getFailcode(15000, "", "system error");
-		
 	}
+    
+    @DELETE
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("/{id}")
+	public String deleteeachercourse(@PathParam("id")  String id){
+		try {
+			
+			String result =  pT.del(Integer.parseInt(id));
+			return result;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(15000, "", "system error");
+	}
+	
     
     
 }
