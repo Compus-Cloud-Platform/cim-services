@@ -9,6 +9,7 @@
 		
 		<property name="name" column="NAME"/>
 		<property name="code" column="CODE"/>
+		<property name="deptId" column="DEPT_ID"/>
 		<property name="description" column="DESCRIPTION"/>
 		<property name="createTime" column="CREATE_TIME"/>
 		<property name="operId" column="OPER_ID"/>

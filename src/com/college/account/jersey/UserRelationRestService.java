@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 
 import com.college.account.service.DaoDeptOrgService;
-import com.college.account.service.DaoMajorDeptService;
+import com.college.account.service.DaoMajorDeptOrgService;
 import com.college.account.service.DaoOrganizationService;
 import com.college.account.service.DaoUserAdminOrgService;
 import com.college.account.service.DaoUserStudentMajorService;
@@ -28,7 +28,7 @@ public class UserRelationRestService {
 	
 	private static DaoUsersService p = ServiceFactoryBean.getUserService();
 	private static DaoDeptOrgService pDO = ServiceFactoryBean.getDeptOrgService();
-	private static DaoMajorDeptService pMD = ServiceFactoryBean.getMajorDeptService();
+	private static DaoMajorDeptOrgService pMD = ServiceFactoryBean.getMajorDeptService();
 	private static DaoOrganizationService pO = ServiceFactoryBean.getOrganizationService();
 	
 	private static DaoUserAdminOrgService pUA = ServiceFactoryBean.getUserAdminOrgService();
@@ -171,7 +171,7 @@ public class UserRelationRestService {
 		}
 		
 		if(null != majorDeptId){
-			if(null == pMD.searchByid(majorDeptId, DaoMajorDeptService.tablename)){
+			if(null == pMD.searchByid(majorDeptId, DaoMajorDeptOrgService.tablename)){
 				return false;
 			}
 		}

@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import org.apache.log4j.Logger;
 
 import com.college.account.service.DaoDeptOrgService;
-import com.college.account.service.DaoMajorDeptService;
+import com.college.account.service.DaoMajorDeptOrgService;
 import com.college.account.service.DaoMajorService;
 import com.college.util.Cause;
 import com.college.util.JacksonUtils;
@@ -27,7 +27,7 @@ public class MajorRestService {
 	
 	private static DaoMajorService p = ServiceFactoryBean.getMajorService();
 	private static DaoDeptOrgService pDO = ServiceFactoryBean.getDeptOrgService();
-	private static DaoMajorDeptService pMD = ServiceFactoryBean.getMajorDeptService();
+	private static DaoMajorDeptOrgService pMD = ServiceFactoryBean.getMajorDeptService();
 	
     private static final Logger log = Logger4j.getLogger(MajorRestService.class);
     

@@ -31,7 +31,7 @@
 				<value>/META-INF/hbm/Role.hbm.xml</value>
 				<value>/META-INF/hbm/Permission.hbm.xml</value>
 				<value>/META-INF/hbm/DeptOrg.hbm.xml</value>
-				<value>/META-INF/hbm/MajorDept.hbm.xml</value>
+				<value>/META-INF/hbm/MajorDeptOrg.hbm.xml</value>
 				<value>/META-INF/hbm/StudentCourse.hbm.xml</value>
 				
 

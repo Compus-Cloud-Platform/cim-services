@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class table="MAJOR_DEPT" name="com.college.account.bean.MajorDept">
+	<class table="MAJOR_DEPT_ORG" name="com.college.account.bean.MajorDeptOrg">
 	    <id name="id" column="ID">
 			<generator class="native"/>
 		</id>
@@ -13,19 +13,19 @@
 		<property name="operId" column="OPER_ID"/>
 	</class>
 	
-	<query name="getMajorDeptById">
+	<query name="getMajorDeptOrgById">
 		<![CDATA[
 	  		from MajorDept where id=?
 	  	]]>
 	</query>
 	
-	<query name="getMajorDeptmajorIddeptOrgId">
+	<query name="getMajorDeptOrgmajorIddeptOrgId">
 		<![CDATA[
 	  		from MajorDept where majorId=? and deptOrgId=?
 	  	]]>
 	</query>
 	
-	<query name="getMajorDeptdeptOrgId">
+	<query name="getMajorDeptOrgdeptOrgId">
 		<![CDATA[
 	  		from MajorDept where deptOrgId=?
 	  	]]>

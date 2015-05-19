@@ -7,14 +7,14 @@ public class Major {
 	private Integer id;
 	private String name;
 	private String code;
+	private Integer deptId;
 	private String description;
 	private Date createTime;
 	private Integer operId;
 	
-	
 	public Major(){}
 	
-	public Major(String name, String code, String description,
+	public Major(String name, String code, Integer deptId, String description,
 			Date createTime, Integer operId) {
 		super();
 		this.name = name;
@@ -22,13 +22,22 @@ public class Major {
 		this.description = description;
 		this.createTime = createTime;
 		this.operId = operId;
+		this.deptId = deptId;
 	}
 	
 	@Override
 	public String toString() {
 		return "Department [id=" + id + ", name=" + name + ", code=" + code
 				+ ", description=" + description + ", createTime=" + createTime
-				+ ", operId=" + operId + "]";
+				+ ", deptId=" + deptId+ ", operId=" + operId + "]";
+	}
+	
+	public Integer getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(Integer deptId) {
+		this.deptId = deptId;
 	}
 
 	public Integer getId() {

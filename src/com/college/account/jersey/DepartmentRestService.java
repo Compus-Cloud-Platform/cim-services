@@ -3,6 +3,7 @@ package com.college.account.jersey;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -73,7 +74,14 @@ public class DepartmentRestService {
 		}
 		return Cause.getFailcode(3000, "", "system error");
     }
-    
+	
+	@POST
+	@Path("/{idD}")
+    public String save(@PathParam("id") String id,
+    		              @PathParam("idD") String idD){
+		return null;
+		
+	}
     @DELETE
     @Path("/{idD}")
     public String deleteDep(@PathParam("id") String id,

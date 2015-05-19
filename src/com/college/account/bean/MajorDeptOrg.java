@@ -2,7 +2,7 @@ package com.college.account.bean;
 
 import java.util.Date;
 
-public class MajorDept {
+public class MajorDeptOrg {
 	private Integer id;
 	private Integer majorId;
 	private Integer deptOrgId;
@@ -44,8 +44,8 @@ public class MajorDept {
 				+ deptOrgId + ", createTime=" + createTime + ", operId="
 				+ operId + "]";
 	}
-	public MajorDept(){}
-	public MajorDept(Integer majorId, Integer deptOrgId, Date createTime,
+	public MajorDeptOrg(){}
+	public MajorDeptOrg(Integer majorId, Integer deptOrgId, Date createTime,
 			Integer operId) {
 		super();
 		this.majorId = majorId;

@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.college.account.bean.MajorDept;
+import com.college.account.bean.MajorDeptOrg;
 import com.college.util.Cause;
 
-public class DaoMajorDeptService extends  DaoService<MajorDept>{
+public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 	
-	public static String tablename = "MajorDept";
+	public static String tablename = "MajorDeptOrg";
 	
 	private int MAJORDEPTNOTFIND = 12001;
 	private int MAJORIDWEONG = 12002;
 	
 	public String save(Integer majorId, Integer deptOrgId, Integer operId){
 		
-		MajorDept majordept = new MajorDept(majorId, deptOrgId, new Date(), operId);
+		MajorDeptOrg majordept = new MajorDeptOrg(majorId, deptOrgId, new Date(), operId);
 		
 		Integer id = create(majordept);
 		
@@ -26,7 +26,7 @@ public class DaoMajorDeptService extends  DaoService<MajorDept>{
 	
 	public String del(String majorId, String deptOrgId){
 		
-		MajorDept majordept = null;
+		MajorDeptOrg majordept = null;
 		
 		majordept = searchByMutiFeild(tablename, "majorIddeptOrgId", new Object[]{Integer.parseInt(majorId), Integer.parseInt(deptOrgId)});
 		
@@ -35,7 +35,7 @@ public class DaoMajorDeptService extends  DaoService<MajorDept>{
 			return Cause.getFailcode(MAJORDEPTNOTFIND, "id", "not find");
 		}
 		
-		delete(MajorDept.class, majordept.getId());
+		delete(MajorDeptOrg.class, majordept.getId());
 		
 		return Cause.getSuccess(majordept.getId());
 	}
@@ -46,7 +46,7 @@ public class DaoMajorDeptService extends  DaoService<MajorDept>{
 		
 		List<Integer> resultlist = new ArrayList<Integer>();
 		for(Object temp :list){
-			MajorDept majordept = (MajorDept)temp;
+			MajorDeptOrg majordept = (MajorDeptOrg)temp;
 			resultlist.add(majordept.getMajorId());
 		}
 		
@@ -55,7 +55,7 @@ public class DaoMajorDeptService extends  DaoService<MajorDept>{
 	
 	public String getDepOneMajor(Integer orgDepId, Integer majorId){
 		
-		MajorDept majordept = null;
+		MajorDeptOrg majordept = null;
 		
 		majordept = searchByMutiFeild(tablename, "majorIddeptOrgId", new Object[]{majorId, orgDepId});
 		
