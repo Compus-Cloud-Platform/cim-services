@@ -91,4 +91,24 @@ public class DaoTeacherCourseService extends  DaoService<TeacherCourse>{
 		return courseidlist;
 	}
 	
+	public String selone(Integer id){
+		TeacherCourse teachercourse = null;
+		teachercourse = searchByid(id, tablename);
+		
+		if(null == teachercourse){
+			return Cause.getFailcode(TEACHERCOURSEIDNOTFIND, "id", "TeacherCourse id not find");
+		}
+		List<Object> list = new ArrayList<Object>();
+		list.add(teachercourse);
+		
+		return Cause.getData(list);
+	}
+	
+	public String getAllObject(){
+		
+		List<Object> list = searchAll(tablename);
+
+		return Cause.getData(list);
+	}
+	
 }

@@ -33,4 +33,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getAllTeacherCourse">
+		<![CDATA[
+	  		from TeacherCourse
+	  	]]>
+	</query>
+	
 </hibernate-mapping>

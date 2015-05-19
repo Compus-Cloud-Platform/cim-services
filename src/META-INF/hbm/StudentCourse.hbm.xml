@@ -29,4 +29,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getAllStudentCourse">
+		<![CDATA[
+	  		from StudentCourse
+	  	]]>
+	</query>
+	
 </hibernate-mapping>

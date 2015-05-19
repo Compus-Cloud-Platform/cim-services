@@ -74,7 +74,6 @@ public class RoleRestService {
 	}
     
     @GET
-	@Consumes({MediaType.APPLICATION_JSON})
 	@Path("/{id}")
 	public String searchInfo(@PathParam("id") String id)
 	{

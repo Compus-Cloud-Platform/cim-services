@@ -2,6 +2,7 @@ package com.college.account.jersey.single;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -40,7 +41,6 @@ public class TeacherCourseRestService {
 	}
     
     @DELETE
-	@Consumes({MediaType.APPLICATION_JSON})
 	@Path("/{id}")
 	public String deleteeachercourse(@PathParam("id")  String id){
 		try {
@@ -54,6 +54,39 @@ public class TeacherCourseRestService {
 		}
 		
 		return Cause.getFailcode(15000, "", "system error");
+	}
+    
+    @GET
+	@Path("/{id}")
+	public String searchInfo(@PathParam("id") String id)
+	{
+		try {
+			
+			return pT.selone(Integer.parseInt(id));
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(8000, "", "system error");
+		
+	}
+    
+    @GET
+	public String getAllObject()
+	{
+		try {
+			
+			return pT.getAllObject();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(8000, "", "system error");
+		
 	}
 	
     
