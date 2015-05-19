@@ -1,4 +1,5 @@
-package com.college.account.jersey;
+package com.college.account.jersey.single;
+
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -8,21 +9,22 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
-
 import org.apache.log4j.Logger;
 
-
-import com.college.account.service.DaoCourseService;
+import com.college.account.service.DaoOrganizationService;
 import com.college.util.Cause;
+
 import com.college.util.Logger4j;
 import com.college.util.ServiceFactoryBean;
 
 
-@Path("/courses")
-public class CourseRestService {
-
-	private static DaoCourseService p = ServiceFactoryBean.getCourseService();
-    private static final Logger log = Logger4j.getLogger(CourseRestService.class);
+@Path("/organizations")
+public class OrganizationRestService
+{
+    private static DaoOrganizationService p = ServiceFactoryBean.getOrganizationService();
+    
+    
+    private static final Logger log = Logger4j.getLogger(OrganizationRestService.class);
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON) 
@@ -36,7 +38,7 @@ public class CourseRestService {
 			// TODO Auto-generated catch block
 			log.error(e);
 		}
-		return Cause.getFailcode(6000, "", "system error");
+		return Cause.getFailcode(3000, "", "system error");
     }
     
     @PUT
@@ -54,7 +56,7 @@ public class CourseRestService {
 			log.error(e);
 		}
 		
-		return Cause.getFailcode(6000, "", "system error");
+		return Cause.getFailcode(3000, "", "system error");
 	}
     
     @DELETE
@@ -71,7 +73,7 @@ public class CourseRestService {
 			log.error(e);
 		}
 		
-		return Cause.getFailcode(6000, "", "system error");
+		return Cause.getFailcode(3000, "", "system error");
 	}
     
     @GET
@@ -88,23 +90,23 @@ public class CourseRestService {
 			log.error(e);
 		}
 		
-		return Cause.getFailcode(6000, "", "system error");
+		return Cause.getFailcode(3000, "", "system error");
 		
 	}
+
     
     @GET
-    public String getAllObject()
-    {
-		try {
-			
-			return p.getAllObject();
-			
-		} catch (Exception e) {
+    public String getAll(){
+    	try{
+    		return p.getAllObject();
+    	}catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error(e);
 		}
-		
-		return Cause.getFailcode(6000, "", "system error");
-		
-	}
+		return Cause.getFailcode(3000, "", "system error");
+    }
+    
+    
+    
+    
 }

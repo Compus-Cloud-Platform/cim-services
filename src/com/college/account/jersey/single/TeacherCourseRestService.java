@@ -1,6 +1,4 @@
-package com.college.account.jersey;
-
-
+package com.college.account.jersey.single;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -13,7 +11,6 @@ import com.college.account.service.DaoTeacherCourseService;
 import com.college.util.Cause;
 import com.college.util.Logger4j;
 import com.college.util.ServiceFactoryBean;
-
 
 @Path("/teachercourses")
 public class TeacherCourseRestService {

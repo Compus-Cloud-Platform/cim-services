@@ -1,4 +1,4 @@
-package com.college.account.jersey;
+package com.college.account.jersey.single;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -11,17 +11,18 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
 
-import com.college.account.service.DaoRoleService;
+
+import com.college.account.service.DaoCourseService;
 import com.college.util.Cause;
 import com.college.util.Logger4j;
 import com.college.util.ServiceFactoryBean;
 
 
-@Path("/roles")
-public class RoleRestService {
+@Path("/courses")
+public class CourseRestService {
 
-	private static DaoRoleService p = ServiceFactoryBean.getRoleService();
-    private static final Logger log = Logger4j.getLogger(RoleRestService.class);
+	private static DaoCourseService p = ServiceFactoryBean.getCourseService();
+    private static final Logger log = Logger4j.getLogger(CourseRestService.class);
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON) 
@@ -35,7 +36,7 @@ public class RoleRestService {
 			// TODO Auto-generated catch block
 			log.error(e);
 		}
-		return Cause.getFailcode(8000, "", "system error");
+		return Cause.getFailcode(6000, "", "system error");
     }
     
     @PUT
@@ -53,7 +54,7 @@ public class RoleRestService {
 			log.error(e);
 		}
 		
-		return Cause.getFailcode(8000, "", "system error");
+		return Cause.getFailcode(6000, "", "system error");
 	}
     
     @DELETE
@@ -70,7 +71,7 @@ public class RoleRestService {
 			log.error(e);
 		}
 		
-		return Cause.getFailcode(8000, "", "system error");
+		return Cause.getFailcode(6000, "", "system error");
 	}
     
     @GET
@@ -87,13 +88,13 @@ public class RoleRestService {
 			log.error(e);
 		}
 		
-		return Cause.getFailcode(8000, "", "system error");
+		return Cause.getFailcode(6000, "", "system error");
 		
 	}
     
     @GET
-	public String getAllObject()
-	{
+    public String getAllObject()
+    {
 		try {
 			
 			return p.getAllObject();
@@ -103,7 +104,7 @@ public class RoleRestService {
 			log.error(e);
 		}
 		
-		return Cause.getFailcode(8000, "", "system error");
+		return Cause.getFailcode(6000, "", "system error");
 		
 	}
 }

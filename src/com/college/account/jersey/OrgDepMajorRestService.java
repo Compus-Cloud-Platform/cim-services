@@ -23,13 +23,13 @@ import com.college.util.ServiceFactoryBean;
 
 
 @Path("/organizations/{id}/departments/{idD}/majors")
-public class MajorRestService {
+public class OrgDepMajorRestService {
 	
 	private static DaoMajorService p = ServiceFactoryBean.getMajorService();
 	private static DaoDeptOrgService pDO = ServiceFactoryBean.getDeptOrgService();
 	private static DaoMajorDeptOrgService pMD = ServiceFactoryBean.getMajorDeptService();
 	
-    private static final Logger log = Logger4j.getLogger(MajorRestService.class);
+    private static final Logger log = Logger4j.getLogger(OrgDepMajorRestService.class);
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON) 

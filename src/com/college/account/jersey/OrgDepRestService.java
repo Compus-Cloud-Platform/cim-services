@@ -22,12 +22,12 @@ import com.college.util.ServiceFactoryBean;
 
 
 @Path("/organizations/{id}/departments")
-public class DepartmentRestService {
+public class OrgDepRestService {
 
 	private static DaoOrganizationService p = ServiceFactoryBean.getOrganizationService();
 	private static DaoDepartmentService pD = ServiceFactoryBean.getDepartmentService();
     private static DaoDeptOrgService pDO = ServiceFactoryBean.getDeptOrgService();
-    private static final Logger log = Logger4j.getLogger(DepartmentRestService.class);
+    private static final Logger log = Logger4j.getLogger(OrgDepRestService.class);
     
 	@PUT
     @Consumes({MediaType.APPLICATION_JSON})

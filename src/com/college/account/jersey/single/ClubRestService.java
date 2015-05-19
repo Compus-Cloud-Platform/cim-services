@@ -1,4 +1,4 @@
-package com.college.account.jersey;
+package com.college.account.jersey.single;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
