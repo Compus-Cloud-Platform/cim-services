@@ -6,20 +6,14 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
-
-import com.college.account.bean.Department;
-import com.college.account.service.DaoDepartmentService;
 import com.college.account.service.DaoDeptOrgService;
-import com.college.account.service.DaoOrganizationService;
 import com.college.util.Cause;
 import com.college.util.JacksonUtils;
-import com.college.util.Json2Obj;
 import com.college.util.Logger4j;
 import com.college.util.ServiceFactoryBean;
 
@@ -27,8 +21,6 @@ import com.college.util.ServiceFactoryBean;
 @Path("/organization-departments")
 public class OrgDepRestService {
 
-	private static DaoOrganizationService p = ServiceFactoryBean.getOrganizationService();
-	private static DaoDepartmentService pD = ServiceFactoryBean.getDepartmentService();
     private static DaoDeptOrgService pDO = ServiceFactoryBean.getDeptOrgService();
     private static final Logger log = Logger4j.getLogger(OrgDepRestService.class);
     
