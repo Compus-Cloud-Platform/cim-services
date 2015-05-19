@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.college.account.bean.Department;
 import com.college.account.bean.DeptOrg;
 import com.college.util.Cause;
 import com.college.util.JacksonUtils;
@@ -17,6 +18,7 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 	public static int DEPORGPARAMERROR = 5004;
 	public static int DEPORGDEPERGIDERROR = 5005;
 	public static int DEPORGEXIST = 5006;
+	public static DaoDepartmentService pD = ServiceFactoryBean.getDepartmentService();
 	
 	public String  save(Integer orgId, Integer depId, Integer operId){
 		
@@ -26,11 +28,11 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		return Cause.getSuccess(deptorg.getId());
 	}
 	
-	public String del(String id, String idD){
+	public String del(String id){
 		
 		DeptOrg deptorg = null;
 		
-		deptorg = searchByMutiFeild(tablename, "deptIdorgId", new Object[]{Integer.parseInt(idD), Integer.parseInt(id)});
+		deptorg = searchByid(Integer.parseInt(id), tablename);
 		
 		if(null == deptorg){
 			return Cause.getFailcode(NOTFIND, "id", "not find");
@@ -47,8 +49,7 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		
 		List<Object> listDep = new ArrayList<Object>();
 		
-		DaoDepartmentService pD = ServiceFactoryBean.getDepartmentService();
-		
+
 		for(Object obj:list){
 			DeptOrg deptorg = (DeptOrg)obj;
 			listDep.add(pD.selObj(deptorg.getDeptId()));
@@ -57,28 +58,23 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		return Cause.getData(listDep);
 	}
 	
-	public String getOne(String orgId, String depId){
+	public String getOne(String id){
 		
-		List<Object> list = searchByFeildList(tablename, "orgId", Integer.parseInt(orgId));
+		DeptOrg deptorg = null;
 		
-		List<Object> listDep = new ArrayList<Object>();
+		deptorg = searchByid(Integer.parseInt(id), tablename);
 		
-		DaoDepartmentService pD = ServiceFactoryBean.getDepartmentService();
-		
-		for(Object obj:list){
-			DeptOrg deptorg = (DeptOrg)obj;
+		if(null == deptorg){
 			
-			if(deptorg.getDeptId() == Integer.parseInt(depId)){
-				listDep.add(pD.selObj(deptorg.getDeptId()));
-			}
-			
-		}
-		
-		if(listDep.size() == 0){
 			return Cause.getFailcode(DEPORGPARAMERROR, "id", "can not find this data");
 		}
 		
-		return Cause.getData(listDep);
+		Department department= pD.searchByid(deptorg.getDeptId(), DaoDepartmentService.tablename);
+		
+		List<Object> list = new ArrayList<Object>();
+		list.add(department);
+		
+		return Cause.getData(list);
 	}
 	
 	public Integer getIsRight(String orgId, String depId){
@@ -86,6 +82,8 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		DeptOrg deptorg = null;
 		
 		deptorg = searchByMutiFeild(tablename, "deptIdorgId", new Object[]{Integer.parseInt(depId), Integer.parseInt(orgId)});
+		
+		if(null == deptorg) return null;
 		
 		return deptorg.getId();
 	}

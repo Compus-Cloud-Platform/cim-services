@@ -1,5 +1,7 @@
 package com.college.account.jersey;
 
+import java.util.Map;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -16,12 +18,13 @@ import com.college.account.service.DaoDepartmentService;
 import com.college.account.service.DaoDeptOrgService;
 import com.college.account.service.DaoOrganizationService;
 import com.college.util.Cause;
+import com.college.util.JacksonUtils;
 import com.college.util.Json2Obj;
 import com.college.util.Logger4j;
 import com.college.util.ServiceFactoryBean;
 
 
-@Path("/organizations/{id}/departments")
+@Path("/organization-departments")
 public class OrgDepRestService {
 
 	private static DaoOrganizationService p = ServiceFactoryBean.getOrganizationService();
@@ -29,66 +32,28 @@ public class OrgDepRestService {
     private static DaoDeptOrgService pDO = ServiceFactoryBean.getDeptOrgService();
     private static final Logger log = Logger4j.getLogger(OrgDepRestService.class);
     
-	@PUT
-    @Consumes({MediaType.APPLICATION_JSON})
-    public String saveDep(@PathParam("id") String id,
-                                           String jsonString){
-    	try {
-			
-			if(!p.selIsExist(Integer.parseInt(id))){
-				return Cause.getFailcode(DaoOrganizationService.ORGIDNOTFIND, "id", "id not find");
-			}
-			
-			Department department = (Department)Json2Obj.getObj(jsonString, Department.class);
-			
-			if(null == department.getId()){
-				/* need save*/
-				if(null == department.getName()){
-					return Cause.getFailcode(DaoDepartmentService.DEPARTMENTLOSTNAME, "name", "must has name");
-				}else{
-					Integer resultid = null;
-					if(pD.selNameUniq(department.getName())){
-						resultid = Cause.getResultId(pD.save(jsonString));
-					}else{
-						resultid = ((Department)pD.searchByFeild(DaoDepartmentService.tablename, "name", department.getName())).getId();
-					}
-					
-					pDO.save(Integer.parseInt(id), resultid, department.getOperId());
-					
-					return Cause.getSuccess(resultid);
-				}
-			}
-			
-			if(!pD.selIsExist(department.getId())){
-				return Cause.getFailcode(DaoOrganizationService.ORGIDNOTFIND, "id", "id not find");
-			}
-			
-			pDO.save(Integer.parseInt(id), department.getId(), department.getOperId());
-			
-			return Cause.getSuccess(department.getId());
-			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			log.error(e);
-		}
-		return Cause.getFailcode(3000, "", "system error");
-    }
-	
+
 	@POST
-	@Path("/{idD}")
-    public String save(@PathParam("id") String id,
-    		           @PathParam("idD") String idD){
+	@Consumes(MediaType.APPLICATION_JSON) 
+    public String save(String jsonString){
 		
 		try {
-			String result = pDO.getOne(id, idD);
+			/* 转化为json */
+			Map<?, ?> map = JacksonUtils.objectMapper.readValue(jsonString, Map.class);
 			
-			if(Cause.isSuccess(result)){
+			String orgId = (null== map.get("orgId"))?null:map.get("orgId").toString();
+            String depId = (null== map.get("deptId"))?null:map.get("deptId").toString();
+            
+            if(null == orgId || null == depId){
+            	return Cause.getFailcode(3000, "", "param error");
+            }
+			
+			if(null != pDO.getIsRight(orgId, depId)){
 				
 				return Cause.getFailcode(DaoDeptOrgService.DEPORGEXIST, "id", "id has exist");
 			}
 			
-			return pDO.save(Integer.parseInt(id), Integer.parseInt(idD), null);
+			return pDO.save(Integer.parseInt(orgId), Integer.parseInt(depId), null);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -98,12 +63,11 @@ public class OrgDepRestService {
 		return Cause.getFailcode(3000, "", "system error");
 	}
     @DELETE
-    @Path("/{idD}")
-    public String deleteDep(@PathParam("id") String id,
-    		                @PathParam("idD") String idD){
+    @Path("/{id}")
+    public String deleteDep(@PathParam("id") String id){
     	
     	try{
-    		return pDO.del(id, idD);
+    		return pDO.del(id);
     	}catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error(e);
@@ -113,13 +77,10 @@ public class OrgDepRestService {
     }
     
     @GET
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/orgId/{id}")
     public String getDep(@PathParam("id") String id){
-    	
     	try{
-    		
     		return pDO.get(id);
-    		
     	}catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error(e);
@@ -128,13 +89,11 @@ public class OrgDepRestService {
     }
     
     @GET
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Path("/{idD}")
-    public String getOneDep(@PathParam("id") String id,
-                            @PathParam("idD") String idD){
+    @Path("/{id}")
+    public String getOneDep(@PathParam("id") String id){
     	try{
     		
-    		return pDO.getOne(id, idD);
+    		return pDO.getOne(id);
     		
     	}catch (Exception e) {
 			// TODO Auto-generated catch block
