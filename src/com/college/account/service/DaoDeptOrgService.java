@@ -59,7 +59,7 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		
 		List<Object> list = searchByFeildList(tablename, "orgId", Integer.parseInt(orgId));
 		
-		List<Object> listDep = new ArrayList<Object>(1);
+		List<Object> listDep = new ArrayList<Object>();
 		
 		DaoDepartmentService pD = ServiceFactoryBean.getDepartmentService();
 		
@@ -70,6 +70,10 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 				listDep.add(pD.selObj(deptorg.getDeptId()));
 			}
 			
+		}
+		
+		if(listDep.size() == 0){
+			return Cause.getFailcode(DEPORGPARAMERROR, "id", "can not find this data");
 		}
 		
 		return Cause.getData(listDep);

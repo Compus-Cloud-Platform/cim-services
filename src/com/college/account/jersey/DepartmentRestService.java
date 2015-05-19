@@ -78,9 +78,18 @@ public class DepartmentRestService {
 	@POST
 	@Path("/{idD}")
     public String save(@PathParam("id") String id,
-    		              @PathParam("idD") String idD){
-		return null;
+    		           @PathParam("idD") String idD){
 		
+		try {
+			String str = pDO.getOne(id, idD);
+			 
+			return null;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(3000, "", "system error");
 	}
     @DELETE
     @Path("/{idD}")
