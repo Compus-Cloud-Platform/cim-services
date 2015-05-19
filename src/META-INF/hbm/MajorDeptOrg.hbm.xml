@@ -15,19 +15,19 @@
 	
 	<query name="getMajorDeptOrgById">
 		<![CDATA[
-	  		from MajorDept where id=?
+	  		from MajorDeptOrg where id=?
 	  	]]>
 	</query>
 	
 	<query name="getMajorDeptOrgmajorIddeptOrgId">
 		<![CDATA[
-	  		from MajorDept where majorId=? and deptOrgId=?
+	  		from MajorDeptOrg where majorId=? and deptOrgId=?
 	  	]]>
 	</query>
 	
 	<query name="getMajorDeptOrgdeptOrgId">
 		<![CDATA[
-	  		from MajorDept where deptOrgId=?
+	  		from MajorDeptOrg where deptOrgId=?
 	  	]]>
 	</query>
 	

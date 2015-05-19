@@ -81,9 +81,15 @@ public class DepartmentRestService {
     		           @PathParam("idD") String idD){
 		
 		try {
-			String str = pDO.getOne(id, idD);
-			 
-			return null;
+			String result = pDO.getOne(id, idD);
+			
+			if(Cause.isSuccess(result)){
+				
+				return Cause.getFailcode(DaoDeptOrgService.DEPORGEXIST, "id", "id has exist");
+			}
+			
+			return pDO.save(Integer.parseInt(id), Integer.parseInt(idD), null);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error(e);

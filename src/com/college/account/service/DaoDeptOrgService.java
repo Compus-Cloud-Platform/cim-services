@@ -13,15 +13,17 @@ import com.college.util.ServiceFactoryBean;
 public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 
 	public static String tablename = "DeptOrg";
-	public int NOTFIND = 11001;
-	private int DEPORGPARAMERROR = 5004;
-	private int DEPORGDEPERGIDERROR = 5005;
+	public static int NOTFIND = 11001;
+	public static int DEPORGPARAMERROR = 5004;
+	public static int DEPORGDEPERGIDERROR = 5005;
+	public static int DEPORGEXIST = 5006;
 	
-	public void save(Integer orgId, Integer depId, Integer operId){
+	public String  save(Integer orgId, Integer depId, Integer operId){
 		
 		DeptOrg deptorg = new DeptOrg(depId, orgId, new Date(), operId);
 		create(deptorg);
-		return;
+		
+		return Cause.getSuccess(deptorg.getId());
 	}
 	
 	public String del(String id, String idD){
