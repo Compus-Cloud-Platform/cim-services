@@ -19,6 +19,18 @@ public class DaoUploadService extends AbstractServiceDao implements UploadServic
 {
     private static final Logger log = Logger4j.getLogger(DaoUploadService.class);
     
+    private String destLocation;
+    
+    public String getDestLocation()
+    {
+        return destLocation;
+    }
+
+    public void setDestLocation(String destLocation)
+    {
+        this.destLocation = destLocation;
+    }
+
     public void saveUploadFile(String realPath, String fileName, long fileSize, InputStream stream)
             throws FileNotFoundException, IOException
     {
