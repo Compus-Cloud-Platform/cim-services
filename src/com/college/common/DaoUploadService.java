@@ -31,7 +31,7 @@ public class DaoUploadService extends AbstractServiceDao implements UploadServic
         this.destLocation = destLocation;
     }
 
-    public void saveUploadFile(String realPath, String fileName, long fileSize, InputStream stream)
+    public void saveUploadFile(String realPath, String fileName, InputStream stream)
             throws FileNotFoundException, IOException
     {
         File dirFile = new File(realPath);
@@ -50,11 +50,11 @@ public class DaoUploadService extends AbstractServiceDao implements UploadServic
 
         File dest = new File(dirFile, fileName);// FileUtil.getCreatableFile(dirFile,
         
-        if(fileSize == dest.length())
+        /*if(fileSize == dest.length())
         {
             log.warn("File already exists, skip upload.");
             return;
-        }
+        }*/
         
         // fileName);
         String destPath = dest.getAbsolutePath();

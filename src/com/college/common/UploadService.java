@@ -6,6 +6,6 @@ import java.io.InputStream;
 
 public interface UploadService
 {
-    public void saveUploadFile(String realPath, String fileName, long fileSize, InputStream stream)
+    public void saveUploadFile(String realPath, String fileName, InputStream stream)
             throws FileNotFoundException, IOException;
 }

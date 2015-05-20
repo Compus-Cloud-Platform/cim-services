@@ -23,6 +23,7 @@ import com.college.account.service.DaoUserTeacherDeptService;
 import com.college.account.service.DaoUsersService;
 import com.college.account.service.DaoUsersServiceExt;
 import com.college.account.service.Service;
+import com.college.common.DaoUploadService;
 
 public class ServiceFactoryBean
 {
@@ -57,6 +58,9 @@ public class ServiceFactoryBean
     
     @SuppressWarnings("unchecked")
     public static Service<TeacherCourseGroup> getTeacherCourseGroupService(){return (Service<TeacherCourseGroup>) getService("teacherCourseGroupService");}
+    
+    //common
+    public static DaoUploadService getUploadService() {return (DaoUploadService) getService("service.Upload");}
     
     
     

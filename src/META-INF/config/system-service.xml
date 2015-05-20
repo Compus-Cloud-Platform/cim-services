@@ -36,7 +36,7 @@
 	<bean id="userStudentMajorService" class="com.college.account.service.DaoUserStudentMajorService" parent="service.abstractDao"></bean>
 	<bean id="userTeacherDeptService" class="com.college.account.service.DaoUserTeacherDeptService" parent="service.abstractDao"></bean>
 	
-	<bean id="uploadService" class="com.college.common.DaoUploadService" parent="service.abstractDao">
+	<bean id="service.Upload" class="com.college.common.DaoUploadService" parent="service.abstractDao">
 		<property name="destLocation" value="G:\campus_test"/>
 	</bean>
  </beans>
