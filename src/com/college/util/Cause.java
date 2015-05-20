@@ -49,6 +49,20 @@ public class Cause {
 		return JacksonUtils.getJsonString(map);
 	}
 	
+	static public String getSpeicalData(List<Object> list, List<Object> relationlist){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("ack", "success");
+		map.put("data", list);
+		map.put("size", list.size());
+		
+		map.put("relationdata", relationlist);
+		map.put("relationsize", relationlist.size());
+		
+		return JacksonUtils.getJsonString(map);
+	}
+	
 	@SuppressWarnings("unchecked")
 	static public boolean isSuccess(String result){
 		

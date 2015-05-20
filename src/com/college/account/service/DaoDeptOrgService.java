@@ -55,7 +55,7 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 			listDep.add(pD.selObj(deptorg.getDeptId()));
 		}
 		
-		return Cause.getData(listDep);
+		return Cause.getSpeicalData(listDep, list);
 	}
 	
 	public String getOne(String id){
