@@ -11,6 +11,7 @@ import com.college.account.bean.UsersExt;
 import com.college.util.Cause;
 import com.college.util.JacksonUtils;
 import com.college.util.Json2Obj;
+import com.college.util.Md5Util;
 import com.college.util.Obj2Map;
 import com.college.util.ServiceFactoryBean;
 
@@ -43,7 +44,7 @@ public class DaoUsersService extends DaoService<Users>{
 			return Cause.getFailcode(USELOGINIDNOTEXIST, "name", "name not exist");
 		}
 		
-		if(users.getLoginPassword().equals(map.get("password").toString())){
+		if(users.getLoginPassword().equals(Md5Util.md5calc(map.get("password").toString()))){
 			
 			Map<String, Object> resultMap = new HashMap<String, Object>();
 			Map<String, Object> dataMap = new HashMap<String, Object>();
@@ -92,6 +93,8 @@ public class DaoUsersService extends DaoService<Users>{
 	    	return Cause.getFailcode(USELOGINEXISTORWRONG, "loginId", "exist or lost loginId filed");
 	    }
 	    
+	    users.setLoginPassword(Md5Util.md5calc(users.getLoginPassword()));
+	    
 	    users.setCreateTime(new Date());
 	    id = create(users);
 	    
@@ -131,6 +134,10 @@ public class DaoUsersService extends DaoService<Users>{
 	    	if(!ServiceFactoryBean.getPositionService().selIsExist(users.getPositionId())){
 	    		return new String[]{Cause.getFailcode(USEPOSIDWRONG, "PositionId", "PositionId must exist in Position table"),null};
 	    	}
+	    }
+	    
+	    if(null != users.getLoginPassword()){
+	    	users.setLoginPassword(Md5Util.md5calc(users.getLoginPassword()));
 	    }
 	    
 		Json2Obj.updateObject(users, usersfind);

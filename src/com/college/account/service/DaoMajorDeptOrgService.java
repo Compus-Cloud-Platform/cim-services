@@ -1,5 +1,6 @@
 package com.college.account.service;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,8 +14,23 @@ public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 	
 	private int MAJORDEPTNOTFIND = 12001;
 	private int MAJORIDWEONG = 12002;
+	private int MAJORIDRELATIONEXIST= 12003;
 	
+	private DaoMajorService majorService;
+	
+
+	public void setMajorService(DaoMajorService majorService) {
+		this.majorService = majorService;
+	}
+
+
 	public String save(Integer majorId, Integer deptOrgId, Integer operId){
+		
+		MajorDeptOrg majordeptfind = searchByMutiFeild(tablename, "majorIddeptOrgId", new Integer[]{majorId,deptOrgId});
+		
+		if(null != majordeptfind){
+			return Cause.getFailcode(MAJORIDRELATIONEXIST, "id", "this is exist");
+		}
 		
 		MajorDeptOrg majordept = new MajorDeptOrg(majorId, deptOrgId, new Date(), operId);
 		
@@ -24,11 +40,11 @@ public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 	}
 	
 	
-	public String del(String majorId, String deptOrgId){
+	public String del(String id){
 		
 		MajorDeptOrg majordept = null;
 		
-		majordept = searchByMutiFeild(tablename, "majorIddeptOrgId", new Object[]{Integer.parseInt(majorId), Integer.parseInt(deptOrgId)});
+		majordept = searchByid(Integer.parseInt(id), tablename);
 		
 		if(null == majordept){
 			
@@ -39,20 +55,7 @@ public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 		
 		return Cause.getSuccess(majordept.getId());
 	}
-	
-	public List<Integer> getDepAllMajor(Integer orgDepId){
-		
-		List<Object> list = searchByFeildList(tablename, "deptOrgId", orgDepId);
-		
-		List<Integer> resultlist = new ArrayList<Integer>();
-		for(Object temp :list){
-			MajorDeptOrg majordept = (MajorDeptOrg)temp;
-			resultlist.add(majordept.getMajorId());
-		}
-		
-		return resultlist;
-	}
-	
+
 	public String getDepOneMajor(Integer orgDepId, Integer majorId){
 		
 		MajorDeptOrg majordept = null;
@@ -65,5 +68,35 @@ public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 		
 		return Cause.getSuccess(majordept.getId());
 	}
+	
+	public String getMajorBylistId(Integer id){
+		
+		List<Object> list = searchByFeildList(tablename, "deptOrgId", id);
+		
+		List<Object> majorList = new ArrayList<Object>();
+		
+		for(Object temp :list){
+			MajorDeptOrg majordept = (MajorDeptOrg)temp;
+			majorList.add(majorService.searchByid(majordept.getMajorId(), tablename));
+		}
+
+		return Cause.getSpeicalData(majorList, list);
+	}
+	
+	
+	public String getMajorByRelationID(Integer id){
+		MajorDeptOrg majordept = null;
+		
+		majordept = searchByid(id, tablename);
+		
+		List<Object> majorList = new ArrayList<Object>();
+		
+		Object obj = majorService.searchByid(majordept.getMajorId(), tablename);
+		
+		majorList.add(obj);
+		
+		return Cause.getData(majorList);
+	}
+	
 
 }

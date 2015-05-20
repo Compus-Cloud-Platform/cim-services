@@ -15,11 +15,8 @@ public class DaoMajorService extends  DaoService<Major>{
 	private int MAJORIDNOTFIND = 5001;
 	private int MAJORNAMENULL = 5002;
 	private int MAJORNAMEEXIST = 5003;
-
-	
 	private String tablename = "Major";
-	
-	
+
 	
 	public boolean selIsExist(Integer id){		
 		return (null != searchByid(id, tablename))?true:false;
@@ -48,16 +45,7 @@ public class DaoMajorService extends  DaoService<Major>{
 		
 	    return Cause.getSuccess(id);
 	}
-	
-	public String getMajorBylistId(List<Integer> list){
-		List<Object> majorList = new ArrayList<Object>();
-		for(Integer id:list){
-			majorList.add(searchByid(id, tablename));
-		}
-		return Cause.getData(majorList);
-	}
-	
-	
+
 	public String sel(Integer id){
 		
 		Major major = searchByid(id, tablename);

@@ -20,14 +20,20 @@
 	<bean id="userServiceExt" class="com.college.account.service.DaoUsersServiceExt" parent="service.abstractDao"></bean>
 	
 	<bean id="positionService" class="com.college.account.service.DaoPositionService" parent="service.abstractDao"></bean>
-	<bean id="departmentService" class="com.college.account.service.DaoDepartmentService" parent="service.abstractDao"></bean>
 	<bean id="majorService" class="com.college.account.service.DaoMajorService" parent="service.abstractDao"></bean>
+	<bean id="departmentService" class="com.college.account.service.DaoDepartmentService" parent="service.abstractDao"></bean>
 	<bean id="courseService" class="com.college.account.service.DaoCourseService" parent="service.abstractDao"></bean>
 	<bean id="clubService" class="com.college.account.service.DaoClubService" parent="service.abstractDao"></bean>
 	<bean id="roleService" class="com.college.account.service.DaoRoleService" parent="service.abstractDao"></bean>
 	<bean id="permissionService" class="com.college.account.service.DaoPermissionService" parent="service.abstractDao"></bean>
-	<bean id="deptOrgService" class="com.college.account.service.DaoDeptOrgService" parent="service.abstractDao"></bean>
-	<bean id="majorDeptOrgService" class="com.college.account.service.DaoMajorDeptOrgService" parent="service.abstractDao"></bean>
+	
+	<bean id="deptOrgService" class="com.college.account.service.DaoDeptOrgService" parent="service.abstractDao">
+		<property name="departmentService" ref="departmentService"/>
+	</bean>
+	
+	<bean id="majorDeptOrgService" class="com.college.account.service.DaoMajorDeptOrgService" parent="service.abstractDao">
+		<property name="majorService" ref="majorService"/>
+	</bean>
 	<bean id="studentCourseService" class="com.college.account.service.DaoStudentCourseService" parent="service.abstractDao"></bean>
 	
 	<bean id="teacherCourseService" class="com.college.account.service.DaoTeacherCourseService" parent="service.abstractDao"></bean>

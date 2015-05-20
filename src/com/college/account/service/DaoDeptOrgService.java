@@ -3,13 +3,11 @@ package com.college.account.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
+
 
 import com.college.account.bean.Department;
 import com.college.account.bean.DeptOrg;
 import com.college.util.Cause;
-import com.college.util.JacksonUtils;
-import com.college.util.ServiceFactoryBean;
 
 public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 
@@ -18,8 +16,13 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 	public static int DEPORGPARAMERROR = 5004;
 	public static int DEPORGDEPERGIDERROR = 5005;
 	public static int DEPORGEXIST = 5006;
-	public static DaoDepartmentService pD = ServiceFactoryBean.getDepartmentService();
 	
+	private DaoDepartmentService departmentService;
+	
+	public void setDepartmentService(DaoDepartmentService departmentService) {
+		this.departmentService = departmentService;
+	}
+
 	public String  save(Integer orgId, Integer depId, Integer operId){
 		
 		DeptOrg deptorg = new DeptOrg(depId, orgId, new Date(), operId);
@@ -52,7 +55,7 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 
 		for(Object obj:list){
 			DeptOrg deptorg = (DeptOrg)obj;
-			listDep.add(pD.selObj(deptorg.getDeptId()));
+			listDep.add(departmentService.selObj(deptorg.getDeptId()));
 		}
 		
 		return Cause.getSpeicalData(listDep, list);
@@ -69,7 +72,7 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 			return Cause.getFailcode(DEPORGPARAMERROR, "id", "can not find this data");
 		}
 		
-		Department department= pD.searchByid(deptorg.getDeptId(), DaoDepartmentService.tablename);
+		Department department= departmentService.searchByid(deptorg.getDeptId(), DaoDepartmentService.tablename);
 		
 		List<Object> list = new ArrayList<Object>();
 		list.add(department);
@@ -88,23 +91,5 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		return deptorg.getId();
 	}
 	
-	public String isJudge(String id, String idD, String jsonString) throws Exception{
-		
-		@SuppressWarnings("unchecked")
-		Map<String,Object> map = JacksonUtils.objectMapper.readValue(jsonString, Map.class);
-		
-		if(null == map.get("deptOrgMapId") || null == map.get("majorId")){
-			return  Cause.getFailcode(DEPORGPARAMERROR, "json", "json param error");
-		}
-		
-		Integer idsearch = Integer.parseInt(map.get("deptOrgMapId").toString());
-		
-		DeptOrg deptorg = searchByid(idsearch, DaoDeptOrgService.tablename);
-		if(Integer.parseInt(id) != deptorg.getOrgId() ||
-				Integer.parseInt(idD) != deptorg.getDeptId()){
-			return Cause.getFailcode(DEPORGDEPERGIDERROR, "deptOrgMapId", "deptOrgMapId error");
-		}
-		
-		return Cause.getSuccess(idsearch);
-	}
+
 }

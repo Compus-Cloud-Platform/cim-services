@@ -69,7 +69,7 @@ public class OrgDepRestService {
     }
     
     @GET
-    @Path("/orgId/{id}")
+    @Path("/org-id/{id}")
     public String getDep(@PathParam("id") String id){
     	try{
     		return pDO.get(id);
