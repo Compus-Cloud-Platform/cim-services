@@ -15,7 +15,7 @@ public class DaoMajorService extends  DaoService<Major>{
 	private int MAJORIDNOTFIND = 5001;
 	private int MAJORNAMENULL = 5002;
 	private int MAJORNAMEEXIST = 5003;
-	private String tablename = "Major";
+	public static String tablename = "Major";
 
 	
 	public boolean selIsExist(Integer id){		

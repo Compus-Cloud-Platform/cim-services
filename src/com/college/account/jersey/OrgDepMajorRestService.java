@@ -71,7 +71,7 @@ public class OrgDepMajorRestService {
 	public String searchInfo(@PathParam("id") String id){
     	
     	try {
-			
+			/* dep 与  org 构成一级级联 为了不至于层次太深 所以 不采取二级级联  */
 			return p.getMajorBylistId(Integer.parseInt(id));
 			
 		} catch (Exception e) {

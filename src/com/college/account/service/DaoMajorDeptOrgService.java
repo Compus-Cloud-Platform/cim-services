@@ -4,9 +4,12 @@ package com.college.account.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import com.college.account.bean.Major;
 import com.college.account.bean.MajorDeptOrg;
 import com.college.util.Cause;
+import com.college.util.Obj2Map;
 
 public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 	
@@ -30,6 +33,10 @@ public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 		
 		if(null != majordeptfind){
 			return Cause.getFailcode(MAJORIDRELATIONEXIST, "id", "this is exist");
+		}
+		
+		if(null == majorService.searchByid(majorId, DaoMajorService.tablename)){
+			return Cause.getFailcode(MAJORDEPTNOTFIND, "id", "major id not exist");
 		}
 		
 		MajorDeptOrg majordept = new MajorDeptOrg(majorId, deptOrgId, new Date(), operId);
@@ -73,14 +80,19 @@ public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 		
 		List<Object> list = searchByFeildList(tablename, "deptOrgId", id);
 		
-		List<Object> majorList = new ArrayList<Object>();
+		List<Object> relist = new ArrayList<Object>();
 		
 		for(Object temp :list){
-			MajorDeptOrg majordept = (MajorDeptOrg)temp;
-			majorList.add(majorService.searchByid(majordept.getMajorId(), tablename));
+			Map<String, Object> map = Obj2Map.toMap(temp, MajorDeptOrg.class);
+			
+			Major major = majorService.searchByid(((MajorDeptOrg)temp).getMajorId(), DaoMajorService.tablename);
+			
+			map.put("major", Obj2Map.toMap(major, Major.class));
+			
+			relist.add(map);
 		}
 
-		return null;
+		return Cause.getData(relist);
 	}
 	
 	
@@ -91,7 +103,7 @@ public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 		
 		List<Object> majorList = new ArrayList<Object>();
 		
-		Object obj = majorService.searchByid(majordept.getMajorId(), tablename);
+		Object obj = majorService.searchByid(majordept.getMajorId(), DaoMajorService.tablename);
 		
 		majorList.add(obj);
 		
