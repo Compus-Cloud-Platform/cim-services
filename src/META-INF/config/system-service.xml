@@ -29,6 +29,7 @@
 	
 	<bean id="deptOrgService" class="com.college.account.service.DaoDeptOrgService" parent="service.abstractDao">
 		<property name="departmentService" ref="departmentService"/>
+		<property name="organizationservice" ref="organizationService"/>
 	</bean>
 	
 	<bean id="majorDeptOrgService" class="com.college.account.service.DaoMajorDeptOrgService" parent="service.abstractDao">

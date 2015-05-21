@@ -2,7 +2,6 @@ package com.college.account.service;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,15 +44,11 @@ public class DaoUsersService extends DaoService<Users>{
 		}
 		
 		if(users.getLoginPassword().equals(Md5Util.md5calc(map.get("password").toString()))){
+			List<Object> list = new ArrayList<Object>();
+			list.add(users);
 			
-			Map<String, Object> resultMap = new HashMap<String, Object>();
-			Map<String, Object> dataMap = new HashMap<String, Object>();
-			resultMap.put("ack", "success");
-            dataMap.put("id", users.getId());
-            dataMap.put("loginId", users.getLoginId());
-            dataMap.put("token", null);
-            resultMap.put("data", dataMap);
-			return JacksonUtils.getJsonString(resultMap);
+			return Cause.getStringData(list, Users.class);
+			
 		}else{
 			return Cause.getFailcode(USEPWDWRONG, "pwd", "pwd wrong");
 		}
@@ -175,18 +170,10 @@ public class DaoUsersService extends DaoService<Users>{
 		}
 		
 		List<Object> list = new ArrayList<Object>(1);
-		
-		Map<String , Object> user = Obj2Map.toMap(usersfind, Users.class);
-		
-		Map<String , Object> userext = Obj2Map.toMap(usersfind.getUsersExt(), UsersExt.class);
-		userext.remove("id");
-		userext.remove("loginId");
-		
-		user.putAll(userext);
         
-        list.add(user);
+        list.add(usersfind);
         
-        return Cause.getData(list);
+        return Cause.getStringData(list, Users.class);
 		
 	}
 	
@@ -203,22 +190,9 @@ public class DaoUsersService extends DaoService<Users>{
 	
 	public String getAllObject(){
 		
-		Users usersfind = null;
+		List<Object> list = searchAll(tablename);
 		
-		List<Object> listfind = searchAll(tablename);
-		List<Object> list = new ArrayList<Object>();
-
-		for(Object obj:listfind){
-			usersfind = (Users)obj;
-			Map<String , Object> user = Obj2Map.toMap(usersfind, Users.class);
-			Map<String , Object> userext = Obj2Map.toMap(usersfind.getUsersExt(), UsersExt.class);
-			userext.remove("id");
-			userext.remove("loginId");
-			user.putAll(userext);
-	        list.add(user);
-		}
-		
-        return Cause.getData(list);
+        return Cause.getStringData(list, Users.class);
 	}
 	
 	public String getUserByListid(List<Integer> listid){
@@ -227,16 +201,8 @@ public class DaoUsersService extends DaoService<Users>{
 		
 		for(Integer loginid:listid){
 			usersfind = searchByid(loginid, tablename);
-			
-			if(null == usersfind)continue;
-			Map<String , Object> user = Obj2Map.toMap(usersfind, Users.class);
-			Map<String , Object> userext = Obj2Map.toMap(usersfind.getUsersExt(), UsersExt.class);
-			userext.remove("id");
-			userext.remove("loginId");
-			user.putAll(userext);
-	        list.add(user);
+	        list.add(usersfind);
 		}
-		
-		return Cause.getData(list);
+		return Cause.getStringData(list, Users.class);
 	}
 }

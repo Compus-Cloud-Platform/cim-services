@@ -123,4 +123,14 @@ public class DaoMajorService extends  DaoService<Major>{
 		return Cause.getData(list);
 	}
 	
+	public String getBydepId(Integer id){
+		
+		List<Object> list = new ArrayList<Object>();
+		
+		list = searchByFeildList(tablename, "deptId", id);
+		
+		return Cause.getData(list);
+	}
+	
+	
 }

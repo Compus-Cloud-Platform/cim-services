@@ -5,56 +5,75 @@ import java.util.Date;
 public class DeptOrg {
 	
 	private Integer id;
-	private Integer deptId;
-	private Integer orgId;
+	private Department department;
+	private Organization organization;
 	private Date createTime;
 	private Integer operId;
 	
-	@Override
-	public String toString() {
-		return "DeptOrg [id=" + id + ", deptId=" + deptId + ", orgId=" + orgId
-				+ ", createTime=" + createTime + ", operId=" + operId + "]";
-	}
+
 	public DeptOrg(){}
 	
-	public DeptOrg(Integer deptId, Integer orgId, Date createTime,
-			Integer operId) {
+	public DeptOrg(Department department, Organization organization,
+			Date createTime, Integer operId) {
 		super();
-		this.deptId = deptId;
-		this.orgId = orgId;
+		this.department = department;
+		this.organization = organization;
 		this.createTime = createTime;
 		this.operId = operId;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
+
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getDeptId() {
-		return deptId;
+
+
+	public Department getDepartment() {
+		return department;
 	}
-	public void setDeptId(Integer deptId) {
-		this.deptId = deptId;
+
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
-	public Integer getOrgId() {
-		return orgId;
+
+
+	public Organization getOrganization() {
+		return organization;
 	}
-	public void setOrgId(Integer orgId) {
-		this.orgId = orgId;
+
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
+
+
 	public Date getCreateTime() {
 		return createTime;
 	}
+
+
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+
+
 	public Integer getOperId() {
 		return operId;
 	}
+
+
 	public void setOperId(Integer operId) {
 		this.operId = operId;
 	}
+
+
 	
+	
+
 
 }

@@ -45,6 +45,7 @@ public class MajorDeptOrg {
 				+ operId + "]";
 	}
 	public MajorDeptOrg(){}
+	
 	public MajorDeptOrg(Integer majorId, Integer deptOrgId, Date createTime,
 			Integer operId) {
 		super();

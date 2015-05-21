@@ -1,13 +1,22 @@
 package com.college.account.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 
 
 import com.college.account.bean.Department;
 import com.college.account.bean.DeptOrg;
+import com.college.account.bean.Organization;
+import com.college.account.bean.Users;
 import com.college.util.Cause;
+import com.college.util.JacksonUtils;
+import com.college.util.Obj2Map;
 
 public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 
@@ -17,15 +26,31 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 	public static int DEPORGDEPERGIDERROR = 5005;
 	public static int DEPORGEXIST = 5006;
 	
+
 	private DaoDepartmentService departmentService;
+
+	private DaoOrganizationService organizationservice;
 	
+	public void setOrganizationservice(DaoOrganizationService organizationservice) {
+		this.organizationservice = organizationservice;
+	}
+
 	public void setDepartmentService(DaoDepartmentService departmentService) {
 		this.departmentService = departmentService;
 	}
 
 	public String  save(Integer orgId, Integer depId, Integer operId){
 		
-		DeptOrg deptorg = new DeptOrg(depId, orgId, new Date(), operId);
+		Department department = (Department)departmentService.searchByid(depId, DaoDepartmentService.tablename);
+		
+		Organization organization = (Organization)organizationservice.searchByid(orgId, DaoOrganizationService.tablename);
+		
+		if(null == department || null == organization){
+			return Cause.getFailcode(NOTFIND, "id", "org id or dep id not find");
+		}
+		
+		DeptOrg deptorg = new DeptOrg( department, organization, new Date(), operId);
+		
 		create(deptorg);
 		
 		return Cause.getSuccess(deptorg.getId());
@@ -38,6 +63,7 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		deptorg = searchByid(Integer.parseInt(id), tablename);
 		
 		if(null == deptorg){
+			
 			return Cause.getFailcode(NOTFIND, "id", "not find");
 		}
 		
@@ -50,15 +76,8 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		
 		List<Object> list = searchByFeildList(tablename, "orgId", Integer.parseInt(orgId));
 		
-		List<Object> listDep = new ArrayList<Object>();
+		return Cause.getStringData(list, DeptOrg.class);
 		
-
-		for(Object obj:list){
-			DeptOrg deptorg = (DeptOrg)obj;
-			listDep.add(departmentService.selObj(deptorg.getDeptId()));
-		}
-		
-		return Cause.getSpeicalData(listDep, list);
 	}
 	
 	public String getOne(String id){
@@ -67,17 +86,11 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		
 		deptorg = searchByid(Integer.parseInt(id), tablename);
 		
-		if(null == deptorg){
-			
-			return Cause.getFailcode(DEPORGPARAMERROR, "id", "can not find this data");
-		}
-		
-		Department department= departmentService.searchByid(deptorg.getDeptId(), DaoDepartmentService.tablename);
-		
 		List<Object> list = new ArrayList<Object>();
-		list.add(department);
 		
-		return Cause.getData(list);
+		list.add(deptorg);
+		
+		return Cause.getStringData(list, DeptOrg.class);
 	}
 	
 	public Integer getIsRight(String orgId, String depId){

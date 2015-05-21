@@ -80,7 +80,7 @@ public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 			majorList.add(majorService.searchByid(majordept.getMajorId(), tablename));
 		}
 
-		return Cause.getSpeicalData(majorList, list);
+		return null;
 	}
 	
 	

@@ -1,8 +1,11 @@
 package com.college.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.college.account.bean.DeptOrg;
 
 
 
@@ -44,6 +47,23 @@ public class Cause {
 
 		map.put("ack", "success");
 		map.put("data", list);
+		map.put("size", list.size());
+		
+		return JacksonUtils.getJsonString(map);
+	}
+	
+	static public String getStringData(List<Object> list, Class<?> obj){
+		
+		List<Object> relist = new ArrayList<Object>();
+		
+		for(Object objTemp:list){
+			Map<String , Object> temp = Obj2Map.toMapRecursive(objTemp, obj);
+			relist.add(temp);
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ack", "success");
+		map.put("data", relist);
 		map.put("size", list.size());
 		
 		return JacksonUtils.getJsonString(map);

@@ -6,11 +6,10 @@
 	    <id name="id" column="ID">
 			<generator class="native"/>
 		</id>
-		
-		<property name="deptId" column="DEPT_ID"/>
-		<property name="orgId" column="ORG_ID"/>
 		<property name="createTime" column="CREATE_TIME"/>
 		<property name="operId" column="OPER_ID"/>
+		<many-to-one name="department" column="DEPT_ID" insert="true" update="false"/>
+		<many-to-one name="organization" column="ORG_ID" insert="true" update="false"/>
 	</class>
 	
 	<query name="getDeptOrgById">
@@ -27,13 +26,13 @@
 	
 	<query name="getDeptOrgdeptIdorgId">
 		<![CDATA[
-	  		from DeptOrg where deptId=? and orgId=?
+	  		from DeptOrg where department.id=? and organization.id=?
 	  	]]>
 	</query>
 	
 	<query name="getDeptOrgorgId">
 		<![CDATA[
-	  		from DeptOrg where orgId=?
+	  		from DeptOrg where organization.id=?
 	  	]]>
 	</query>
 	

@@ -94,4 +94,19 @@ public class MajorRestService {
 		}
 		return Cause.getFailcode(10000, "", "system error");
 	}
+	
+	@GET
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Path("/dept-id/{id}")
+	public String getBydepId(@PathParam("id") String id){
+		try {
+			
+			return pM.getBydepId(Integer.parseInt(id));
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(10000, "", "system error");
+	}
 }
