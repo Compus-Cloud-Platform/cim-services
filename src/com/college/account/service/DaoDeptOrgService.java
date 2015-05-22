@@ -76,7 +76,15 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		
 		List<Object> list = searchByFeildList(tablename, "orgId", Integer.parseInt(orgId));
 		
-		return Cause.getStringData(list, DeptOrg.class);
+		List<Object> relist = Cause.getMapData(list, DeptOrg.class);
+		
+		for(Object obj:relist){
+			Map<String, Object> map = (Map<String, Object>)obj;
+			map.remove("organization");
+			map.put("orgId", Integer.parseInt(orgId));
+		}
+		
+		return Cause.getData(relist);
 		
 	}
 	

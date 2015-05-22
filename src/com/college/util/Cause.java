@@ -54,12 +54,7 @@ public class Cause {
 	
 	static public String getStringData(List<Object> list, Class<?> obj){
 		
-		List<Object> relist = new ArrayList<Object>();
-		
-		for(Object objTemp:list){
-			Map<String , Object> temp = Obj2Map.toMapRecursive(objTemp, obj);
-			relist.add(temp);
-		}
+		List<Object> relist = getMapData(list, obj);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ack", "success");
@@ -67,6 +62,18 @@ public class Cause {
 		map.put("size", list.size());
 		
 		return JacksonUtils.getJsonString(map);
+	}
+	
+	static public List<Object> getMapData(List<Object> list, Class<?> obj){
+		
+		List<Object> relist = new ArrayList<Object>();
+		
+		for(Object objTemp:list){
+			Map<String , Object> temp = Obj2Map.toMapRecursive(objTemp, obj);
+			relist.add(temp);
+		}
+		
+		return relist;
 	}
 	
 	static public String getSpeicalData(List<Object> list, List<Object> relationlist){
