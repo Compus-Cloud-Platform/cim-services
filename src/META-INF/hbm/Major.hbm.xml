@@ -33,4 +33,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getMajordeptId">
+		<![CDATA[
+	  		from Major where deptId = ?
+	  	]]>
+	</query>
+	
 </hibernate-mapping>
