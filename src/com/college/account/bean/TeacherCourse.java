@@ -10,6 +10,14 @@ public class TeacherCourse {
 	private String term;
 	private Date createTime;
 	private Integer operId;
+	private Course course;
+	
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -65,7 +73,7 @@ public class TeacherCourse {
 	public TeacherCourse(){}
 	
 	public TeacherCourse(Integer loginId, Integer courseId, String grade,
-			String term, Date createTime, Integer operId) {
+			String term, Date createTime, Integer operId, Course course) {
 		super();
 		this.loginId = loginId;
 		this.courseId = courseId;
@@ -73,6 +81,7 @@ public class TeacherCourse {
 		this.term = term;
 		this.createTime = createTime;
 		this.operId = operId;
+		this.course = course;
 	}
 
 	

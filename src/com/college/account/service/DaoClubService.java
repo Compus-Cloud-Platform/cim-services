@@ -86,10 +86,11 @@ public class DaoClubService extends  DaoService<Club>{
 			return Cause.getFailcode(CLUBIDNOTFIND, "id", "org id not find");
 		}
 		
+		/*
 		if(null != club.getName() && !selNameUniq(club.getName())){
 			
 			return Cause.getFailcode(CLUBNAMEEXIST, "name", "name is exist");
-		}
+		}*/
 		
 		Json2Obj.updateObject(club, clubfind);
 		

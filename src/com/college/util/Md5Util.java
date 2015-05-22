@@ -43,7 +43,7 @@ public class Md5Util {
 	}
 	
 	public static void main(String[] args) {
-		String content = "12312312312312";
+		String content = "123456";
 	    System.err.println(content + "\n" + md5calc(content));
 	}
 }

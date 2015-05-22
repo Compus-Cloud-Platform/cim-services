@@ -86,12 +86,12 @@ public class DaoPositionService extends  DaoService<Position>{
 		if(null == positionfind){
 			return Cause.getFailcode(POSITIONIDNOTFIND, "id", "org id not find");
 		}
-		
+		/*
 		if(null != position.getName() && !selNameUniq(position.getName())){
 			
 			return Cause.getFailcode(POSITIONNAMEEXIST, "name", "name is exist");
 		}
-		
+		*/
 		Json2Obj.updateObject(position, positionfind);
 		
 		update(positionfind);

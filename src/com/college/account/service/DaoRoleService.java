@@ -85,12 +85,12 @@ public class DaoRoleService extends  DaoService<Role>{
 		if(null == rolefind){
 			return Cause.getFailcode(ROLEIDNOTFIND, "id", "org id not find");
 		}
-		
+		/*
 		if(null != role.getName() && !selNameUniq(role.getName())){
 			
 			return Cause.getFailcode(ROLENAMEEXIST, "name", "name is exist");
 		}
-		
+		*/
 		Json2Obj.updateObject(role, rolefind);
 		
 		update(rolefind);

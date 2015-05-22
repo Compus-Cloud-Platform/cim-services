@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Context;
@@ -22,9 +23,25 @@ public class JerseyFilter implements ContainerRequestFilter{
     private HttpServletResponse servletResponse;
 	@Override
 	public ContainerRequest filter(ContainerRequest arg0) {
-		// TODO Auto-generated method stub
-//		StringBuffer  s = servletRequest.getRequestURL();
+
+		StringBuffer s = servletRequest.getRequestURL();
+		
+		if(s.toString().contains("login")){
+			
+			Map para = arg0.getFormParameters();
+			/* login  取出 cookie */
+			@SuppressWarnings("rawtypes")
+			Map cmap = arg0.getCookies();
+			
+			Set<String> key = cmap.keySet();
+			
+			if(key.contains("id"));
+		}
+		
 		Map smap = arg0.getCookies();
+		
+		
+		Cookie[] array = servletRequest.getCookies();
 		
 		Set<String> key = smap.keySet();
         for (Iterator it = key.iterator(); it.hasNext();) {

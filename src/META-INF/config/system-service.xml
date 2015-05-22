@@ -4,7 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
 	http://www.springframework.org/schema/tx 
-  	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+  	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+  	default-lazy-init="false">
   	
   	<!-- 定义事务管理器 -->
 	<bean id="transactionManager"

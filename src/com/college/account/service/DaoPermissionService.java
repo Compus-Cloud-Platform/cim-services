@@ -86,12 +86,12 @@ public class DaoPermissionService extends  DaoService<Permission>{
 		if(null == permissionfind){
 			return Cause.getFailcode(PERMISSIONIDNOTFIND, "id", "org id not find");
 		}
-		
+		/*
 		if(null != permission.getName() && !selNameUniq(permission.getName())){
 			
 			return Cause.getFailcode(PERMISSIONNAMEEXIST, "name", "name is exist");
 		}
-		
+		*/
 		Json2Obj.updateObject(permission, permissionfind);
 		
 		update(permissionfind);

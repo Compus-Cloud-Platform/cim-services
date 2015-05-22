@@ -78,12 +78,12 @@ public class DaoMajorService extends  DaoService<Major>{
 		if(null == majorfind){
 			return Cause.getFailcode(MAJORIDNOTFIND, "id", "org id not find");
 		}
-		
+		/*
 		if(null != major.getName() && !selNameUniq(major.getName())){
 			
 			return Cause.getFailcode(MAJORNAMEEXIST, "name", "name is exist");
 		}
-		
+		*/
 		Json2Obj.updateObject(major, majorfind);
 		
 		update(majorfind);

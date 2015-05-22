@@ -84,12 +84,12 @@ public class DaoDepartmentService extends  DaoService<Department>{
 		if(null == departmentfind){
 			return Cause.getFailcode(DEPARTMENTIDNOTFIND, "id", "org id not find");
 		}
-		
+		/*
 		if(null != department.getName() && !selNameUniq(department.getName())){
 			
 			return Cause.getFailcode(DEPARTMENTNAMEEXIST, "name", "name is exist");
 		}
-		
+		*/
 		Json2Obj.updateObject(department, departmentfind);
 		
 		update(departmentfind);

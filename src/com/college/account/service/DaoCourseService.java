@@ -86,12 +86,12 @@ public class DaoCourseService extends  DaoService<Course>{
 		if(null == coursefind){
 			return Cause.getFailcode(COURSEIDNOTFIND, "id", "org id not find");
 		}
-		
+		/*
 		if(null != course.getName() && !selNameUniq(course.getName())){
 			
 			return Cause.getFailcode(COURSENAMEEXIST, "name", "name is exist");
 		}
-		
+		*/
 		Json2Obj.updateObject(course, coursefind);
 		
 		update(coursefind);
