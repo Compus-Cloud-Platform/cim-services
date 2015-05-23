@@ -4,17 +4,33 @@ package com.college.account.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import com.college.account.bean.Course;
 import com.college.account.bean.TeacherCourse;
+import com.college.account.bean.Users;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
+import com.college.util.Obj2Map;
 
 
 public class DaoTeacherCourseService extends  DaoService<TeacherCourse>{
 
 	public static String tablename = "TeacherCourse";
 	public static int TEACHERCOURSEIDNOTFIND = 15001;
+	
+	private DaoUsersService usersService;
+	private DaoCourseService courseService;
+	
+	
+	public void setUsersService(DaoUsersService usersService) {
+		this.usersService = usersService;
+	}
 
+	public void setCourseService(DaoCourseService courseService) {
+		this.courseService = courseService;
+	}
+	
 	public boolean isExist(Integer id){
 		
 		if(null == id){ return false;}
@@ -24,12 +40,22 @@ public class DaoTeacherCourseService extends  DaoService<TeacherCourse>{
 		return (null == teachercourseFind)?false:true;
 	}
 	
-	public String save(Integer id, String jsonString, Integer operId){
+	public String save(String jsonString, Integer operId){
 		
 		TeacherCourse teachercourse = null;
 		teachercourse = (TeacherCourse)Json2Obj.getObj(jsonString, TeacherCourse.class);
 		
-		teachercourse.setLoginId(id);
+		Integer userId = teachercourse.getLoginId();
+		Integer courseId = teachercourse.getCourseId();
+		
+		if(null == userId || !usersService.isExist(userId)){
+			return Cause.getFailcode(DaoUsersService.USELOGINIDNOTEXIST, "id", "user id not find");
+		}
+		
+		if(null == courseId || !courseService.selIsExist(courseId)){
+			return Cause.getFailcode(DaoCourseService.COURSEIDNOTFIND, "id", "teacher id not find");
+		}
+
 		teachercourse.setCreateTime(new Date());
 		teachercourse.setOperId(operId);
 		
@@ -74,32 +100,45 @@ public class DaoTeacherCourseService extends  DaoService<TeacherCourse>{
 		return Cause.getSuccess(teachercourseFind.getId());
 	}
 	
-	public List<Integer> sel(Integer id){
+	public String selTeacherAllCourse(Integer id){
 		
 		TeacherCourse teachercourse = null;
 		
 		List<Object> list = searchByFeildList(tablename, "loginId", id);
 		
-		List<Integer> courseidlist = new ArrayList<Integer>();
+		List<Object> teachercourseidlist = new ArrayList<Object>();
 		
 		for(Object obj:list){
 			
 			teachercourse = (TeacherCourse)obj;
-			courseidlist.add(teachercourse.getCourseId());
+
+			Map<String, Object> map = Obj2Map.toMap(teachercourse, TeacherCourse.class);
+			
+			map.put("course", Obj2Map.toMap(courseService.searchByid(teachercourse.getCourseId(), DaoCourseService.tablename), Course.class));
+			
+			teachercourseidlist.add(map);
 		}
 		
-		return courseidlist;
+		return Cause.getData(teachercourseidlist);
 	}
 	
 	public String selone(Integer id){
+		
 		TeacherCourse teachercourse = null;
 		teachercourse = searchByid(id, tablename);
 		
 		if(null == teachercourse){
 			return Cause.getFailcode(TEACHERCOURSEIDNOTFIND, "id", "TeacherCourse id not find");
 		}
+		
 		List<Object> list = new ArrayList<Object>();
-		list.add(teachercourse);
+		
+		Map<String, Object> map = Obj2Map.toMap(teachercourse, TeacherCourse.class);
+		
+		map.put("course", Obj2Map.toMap(courseService.searchByid(teachercourse.getCourseId(), DaoCourseService.tablename), Course.class));
+		
+		list.add(map);
+		
 		
 		return Cause.getData(list);
 	}

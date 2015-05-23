@@ -16,7 +16,7 @@ public class DaoCourseService extends  DaoService<Course>{
 	public static int COURSENAMENULL = 6002;
 	public static int COURSENAMEEXIST = 6003;
 	
-	private String tablename = "Course";
+	public static String tablename = "Course";
 	
 	public boolean selIsExist(Integer id){		
 		return (null != searchByid(id, tablename))?true:false;

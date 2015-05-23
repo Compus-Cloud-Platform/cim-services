@@ -16,6 +16,10 @@ public class Obj2Map {
 
 		try {
 			
+			if(null == temp){
+				return null;
+			}
+			
 			Map<String, Object> map = new HashMap<String, Object>();
 			
 			Field[] f = obj.getDeclaredFields();
