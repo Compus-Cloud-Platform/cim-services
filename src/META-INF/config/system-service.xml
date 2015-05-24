@@ -36,7 +36,12 @@
 	<bean id="majorDeptOrgService" class="com.college.account.service.DaoMajorDeptOrgService" parent="service.abstractDao">
 		<property name="majorService" ref="majorService"/>
 	</bean>
-	<bean id="studentCourseService" class="com.college.account.service.DaoStudentCourseService" parent="service.abstractDao"></bean>
+	<bean id="studentCourseService" class="com.college.account.service.DaoStudentCourseService" parent="service.abstractDao">
+		<property name="usersService" ref="userService"/>
+		<property name="teacherCourseService" ref="teacherCourseService"/>
+		<property name="teacherCourseGroupService" ref="teacherCourseGroupService"/>
+		<property name="courseService" ref="courseService"/>
+	</bean>
 	
 	<bean id="teacherCourseService" class="com.college.account.service.DaoTeacherCourseService" parent="service.abstractDao">
 		<property name="usersService" ref="userService"/>

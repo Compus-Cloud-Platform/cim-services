@@ -101,6 +101,6 @@ public class TeacherCourseRestService {
 			 log.error(e);
 		 }
 		
-		 return Cause.getFailcode(8000, "", "system error");
+		 return Cause.getFailcode(15000, "", "system error");
 	 }
 }
