@@ -15,7 +15,7 @@ import com.college.account.service.DaoTeacherCourseGroupService;
 import com.college.util.Cause;
 import com.college.util.Logger4j;
 import com.college.util.ServiceFactoryBean;
-@Path("/class-groups")
+@Path("/classteachergroups")
 public class ClassTeacherGroupRestService {
 
 	private static DaoTeacherCourseGroupService p = ServiceFactoryBean.getTeacherCourseGroupService();
