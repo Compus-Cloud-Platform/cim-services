@@ -1,22 +1,14 @@
 package com.college.account.service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-
-
 import com.college.account.bean.Department;
 import com.college.account.bean.DeptOrg;
 import com.college.account.bean.Organization;
-import com.college.account.bean.Users;
 import com.college.util.Cause;
-import com.college.util.JacksonUtils;
-import com.college.util.Obj2Map;
+
 
 public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 
@@ -79,6 +71,7 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		List<Object> relist = Cause.getMapData(list, DeptOrg.class);
 		
 		for(Object obj:relist){
+			@SuppressWarnings("unchecked")
 			Map<String, Object> map = (Map<String, Object>)obj;
 			map.remove("organization");
 			map.put("orgId", Integer.parseInt(orgId));
