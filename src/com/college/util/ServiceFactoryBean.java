@@ -16,6 +16,7 @@ import com.college.account.service.DaoPermissionService;
 import com.college.account.service.DaoPositionService;
 import com.college.account.service.DaoRoleService;
 import com.college.account.service.DaoStudentCourseService;
+import com.college.account.service.DaoTeacherCourseGroupService;
 import com.college.account.service.DaoTeacherCourseService;
 import com.college.account.service.DaoUserAdminOrgService;
 import com.college.account.service.DaoUserStudentMajorService;
@@ -54,10 +55,7 @@ public class ServiceFactoryBean
     public static DaoUserTeacherDeptService getUserTeacherDeptService(){return (DaoUserTeacherDeptService) getService("userTeacherDeptService");}
     public static DaoTeacherCourseService getTeacherCourseService(){return (DaoTeacherCourseService) getService("teacherCourseService");}
     public static DaoStudentCourseService getStudentCourseService(){return (DaoStudentCourseService) getService("studentCourseService");}
-
-    
-    @SuppressWarnings("unchecked")
-    public static Service<TeacherCourseGroup> getTeacherCourseGroupService(){return (Service<TeacherCourseGroup>) getService("teacherCourseGroupService");}
+    public static DaoTeacherCourseGroupService getTeacherCourseGroupService(){return (DaoTeacherCourseGroupService) getService("teacherCourseGroupService");}
     
     //common
     public static DaoUploadService getUploadService() {return (DaoUploadService) getService("service.Upload");}

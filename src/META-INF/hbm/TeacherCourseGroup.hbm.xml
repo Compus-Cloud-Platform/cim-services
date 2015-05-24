@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class table="CLUB" name="com.college.account.bean.TeacherCourseGroup">
+	<class table="TEACHER_COURSE_GROUP" name="com.college.account.bean.TeacherCourseGroup">
 	    <id name="id" column="ID">
 			<generator class="native"/>
 		</id>
@@ -16,6 +16,24 @@
 	<query name="getTeacherCourseGroupById">
 		<![CDATA[
 	  		from TeacherCourseGroup where id=?
+	  	]]>
+	</query>
+	
+	<query name="getTeacherCourseGroupnameteacherCourseId">
+		<![CDATA[
+	  		from TeacherCourseGroup where name=? and teacherCourseId = ?
+	  	]]>
+	</query>
+	
+	<query name="getAllTeacherCourseGroup">
+		<![CDATA[
+	  		from TeacherCourseGroup
+	  	]]>
+	</query>
+	
+	<query name="getTeacherCourseGroupteacherCourseId">
+		<![CDATA[
+	  		from TeacherCourseGroup where teacherCourseId = ?
 	  	]]>
 	</query>
 	
