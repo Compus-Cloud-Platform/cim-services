@@ -53,6 +53,12 @@
 	<bean id="userStudentMajorService" class="com.college.account.service.DaoUserStudentMajorService" parent="service.abstractDao"></bean>
 	<bean id="userTeacherDeptService" class="com.college.account.service.DaoUserTeacherDeptService" parent="service.abstractDao"></bean>
 	
+	<bean id="studentCourseGroupService" class="com.college.account.service.DaoStudentCourseGroupService" parent="service.abstractDao">
+		<property name="usersService" ref="userService"/>
+		<property name="teacherCourseGroupService" ref="teacherCourseGroupService"/>
+	</bean>
+	
+	
 	<bean id="service.Upload" class="com.college.common.DaoUploadService" parent="service.abstractDao">
 		<property name="destLocation" value="G:\campus_test"/>
 	</bean>

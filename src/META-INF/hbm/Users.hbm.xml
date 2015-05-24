@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class table="USER_LOGIN" name="com.college.account.bean.Users">
+	<class table="USER_LOGIN" name="com.college.account.bean.Users" lazy="false">
 	    <id name="id" column="ID">
 			<generator class="native"/>
 		</id>
