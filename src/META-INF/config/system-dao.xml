@@ -42,6 +42,7 @@
 				<value>/META-INF/hbm/UserAdminOrg.hbm.xml</value>
 				<value>/META-INF/hbm/UserStudentMajor.hbm.xml</value>
 				<value>/META-INF/hbm/UserTeacherDept.hbm.xml</value>
+				<value>/META-INF/hbm/StudentCourseGroup.hbm.xml</value>
 				
 			</list>
 		</property>
