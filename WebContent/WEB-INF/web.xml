@@ -10,10 +10,10 @@
       <param-value>com.college.account.jersey</param-value>
     </init-param>
     
-    <init-param>  
+    <!--init-param>  
        <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>  
        <param-value>com.college.account.jersey.filter.JerseyFilter</param-value>  
-    </init-param>
+    </init-param-->
     
   </servlet>
   <servlet-mapping>
