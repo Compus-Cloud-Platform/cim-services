@@ -2,6 +2,7 @@ package com.college.account.service;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.JsonParseException;
@@ -76,6 +77,13 @@ public class DaoStudentCourseGroupService extends  DaoService<StudentCourseGroup
 		delete(StudentCourseGroup.class, studentcoursegroup.getId());
 		
 		return Cause.getSuccess(studentcoursegroup.getId());
+	}
+	
+	public String getGroupstudentInfo(Integer id){
+		
+		List<Object> list = searchByFeildList(tablename, "teacherCourseGroup", id);
+		
+		return Cause.getData(list);
 	}
 
 }

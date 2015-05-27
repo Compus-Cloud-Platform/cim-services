@@ -25,4 +25,10 @@
 	  	]]>
 	</query>
 	
+	<query name="getStudentCourseGroupteacherCourseGroup">
+		<![CDATA[
+	  		from StudentCourseGroup where teacherCourseGroup.id = ?
+	  	]]>
+	</query>
+	
 </hibernate-mapping>
