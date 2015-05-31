@@ -1,11 +1,10 @@
 package com.college.account.jersey;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import org.apache.log4j.Logger;
@@ -21,13 +20,21 @@ public class UserLoginRestService {
 	
 	private static DaoUsersService p = ServiceFactoryBean.getUserService();
 	
+	@Context 
+	HttpServletRequest request; 
+	
+	@Context  
+    HttpServletResponse servletResponse; 
+	
 	@POST
     @Consumes(MediaType.APPLICATION_JSON) 
 	public String login(String jsonString){
 		
-		try {		
+		try {
+		    
+		    String s = p.login(jsonString, request, servletResponse);
 			
-			return p.login(jsonString);
+			return s;
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

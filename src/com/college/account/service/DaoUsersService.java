@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.college.account.bean.Users;
 import com.college.util.Cause;
 import com.college.util.JacksonUtils;
@@ -26,7 +29,7 @@ public class DaoUsersService extends DaoService<Users>{
 	
 	public static String tablename = "Users";
 	
-	public String login(String jsonString) throws Exception{
+	public String login(String jsonString, HttpServletRequest request, HttpServletResponse servletResponse) throws Exception{
 		
 		@SuppressWarnings("unchecked")
 		Map<String,String> map = JacksonUtils.objectMapper.readValue(jsonString, Map.class);
@@ -44,6 +47,11 @@ public class DaoUsersService extends DaoService<Users>{
 		if(users.getLoginPassword().equals(Md5Util.md5calc(map.get("password").toString()))){
 			List<Object> list = new ArrayList<Object>();
 			list.add(users);
+			
+			/* 成功后设置session属性 */
+			request.getSession().setAttribute(map.get("userName"), users.getId());
+			
+			servletResponse.addHeader("id", map.get("userName"));
 			
 			return Cause.getStringData(list, Users.class);
 			
