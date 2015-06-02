@@ -9,7 +9,6 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 
 import com.college.account.bean.StudentCourseGroup;
-import com.college.account.bean.TeacherCourse;
 import com.college.account.bean.TeacherCourseGroup;
 import com.college.account.bean.Users;
 import com.college.util.Cause;

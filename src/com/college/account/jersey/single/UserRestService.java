@@ -1,5 +1,6 @@
 package com.college.account.jersey.single;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -8,6 +9,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import org.apache.log4j.Logger;
 
@@ -19,6 +21,9 @@ import com.college.util.ServiceFactoryBean;
 
 @Path("/users")
 public class UserRestService {
+	
+	@Context 
+	HttpServletRequest request; 
 
 	private static final Logger log = Logger4j.getLogger(UserRestService.class);
 	
@@ -120,6 +125,8 @@ public class UserRestService {
 	public String getAllObject()
 	{
 		try {
+			
+			System.out.print("+++++++++++++++++++++++++++"+request.getSession().getAttribute("rui.gao"));
 			
 			return p.getAllObject();
 			

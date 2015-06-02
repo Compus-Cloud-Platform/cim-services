@@ -2,6 +2,7 @@ package com.college.account.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,10 +49,11 @@ public class DaoUsersService extends DaoService<Users>{
 			List<Object> list = new ArrayList<Object>();
 			list.add(users);
 			
-			/* 成功后设置session属性 */
-			request.getSession().setAttribute(map.get("userName"), users.getId());
+			Map<String,Object> map1 = new HashMap<String, Object>();
 			
-			servletResponse.addHeader("id", map.get("userName"));
+			map1.put("loginid", users.getId());
+			/* 成功后设置session属性 */
+			request.getSession().setAttribute(map.get("userName").toString(), map1);
 			
 			return Cause.getStringData(list, Users.class);
 			
