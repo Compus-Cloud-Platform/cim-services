@@ -61,6 +61,19 @@ public class Cause {
 		return JacksonUtils.getJsonString(map);
 	}
 	
+	static public String getStringDataPage(List<Object> list, Class<?> obj, Integer totalfind){
+		
+		List<Object> relist = getMapData(list, obj);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ack", "success");
+		map.put("data", relist);
+		map.put("size", list.size());
+		map.put("totalfind", totalfind);
+		
+		return JacksonUtils.getJsonString(map);
+	}
+	
 	static public List<Object> getMapData(List<Object> list, Class<?> obj){
 		
 		List<Object> relist = new ArrayList<Object>();

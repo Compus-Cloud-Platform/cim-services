@@ -76,7 +76,7 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 	@Override
 	public List<Object> searchByFeildList(String tableName, String feild, Object feildValue, Integer from, Integer size){
 		String query = "get" + tableName + feild;
-		List<Object> list = (List<Object>)getDao().query(query, new Object[]{feildValue});
+		List<Object> list = (List<Object>)getDao().query(query, new Object[]{feildValue}, from, size);
 		return list;
 	}
 	
@@ -90,6 +90,18 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 			if(list.size() > 0 )return list.get(0);
 		}
 		return null;
+	}
+	
+	@Override
+	public Integer searchCount(String tableName){
+		String name = "getCount" + tableName;
+		return getDao().querycount(name);
+	}
+	
+	@Override
+	public Integer searchCount(String tableName, String feild, Object feildValue){
+		String query = "getCount" + tableName + feild;
+		return getDao().querycount(query,  new Object[]{feildValue});
 	}
 
 

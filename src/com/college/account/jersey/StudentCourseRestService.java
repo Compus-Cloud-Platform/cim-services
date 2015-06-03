@@ -99,4 +99,21 @@ public class StudentCourseRestService {
 		
 		 return Cause.getFailcode(16000, "", "system error");
 	 }
+	 
+	 @GET
+	 @Path("/teacher-course-id/{id}")
+	 public String getCourseAllStudent(@PathParam("id") String id)
+	 {
+		 try {
+			
+			 return p.getCourseAllStudent(Integer.parseInt(id));
+			
+		 } catch (Exception e) {
+			 // TODO Auto-generated catch block
+			 log.error(e);
+		 }
+		
+		 return Cause.getFailcode(16000, "", "system error");
+	 }
+	 
 }

@@ -32,9 +32,27 @@
 	  	]]>
 	</query>
 	
+	<query name="getUserspositionId">
+		<![CDATA[
+	  		from Users where positionId=?
+	  	]]>
+	</query>
+	
+	<query name="getCountUserspositionId">
+		<![CDATA[
+	  		select count(*) from Users where positionId=?
+	  	]]>
+	</query>
+	
 	<query name="getAllUsers">
 		<![CDATA[
 	  		from Users
+	  	]]>
+	</query>
+	
+	<query name="getCountUsers">
+		<![CDATA[
+	  		select count(*) from Users
 	  	]]>
 	</query>
 	

@@ -69,6 +69,7 @@ public interface BasicDao
      * @return List.
      */
     public List<Object> query(String queryName);
+    public Integer querycount(String queryName);
     public List<Object> query(String queryName, Integer from, Integer size);
     
     
@@ -79,4 +80,6 @@ public interface BasicDao
      * @return
      */
     public List<Object> query(String queryName, Object[] values);
+    public Integer querycount(String queryName, Object[] values);
+    public List<Object> query(String queryName, Object[] values, Integer from, Integer size);
 }

@@ -182,9 +182,9 @@ public class DaoBasicService implements BasicDao
 				
 				query.setFirstResult(from);  
 				  
-	            query.setMaxResults(size);  
+	            query.setMaxResults(size); 
 	  
-	            List<?> list = query.list(); 
+	            List<?> list = query.list();
 	  
 	            return list; 
 			}});  
@@ -226,6 +226,19 @@ public class DaoBasicService implements BasicDao
 			}});  
     			  
     	return list; 
+    }
+    
+
+    public Integer querycount(String queryName)
+    {
+        return Integer.parseInt(getHibernateTemplate().findByNamedQuery(queryName).get(0).toString());
+    }
+    
+
+    public Integer querycount(String queryName, Object[] values)
+    {
+    	Object obj = getHibernateTemplate().findByNamedQuery(queryName, values).get(0);
+        return Integer.parseInt(getHibernateTemplate().findByNamedQuery(queryName, values).get(0).toString());
     }
     
     

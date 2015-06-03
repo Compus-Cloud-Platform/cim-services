@@ -134,4 +134,42 @@ public class UserRestService {
 		return Cause.getFailcode(1000, "", "system error");
 		
 	}
+	
+	@GET
+	@Path("/{from}/{size}")
+	public String getAllObjectFromSize(@PathParam("from") String from,
+			                           @PathParam("size") String size)
+	{
+		try {
+			
+			return p.getAllObjectFromSize(Integer.parseInt(from), Integer.parseInt(size));
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(1000, "", "system error");
+		
+	}
+	
+	/* from 开始页码 size 一页的个数 */
+	@GET
+	@Path("/position-id/{id}/{from}/{size}")
+	public String getAllByPosition(@PathParam("id") String id,
+			                       @PathParam("from") String from,
+			                       @PathParam("size") String size)
+	{
+		try {
+			
+			return p.getAllByPosition(Integer.parseInt(id), Integer.parseInt(from), Integer.parseInt(size));
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		
+		return Cause.getFailcode(1000, "", "system error");
+		
+	}
 }

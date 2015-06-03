@@ -203,6 +203,15 @@ public class DaoUsersService extends DaoService<Users>{
         return Cause.getStringData(list, Users.class);
 	}
 	
+	public String getAllObjectFromSize(Integer from, Integer size){
+
+		List<Object> list = searchAll(tablename, from, size);
+		
+		Integer totalfind = searchCount(tablename);
+		
+        return Cause.getStringDataPage(list, Users.class, totalfind);
+	}
+	
 	public String getUserByListid(List<Integer> listid){
 		List<Object> list = new ArrayList<Object>();
 		Users usersfind = null;
@@ -212,5 +221,14 @@ public class DaoUsersService extends DaoService<Users>{
 	        list.add(usersfind);
 		}
 		return Cause.getStringData(list, Users.class);
+	}
+	
+	public String getAllByPosition(Integer id, Integer from, Integer size){
+		
+		List<Object> list = searchByFeildList(tablename, "positionId", id, from, size);
+		
+		Integer totalfind = searchCount(tablename, "positionId", id);
+		
+		return Cause.getStringDataPage(list, Users.class, totalfind);
 	}
 }

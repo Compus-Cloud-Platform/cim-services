@@ -8,6 +8,7 @@ import java.util.Map;
 import com.college.account.bean.Course;
 import com.college.account.bean.StudentCourse;
 import com.college.account.bean.TeacherCourse;
+import com.college.account.bean.Users;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
 import com.college.util.Obj2Map;
@@ -156,4 +157,43 @@ public class DaoStudentCourseService extends  DaoService<StudentCourse>{
 		
 		return  Cause.getData(resultlist);
 	}
+	
+	public String getCourseAllStudent(Integer id){
+		
+		List<Object> list = searchByFeildList(tablename, "teacherCourseId", id);
+		
+		
+		List<Object> resultlist = new ArrayList<Object>();
+		
+		Map<String, Object> teacherCourseMap = null;
+		
+		if(list.size() > 0){
+			
+			StudentCourse studentcourse = (StudentCourse)list.get(0);
+			
+			TeacherCourse teachercourse= teacherCourseService.searchByid(studentcourse.getTeacherCourseId(), DaoTeacherCourseService.tablename);
+		
+			teacherCourseMap = Obj2Map.toMap(teachercourse, TeacherCourse.class);
+			
+			List<Object> userlist = new ArrayList<Object>();
+			
+			for(Object obj:list){
+				studentcourse = (StudentCourse)obj;
+				
+				Users users = usersService.searchByid(studentcourse.getLoginId(), DaoUsersService.tablename);
+				
+				Map<String, Object> userMap = Obj2Map.toMapRecursive(users, Users.class);
+				
+				userlist.add(userMap);
+			}
+			
+			teacherCourseMap.put("user", userlist);
+			
+			resultlist.add(teacherCourseMap);
+		}
+		
+		return  Cause.getData(resultlist);
+		
+	}
+	
 }
