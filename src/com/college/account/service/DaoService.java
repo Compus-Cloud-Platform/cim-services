@@ -45,6 +45,11 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 		return getDao().query(name);
 	}
 	
+	public List<Object> searchAll(String tableName,Integer from, Integer size){
+		String name = "getAll" + tableName;
+		return getDao().query(name, from, size);
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public T searchByFeild(String tableName, String feild, Object feildValue) {
@@ -66,6 +71,13 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 
 		return list;
 
+	}
+	
+	@Override
+	public List<Object> searchByFeildList(String tableName, String feild, Object feildValue, Integer from, Integer size){
+		String query = "get" + tableName + feild;
+		List<Object> list = (List<Object>)getDao().query(query, new Object[]{feildValue});
+		return list;
 	}
 	
 	@SuppressWarnings("unchecked")

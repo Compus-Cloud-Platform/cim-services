@@ -69,6 +69,7 @@ public interface BasicDao
      * @return List.
      */
     public List<Object> query(String queryName);
+    public List<Object> query(String queryName, Integer from, Integer size);
     
     
     /**

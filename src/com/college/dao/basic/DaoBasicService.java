@@ -1,10 +1,15 @@
 package com.college.dao.basic;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.college.util.Logger4j;
@@ -144,32 +149,7 @@ public class DaoBasicService implements BasicDao
         return getHibernateTemplate().findByNamedQuery(queryName);
     }
     
-    /**
-     * Find all objects from database.
-     * @param queryName
-     * @param paramName
-     * @param value
-     * @return List
-     */
-    @SuppressWarnings("unchecked")
-    public List<Object> query(String queryName, String paramName, String value)
-    {
-        return getHibernateTemplate().findByNamedParam(queryName, paramName, value);
-    }
-    
-    /**
-     * Find all objects from database.
-     * @param queryName is the query string
-     * @param paramNames is the params.
-     * @param values is the param's value
-     * @return List
-     */
-    @SuppressWarnings("unchecked")
-    public List<Object> query(String queryName, String[] paramNames, String[] values)
-    {
-        return getHibernateTemplate().findByNamedParam(queryName, paramNames, values);
-    }
-    
+
     /**
      * 
      * @param queryName
@@ -180,6 +160,72 @@ public class DaoBasicService implements BasicDao
     public List<Object> query(String queryName, Object[] values)
     {
         return getHibernateTemplate().findByNamedQuery(queryName, values);
+    }
+    
+    /**
+     * 
+     * @param queryName
+     * @param values
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public List<Object> query(final String queryName, final Integer from, final Integer size)
+    {
+    	/* 通过spring 获取语句  */
+    	List<Object> list = getHibernateTemplate().executeFind(new  HibernateCallback(){
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				Query query = session.getNamedQuery(queryName);
+				
+				query.setFirstResult(from);  
+				  
+	            query.setMaxResults(size);  
+	  
+	            List<?> list = query.list(); 
+	  
+	            return list; 
+			}});  
+    			  
+    	return list; 
+    }
+    
+    
+    /**
+     * 
+     * @param queryName
+     * @param values
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public List<Object> query(final String queryName,final Object[] values, final Integer from, final Integer size)
+    {
+    	/* 通过spring 获取语句  */
+    	List<Object> list = getHibernateTemplate().executeFind(new  HibernateCallback(){
+
+			@Override
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				Query query = session.getNamedQuery(queryName);
+				
+				for (int i = 0; i < values.length; i++)
+				{
+				    query.setParameter(i, values[i]);
+				}
+				
+				query.setFirstResult(from);  
+				  
+	            query.setMaxResults(size);  
+	  
+	            List<?> list = query.list(); 
+	  
+	            return list; 
+			}});  
+    			  
+    	return list; 
     }
     
     
