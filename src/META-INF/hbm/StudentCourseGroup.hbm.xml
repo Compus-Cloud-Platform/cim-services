@@ -7,8 +7,8 @@
 			<generator class="native"/>
 		</id>
 		
-		<many-to-one name="users" column="STUDENT_ID" insert="true" update="false"/>
-		<many-to-one name="teacherCourseGroup" column="TEACHER_COURSE_GROUP_ID" insert="true" update="false"/>
+		<many-to-one name="users" column="STUDENT_ID" insert="true" update="true"/>
+		<many-to-one name="teacherCourseGroup" column="TEACHER_COURSE_GROUP_ID" insert="true" update="true"/>
 		<property name="createTime" column="CREATE_TIME"/>
 		<property name="operId" column="OPER_ID"/>
 	</class>

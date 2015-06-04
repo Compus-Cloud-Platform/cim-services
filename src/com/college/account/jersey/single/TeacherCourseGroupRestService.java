@@ -107,7 +107,7 @@ public class TeacherCourseGroupRestService {
     
     /* 课程分了几组  每个组 下面包含的学生信息 */
     @GET
-    @Path("/tearcher-course-id/{id}")
+    @Path("/teacher-course-id/{id}")
    	public String getGroupUserInfoByCourse(@PathParam("id") String id)
    	{
     	try {
