@@ -17,6 +17,20 @@ public class DaoTeacherCourseGroupService extends  DaoService<TeacherCourseGroup
 	public static int COURSEGROUPIDNOTFIND = 19001;
 	public static int COURSEGROUPNAMENULL = 19002;
 	public static int COURSEGROUPIDBNULL = 19003;
+	
+	private DaoUsersService usersService;
+	private DaoStudentCourseService studentCourseService;
+	
+	public void setStudentCourseService(DaoStudentCourseService studentCourseService) {
+		this.studentCourseService = studentCourseService;
+	}
+
+	public void setUsersService(DaoUsersService usersService) {
+		this.usersService = usersService;
+	}
+
+	
+		
 
 	public boolean isExist(Integer id){
 		
@@ -120,9 +134,13 @@ public class DaoTeacherCourseGroupService extends  DaoService<TeacherCourseGroup
 		return Cause.getSuccess(id);
 	}
 	
-	public String getAllTeacherCourseIdObject(Integer id){
+	public String getGroupUserInfoByCourse(Integer id){
 		
 		List<Object> list = searchByFeildList(tablename, "teacherCourseId", id);
+		
+		for(Object obj:list){
+			TeacherCourseGroup teachercoursegroup = (TeacherCourseGroup)obj;
+		}
 		
 		return Cause.getData(list);
 

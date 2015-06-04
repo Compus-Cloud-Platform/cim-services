@@ -4,7 +4,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
-import com.college.account.bean.TeacherCourseGroup;
 import com.college.account.service.DaoClubService;
 import com.college.account.service.DaoCourseService;
 import com.college.account.service.DaoDepartmentService;
@@ -24,7 +23,6 @@ import com.college.account.service.DaoUserStudentMajorService;
 import com.college.account.service.DaoUserTeacherDeptService;
 import com.college.account.service.DaoUsersService;
 import com.college.account.service.DaoUsersServiceExt;
-import com.college.account.service.Service;
 import com.college.common.DaoUploadService;
 
 public class ServiceFactoryBean

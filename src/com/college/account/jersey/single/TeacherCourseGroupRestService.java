@@ -104,13 +104,15 @@ public class TeacherCourseGroupRestService {
     	
    	}
     
+    
+    /* 课程分了几组  每个组 下面包含的学生信息 */
     @GET
     @Path("/tearcher-course-id/{id}")
-   	public String getAllTeacherCourseIdObject(@PathParam("id") String id)
+   	public String getGroupUserInfoByCourse(@PathParam("id") String id)
    	{
     	try {
 			
-			return p.getAllTeacherCourseIdObject(Integer.parseInt(id));
+			return p.getGroupUserInfoByCourse(Integer.parseInt(id));
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
