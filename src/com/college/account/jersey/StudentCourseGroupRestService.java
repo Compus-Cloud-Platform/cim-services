@@ -16,11 +16,11 @@ import com.college.util.Logger4j;
 import com.college.util.ServiceFactoryBean;
 
 
-@Path("/student-groups")
-public class StudentGroupRestService {
+@Path("/student-course-groups")
+public class StudentCourseGroupRestService {
 
 	private static DaoStudentCourseGroupService p = ServiceFactoryBean.getStudentCourseGroupService();
-	private static final Logger log = Logger4j.getLogger(StudentGroupRestService.class);
+	private static final Logger log = Logger4j.getLogger(StudentCourseGroupRestService.class);
 	
 	@POST
     @Consumes(MediaType.APPLICATION_JSON) 
