@@ -223,11 +223,11 @@ public class DaoUsersService extends DaoService<Users>{
 		return Cause.getStringData(list, Users.class);
 	}
 	
-	public String getAllByPosition(Integer id, Integer from, Integer size){
+	public String getAllByPosition(Integer id, Integer orgid, Integer from, Integer size){
 		
-		List<Object> list = searchByFeildList(tablename, "positionId", id, from, size);
+		List<Object> list = searchByFeildList(tablename, "positionIdorgId", new Integer[]{id, orgid}, from, size);
 		
-		Integer totalfind = searchCount(tablename, "positionId", id);
+		Integer totalfind = searchCount(tablename, "positionIdorgId", new Integer[]{id, orgid});
 		
 		return Cause.getStringDataPage(list, Users.class, totalfind);
 	}

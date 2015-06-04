@@ -80,6 +80,13 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 		return list;
 	}
 	
+	@Override
+	public List<Object> searchByFeildList(String tableName, String feild, Object[] feildValue, Integer from, Integer size){
+		String query = "get" + tableName + feild;
+		List<Object> list = (List<Object>)getDao().query(query, feildValue, from, size);
+		return list;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public T searchByMutiFeild(String tableName, String feild, Object[] feildValue) {
@@ -102,6 +109,12 @@ public abstract class DaoService<T> extends AbstractServiceDao implements Servic
 	public Integer searchCount(String tableName, String feild, Object feildValue){
 		String query = "getCount" + tableName + feild;
 		return getDao().querycount(query,  new Object[]{feildValue});
+	}
+	
+	@Override
+	public Integer searchCount(String tableName, String feild, Object[] feildValue){
+		String query = "getCount" + tableName + feild;
+		return getDao().querycount(query, feildValue);
 	}
 
 

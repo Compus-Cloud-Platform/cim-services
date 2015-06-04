@@ -28,19 +28,19 @@
 	
 	<query name="getUsersloginId">
 		<![CDATA[
-	  		from Users where loginId=?
+	  		from Users where loginId=? 
 	  	]]>
 	</query>
 	
-	<query name="getUserspositionId">
+	<query name="getUserspositionIdorgId">
 		<![CDATA[
-	  		from Users where positionId=?
+	  		from Users where positionId=? and orgId =?
 	  	]]>
 	</query>
 	
-	<query name="getCountUserspositionId">
+	<query name="getCountUserspositionIdorgId">
 		<![CDATA[
-	  		select count(*) from Users where positionId=?
+	  		select count(*) from Users where positionId=? and orgId =?
 	  	]]>
 	</query>
 	

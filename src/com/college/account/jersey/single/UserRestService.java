@@ -155,14 +155,15 @@ public class UserRestService {
 	
 	/* from 开始页码 size 一页的个数 */
 	@GET
-	@Path("/position-id/{id}/{from}/{size}")
+	@Path("/position-id/{id}/org-id/{orgid}/{from}/{size}")
 	public String getAllByPosition(@PathParam("id") String id,
+			                       @PathParam("orgid") String orgid,
 			                       @PathParam("from") String from,
 			                       @PathParam("size") String size)
 	{
 		try {
 			
-			return p.getAllByPosition(Integer.parseInt(id), Integer.parseInt(from), Integer.parseInt(size));
+			return p.getAllByPosition(Integer.parseInt(id), Integer.parseInt(orgid), Integer.parseInt(from), Integer.parseInt(size));
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

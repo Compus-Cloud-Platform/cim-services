@@ -19,12 +19,13 @@ public interface Service<T> {
 	
 	public List<Object> searchByFeildList(String tableName, String feild, Object feildValue);
 	public List<Object> searchByFeildList(String tableName, String feild, Object feildValue, Integer from, Integer size);
+	public List<Object> searchByFeildList(String tableName, String feild, Object[] feildValue, Integer from, Integer size);
 	
 	public T searchByMutiFeild(String tableName, String feild, Object[] feildValue);
 	
 
 	public Integer searchCount(String tableName);
-
 	public Integer searchCount(String tableName, String feild, Object feildValue);
+	public Integer searchCount(String tableName, String feild, Object[] feildValue);
 
 }
