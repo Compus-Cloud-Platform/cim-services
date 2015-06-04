@@ -8,6 +8,7 @@ import java.util.Map;
 import com.college.account.bean.Course;
 import com.college.account.bean.StudentCourse;
 import com.college.account.bean.TeacherCourse;
+import com.college.account.bean.TeacherCourseGroup;
 import com.college.account.bean.Users;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
@@ -168,15 +169,18 @@ public class DaoStudentCourseService extends  DaoService<StudentCourse>{
 			
 				StudentCourse studentcourse = (StudentCourse)obj;
 				
-				Map<String, Object> teacherCourseMap = Obj2Map.toMap(studentcourse, StudentCourse.class);
+				Map<String, Object> stuCourseMap = Obj2Map.toMap(studentcourse, StudentCourse.class);
 				
 				Users users = usersService.searchByid(studentcourse.getLoginId(), DaoUsersService.tablename);
+				TeacherCourseGroup teachercoursegroup = teacherCourseGroupService.searchByid(studentcourse.getTeacherCourseGroupId(), DaoTeacherCourseGroupService.tablename);
 					
 				Map<String, Object> userMap = Obj2Map.toMapRecursive(users, Users.class);
+				Map<String, Object> tgroupMap = Obj2Map.toMap(teachercoursegroup, TeacherCourseGroup.class);
 				
-				teacherCourseMap.put("user", userMap);
+				stuCourseMap.put("user", userMap);
+				stuCourseMap.put("teachercoursegroup", tgroupMap);
 				
-				resultlist.add(teacherCourseMap);
+				resultlist.add(stuCourseMap);
 			}
 			
 			return  Cause.getData(resultlist);
