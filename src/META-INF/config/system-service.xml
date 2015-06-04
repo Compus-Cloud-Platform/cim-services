@@ -49,8 +49,7 @@
 	</bean>
 	
 	<bean id="teacherCourseGroupService" class="com.college.account.service.DaoTeacherCourseGroupService" parent="service.abstractDao">
-		<property name="usersService" ref="userService"/>
-		<property name="studentCourseService" ref="studentCourseService"/>	
+		<property name="studentCourseGroupService" ref="studentCourseGroupService"/>	
 	</bean>
 	
 	<bean id="userAdminOrgService" class="com.college.account.service.DaoUserAdminOrgService" parent="service.abstractDao"></bean>

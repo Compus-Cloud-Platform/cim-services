@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.college.account.bean.StudentCourseGroup;
 import com.college.account.bean.TeacherCourseGroup;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
@@ -18,19 +19,14 @@ public class DaoTeacherCourseGroupService extends  DaoService<TeacherCourseGroup
 	public static int COURSEGROUPNAMENULL = 19002;
 	public static int COURSEGROUPIDBNULL = 19003;
 	
-	private DaoUsersService usersService;
-	private DaoStudentCourseService studentCourseService;
+	private DaoStudentCourseGroupService studentCourseGroupService;
 	
-	public void setStudentCourseService(DaoStudentCourseService studentCourseService) {
-		this.studentCourseService = studentCourseService;
+
+	public void setStudentCourseGroupService(
+			DaoStudentCourseGroupService studentCourseGroupService) {
+		this.studentCourseGroupService = studentCourseGroupService;
 	}
 
-	public void setUsersService(DaoUsersService usersService) {
-		this.usersService = usersService;
-	}
-
-	
-		
 
 	public boolean isExist(Integer id){
 		
@@ -138,11 +134,29 @@ public class DaoTeacherCourseGroupService extends  DaoService<TeacherCourseGroup
 		
 		List<Object> list = searchByFeildList(tablename, "teacherCourseId", id);
 		
+		List<Object> resultlist = new ArrayList<Object>();
+		
 		for(Object obj:list){
 			TeacherCourseGroup teachercoursegroup = (TeacherCourseGroup)obj;
+			
+			Map<String, Object> mapteachercoursegroupMap = Obj2Map.toMap(teachercoursegroup, TeacherCourseGroup.class);
+			
+
+			List<Object> templist = studentCourseGroupService.searchByFeildList(DaoStudentCourseGroupService.tablename, "teacherCourseGroup", teachercoursegroup.getId());
+			
+			List<Object> midlist = new ArrayList<Object>();
+			
+			for(Object tempgroup:templist){
+				StudentCourseGroup temp = (StudentCourseGroup)tempgroup;
+				midlist.add(temp.getUsers());
+			}
+			
+			mapteachercoursegroupMap.put("user", midlist);
+			
+			resultlist.add(mapteachercoursegroupMap);
 		}
 		
-		return Cause.getData(list);
+		return Cause.getData(resultlist);
 
 	}
 }
