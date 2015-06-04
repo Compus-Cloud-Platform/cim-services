@@ -16,10 +16,10 @@ import com.college.util.Cause;
 import com.college.util.Logger4j;
 import com.college.util.ServiceFactoryBean;
 @Path("/classteachergroups")
-public class ClassTeacherGroupRestService {
+public class TeacherCourseGroupRestService {
 
 	private static DaoTeacherCourseGroupService p = ServiceFactoryBean.getTeacherCourseGroupService();
-    private static final Logger log = Logger4j.getLogger(ClassTeacherGroupRestService.class);
+    private static final Logger log = Logger4j.getLogger(TeacherCourseGroupRestService.class);
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON) 
