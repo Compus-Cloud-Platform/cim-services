@@ -1,5 +1,6 @@
 package com.college.account.jersey.filter;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import javax.ws.rs.WebApplicationException;
@@ -17,6 +18,7 @@ public class JerseyFilter implements ContainerRequestFilter{
 
 	@Context   
     private HttpServletRequest servletRequest;  
+	
 	
 	@Override
 	public ContainerRequest filter(ContainerRequest arg0) {
@@ -38,7 +40,6 @@ public class JerseyFilter implements ContainerRequestFilter{
 	            Response response = Response.ok("{\"error\":{\"field\":\"header id\",\"description\":\"no auth\",\"code\":1},\"ack\":\"failure\"}").status(401).type(MediaType.APPLICATION_JSON).build();  
 	            throw new WebApplicationException(response);
 	        }
-	        
 		}
 		
 		return arg0;

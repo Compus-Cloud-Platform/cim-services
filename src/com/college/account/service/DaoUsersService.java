@@ -52,7 +52,7 @@ public class DaoUsersService extends DaoService<Users>{
 			
 			Map<String,Object> map1 = new HashMap<String, Object>();
 			
-			map1.put("loginid", users.getId());
+			map1.put("loginId", users.getId());
 			
 			/* 成功后设置session属性 */
 			Session.setAttribute(map.get("userName").toString(), map1);

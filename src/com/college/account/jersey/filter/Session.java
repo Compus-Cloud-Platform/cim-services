@@ -11,6 +11,8 @@ public class Session {
 	
 	private static Timer timer = new Timer();
 	
+	public static ThreadLocal<Integer> tl = new ThreadLocal<Integer>();
+	
 	public static final long INTERTIME = 20 * 60 * 1000; // 20 min
 	
 	static {
@@ -55,6 +57,8 @@ public class Session {
 	public static void setAttribute(String key, Object value){
 		Date date = new Date();
 		map.put(key, new inner(date.getTime(), value));
+		
+		
 	}
 	
 	public static Object getAttribute(String key){
@@ -62,6 +66,11 @@ public class Session {
 		if(null == temp) return null;
 		Date date = new Date();
 		temp.setTimestamp(date.getTime());
+		
+		Map<?, ?> map = (Map<?, ?>)temp.getValue();
+		Integer id = (Integer)map.get("loginId");
+		tl.set(id);
+		
 		return temp.getValue();
 	}
 
