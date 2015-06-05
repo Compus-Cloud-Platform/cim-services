@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.college.account.bean.Users;
+import com.college.account.jersey.filter.Session;
 import com.college.util.Cause;
 import com.college.util.JacksonUtils;
 import com.college.util.Json2Obj;
@@ -52,8 +53,9 @@ public class DaoUsersService extends DaoService<Users>{
 			Map<String,Object> map1 = new HashMap<String, Object>();
 			
 			map1.put("loginid", users.getId());
+			
 			/* 成功后设置session属性 */
-			request.getSession().setAttribute(map.get("userName").toString(), map1);
+			Session.setAttribute(map.get("userName").toString(), map1);
 			
 			return Cause.getStringData(list, Users.class);
 			
