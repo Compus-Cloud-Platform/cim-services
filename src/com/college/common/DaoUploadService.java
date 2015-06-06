@@ -16,7 +16,6 @@ import org.apache.log4j.Logger;
 
 import com.college.dao.basic.AbstractServiceDao;
 import com.college.util.Logger4j;
-import com.college.util.TextUtil;
 
 public class DaoUploadService extends AbstractServiceDao implements UploadService
 {
