@@ -8,16 +8,35 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.college.dao.basic.AbstractServiceDao;
 import com.college.util.Logger4j;
+import com.college.util.TextUtil;
 
 public class DaoUploadService extends AbstractServiceDao implements UploadService
 {
     private static final Logger log = Logger4j.getLogger(DaoUploadService.class);
+    private static List<String> FILE_TYPE_VIDEO = null;
+    private static List<String> FILE_TYPE_DOC = null;
+    
+    static
+    {
+        FILE_TYPE_VIDEO = new ArrayList<String>();
+        FILE_TYPE_VIDEO.add(".mp4");
+        FILE_TYPE_VIDEO.add(".mp3");
+        FILE_TYPE_VIDEO.add(".wmv");
+        
+        FILE_TYPE_DOC = new ArrayList<String>();
+        FILE_TYPE_DOC.add(".pdf");
+        FILE_TYPE_DOC.add(".txt");
+        FILE_TYPE_DOC.add(".csv");
+        FILE_TYPE_DOC.add(".xls");
+    }
     
     private String destLocation;
     
@@ -34,6 +53,7 @@ public class DaoUploadService extends AbstractServiceDao implements UploadServic
     public void saveUploadFile(String realPath, String fileName, InputStream stream)
             throws FileNotFoundException, IOException
     {
+        realPath = getDestPath(fileName, realPath);
         File dirFile = new File(realPath);
         boolean makeFlag = false;
 
@@ -84,5 +104,16 @@ public class DaoUploadService extends AbstractServiceDao implements UploadServic
         stream.close();
         dest.setLastModified((new Date()).getTime());
         log.info("File save to :" + destPath);
+    }
+    
+    private String getDestPath(String fileName, String location)
+    {
+        String subDri = "others";
+        String suffix = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+        if(FILE_TYPE_VIDEO.contains(suffix))
+            subDri = "video";
+        else if(FILE_TYPE_DOC.contains(suffix))
+            subDri = "doc";
+        return location.endsWith(File.separator) ? location.concat(subDri) : location.concat(File.separator).concat(subDri);
     }
 }
