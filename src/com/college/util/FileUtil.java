@@ -244,7 +244,7 @@ public class FileUtil
         }
     }
     
-    public static List getFileList(List resultList, File dir,
+    public static List<Comparable> getFileList(List<Comparable> resultList, File dir,
             FileFilter filter, int cutPos)
     {
         resultList = getFileList(resultList, dir, filter);

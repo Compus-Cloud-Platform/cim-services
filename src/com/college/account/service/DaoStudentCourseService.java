@@ -163,29 +163,54 @@ public class DaoStudentCourseService extends  DaoService<StudentCourse>{
 	
 	public String getCourseAllStudent(Integer id){
 			
-			List<Object> list = searchByFeildList(tablename, "teacherCourseId", id);
+		List<Object> list = searchByFeildList(tablename, "teacherCourseId", id);
+		
+		List<Object> resultlist = new ArrayList<Object>();
+		
+		for(Object obj:list){
+		
+			StudentCourse studentcourse = (StudentCourse)obj;
 			
-			List<Object> resultlist = new ArrayList<Object>();
+			Map<String, Object> stuCourseMap = Obj2Map.toMap(studentcourse, StudentCourse.class);
 			
-			for(Object obj:list){
+			Users users = usersService.searchByid(studentcourse.getLoginId(), DaoUsersService.tablename);
+			TeacherCourseGroup teachercoursegroup = teacherCourseGroupService.searchByid(studentcourse.getTeacherCourseGroupId(), DaoTeacherCourseGroupService.tablename);
+				
+			Map<String, Object> userMap = Obj2Map.toMapRecursive(users, Users.class);
+			Map<String, Object> tgroupMap = Obj2Map.toMap(teachercoursegroup, TeacherCourseGroup.class);
 			
-				StudentCourse studentcourse = (StudentCourse)obj;
-				
-				Map<String, Object> stuCourseMap = Obj2Map.toMap(studentcourse, StudentCourse.class);
-				
-				Users users = usersService.searchByid(studentcourse.getLoginId(), DaoUsersService.tablename);
-				TeacherCourseGroup teachercoursegroup = teacherCourseGroupService.searchByid(studentcourse.getTeacherCourseGroupId(), DaoTeacherCourseGroupService.tablename);
-					
-				Map<String, Object> userMap = Obj2Map.toMapRecursive(users, Users.class);
-				Map<String, Object> tgroupMap = Obj2Map.toMap(teachercoursegroup, TeacherCourseGroup.class);
-				
-				stuCourseMap.put("user", userMap);
-				stuCourseMap.put("teachercoursegroup", tgroupMap);
-				
-				resultlist.add(stuCourseMap);
-			}
+			stuCourseMap.put("user", userMap);
+			stuCourseMap.put("teachercoursegroup", tgroupMap);
 			
-			return  Cause.getData(resultlist);
+			resultlist.add(stuCourseMap);
 		}
+		
+		return  Cause.getData(resultlist);
+	}
+	
+	public String getCourseGroupAllStudent(Integer id){
+	    
+	    List<Object> list = searchByFeildList(tablename, "teacherCourseGroupId", id);
+        
+        List<Object> resultlist = new ArrayList<Object>();
+        
+        for(Object obj:list){
+        
+            StudentCourse studentcourse = (StudentCourse)obj;
+            
+            Map<String, Object> stuCourseMap = Obj2Map.toMap(studentcourse, StudentCourse.class);
+            
+            Users users = usersService.searchByid(studentcourse.getLoginId(), DaoUsersService.tablename);
+                
+            Map<String, Object> userMap = Obj2Map.toMapRecursive(users, Users.class);
+            
+            stuCourseMap.put("user", userMap);
+            
+            resultlist.add(stuCourseMap);
+        }
+        
+        return  Cause.getData(resultlist);
+	    
+	}
 	
 }

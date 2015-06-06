@@ -237,7 +237,8 @@ public class DaoBasicService implements BasicDao
 
     public Integer querycount(String queryName, Object[] values)
     {
-    	Object obj = getHibernateTemplate().findByNamedQuery(queryName, values).get(0);
+    	@SuppressWarnings("unused")
+        Object obj = getHibernateTemplate().findByNamedQuery(queryName, values).get(0);
         return Integer.parseInt(getHibernateTemplate().findByNamedQuery(queryName, values).get(0).toString());
     }
     

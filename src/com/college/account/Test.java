@@ -1,16 +1,12 @@
 package com.college.account;
 
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-
 
 public class Test
 {
     public static void main(String[] args)
     {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("basic-config.xml");
+        //ApplicationContext ctx = new ClassPathXmlApplicationContext("basic-config.xml");
         //OrganizationService service = (OrganizationService)ctx.getBean("organizationService");
         //service.createOrganization(new Organization("Xibei nongling", "006", "yangling", "college", new Date(), new Date(), 22));
         /*service.create(new Organization("Jiao tong University", "002", "Shanghai", "college1", new Date(), new Date(), 22));

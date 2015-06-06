@@ -34,9 +34,16 @@
 	  		from StudentCourse
 	  	]]>
 	</query>
+	
 	<query name="getStudentCourseteacherCourseId">
 		<![CDATA[
 	  		from StudentCourse where teacherCourseId=?
+	  	]]>
+	</query>
+	
+	<query name="getStudentCourseteacherCourseGroupId">
+		<![CDATA[
+	  		from StudentCourse where teacherCourseGroupId=?
 	  	]]>
 	</query>
 	
