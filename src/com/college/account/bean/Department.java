@@ -2,7 +2,6 @@ package com.college.account.bean;
 
 import java.util.Date;
 
-import com.college.util.ServiceFactoryBean;
 
 public class Department {
 	
@@ -70,8 +69,4 @@ public class Department {
 		this.operId = operId;
 	}
 	
-	public String getOperName()
-	{
-	    return "test";
-	}
 }

@@ -9,7 +9,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 
-import com.college.util.FileUtil;
 import com.college.util.ServiceFactoryBean;
 
 
