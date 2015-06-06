@@ -10,6 +10,10 @@ import com.college.account.service.DaoDepartmentService;
 import com.college.account.service.DaoDeptOrgService;
 import com.college.account.service.DaoMajorDeptOrgService;
 import com.college.account.service.DaoMajorService;
+import com.college.account.service.DaoMediaCategoryService;
+import com.college.account.service.DaoMediaResourceService;
+import com.college.account.service.DaoMediaTagMapService;
+import com.college.account.service.DaoMediaTagService;
 import com.college.account.service.DaoOrganizationService;
 import com.college.account.service.DaoPermissionService;
 import com.college.account.service.DaoPositionService;
@@ -57,6 +61,10 @@ public class ServiceFactoryBean
     public static DaoTeacherCourseGroupService getTeacherCourseGroupService(){return (DaoTeacherCourseGroupService) getService("teacherCourseGroupService");}
     public static DaoStudentCourseGroupService getStudentCourseGroupService(){return (DaoStudentCourseGroupService) getService("studentCourseGroupService");}
     
+    public static DaoMediaCategoryService getMediaCategoryService(){return (DaoMediaCategoryService) getService("mediaCategoryService");}
+    public static DaoMediaResourceService getMediaResourceService(){return (DaoMediaResourceService) getService("mediaResourceService");}
+    public static DaoMediaTagMapService getMediaTagMapService(){return (DaoMediaTagMapService) getService("mediaTagMapService");}
+    public static DaoMediaTagService getMediaTagService(){return (DaoMediaTagService) getService("mediaTagService");}
     //common
     public static DaoUploadService getUploadService() {return (DaoUploadService) getService("service.Upload");}
     

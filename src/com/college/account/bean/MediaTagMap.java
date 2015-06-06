@@ -3,8 +3,8 @@ package com.college.account.bean;
 public class MediaTagMap
 {
     private Integer id;
-    private Integer MediaId;
-    private Integer MediaTagId;
+    private Integer mediaId;
+    private Integer mediaTagId;
     public Integer getId()
     {
         return id;
@@ -15,25 +15,25 @@ public class MediaTagMap
     }
     public Integer getMediaId()
     {
-        return MediaId;
+        return mediaId;
     }
     public void setMediaId(Integer mediaId)
     {
-        MediaId = mediaId;
+        this.mediaId = mediaId;
     }
     public Integer getMediaTagId()
     {
-        return MediaTagId;
+        return mediaTagId;
     }
     public void setMediaTagId(Integer mediaTagId)
     {
-        MediaTagId = mediaTagId;
+        this.mediaTagId = mediaTagId;
     }
     public MediaTagMap(Integer mediaId, Integer mediaTagId)
     {
         super();
-        MediaId = mediaId;
-        MediaTagId = mediaTagId;
+        this.mediaId = mediaId;
+        this.mediaTagId = mediaTagId;
     }
     public MediaTagMap(){}
 }

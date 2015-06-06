@@ -61,6 +61,16 @@
 		<property name="teacherCourseGroupService" ref="teacherCourseGroupService"/>
 	</bean>
 	
+	<bean id="mediaCategoryService" class="com.college.account.service.DaoMediaCategoryService" parent="service.abstractDao">
+	</bean>
+	<bean id="mediaResourceService" class="com.college.account.service.DaoMediaResourceService" parent="service.abstractDao">
+	</bean>
+	<bean id="mediaTagMapService" class="com.college.account.service.DaoMediaTagMapService" parent="service.abstractDao">
+	</bean>
+	<bean id="mediaTagService" class="com.college.account.service.DaoMediaTagService" parent="service.abstractDao">
+	</bean>
+	
+	
 	
 	<bean id="service.Upload" class="com.college.common.DaoUploadService" parent="service.abstractDao">
 		<property name="destLocation" value="G:\campus_test"/>

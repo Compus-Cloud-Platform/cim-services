@@ -44,6 +44,11 @@
 				<value>/META-INF/hbm/UserTeacherDept.hbm.xml</value>
 				<value>/META-INF/hbm/StudentCourseGroup.hbm.xml</value>
 				
+				<value>/META-INF/hbm/MediaCategory.hbm.xml</value>
+				<value>/META-INF/hbm/MediaResource.hbm.xml</value>
+				<value>/META-INF/hbm/MediaTag.hbm.xml</value>
+				<value>/META-INF/hbm/MediaTagMap.hbm.xml</value>
+				
 			</list>
 		</property>
 		<property name="hibernateProperties">
