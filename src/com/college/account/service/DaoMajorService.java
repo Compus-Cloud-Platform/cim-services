@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import com.college.account.bean.Major;
+import com.college.account.jersey.filter.Session;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
 import com.college.util.Obj2Map;
@@ -40,6 +41,7 @@ public class DaoMajorService extends  DaoService<Major>{
 		}
 
 		major.setCreateTime(new Date());
+		major.setId(Session.getOperId());
 		
 		Integer id = create(major);
 		

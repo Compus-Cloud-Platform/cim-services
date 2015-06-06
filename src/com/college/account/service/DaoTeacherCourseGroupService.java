@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.college.account.bean.StudentCourseGroup;
 import com.college.account.bean.TeacherCourseGroup;
+import com.college.account.jersey.filter.Session;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
 import com.college.util.Obj2Map;
@@ -63,6 +64,7 @@ public class DaoTeacherCourseGroupService extends  DaoService<TeacherCourseGroup
 		}
 
 		teachercoursegroup.setCreateTime(new Date());
+		teachercoursegroup.setId(Session.getOperId());
 		
 		Integer id = create(teachercoursegroup);
 		

@@ -101,6 +101,8 @@ public class DaoUsersService extends DaoService<Users>{
 	    users.setLoginPassword(Md5Util.md5calc(users.getLoginPassword()));
 	    
 	    users.setCreateTime(new Date());
+	    users.setId(Session.getOperId());
+	    
 	    id = create(users);
 	    
 	    return Cause.getSuccess(id);

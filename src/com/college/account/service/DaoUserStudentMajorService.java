@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.college.account.bean.UserStudentMajor;
+import com.college.account.jersey.filter.Session;
 import com.college.util.Cause;
 
 public class DaoUserStudentMajorService extends  DaoService<UserStudentMajor>{
@@ -27,6 +28,7 @@ public class DaoUserStudentMajorService extends  DaoService<UserStudentMajor>{
 		}
 		
 		UserStudentMajor userstudentmajor = new UserStudentMajor(userId, relationId, new Date(), operId);
+		userstudentmajor.setId(Session.getOperId());
 		
 		Integer id = create(userstudentmajor);
 		
