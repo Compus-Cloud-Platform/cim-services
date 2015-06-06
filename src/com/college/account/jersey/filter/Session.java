@@ -11,7 +11,7 @@ public class Session {
 	
 	private static Timer timer = new Timer();
 	
-	public static ThreadLocal<Integer> tl = new ThreadLocal<Integer>();
+	private static ThreadLocal<Integer> tl = new ThreadLocal<Integer>();
 	
 	public static final long INTERTIME = 20 * 60 * 1000; // 20 min
 	
@@ -72,6 +72,10 @@ public class Session {
 		tl.set(id);
 		
 		return temp.getValue();
+	}
+	
+	public static Integer getOperId(){
+		return tl.get();
 	}
 
 }

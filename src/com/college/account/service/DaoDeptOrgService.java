@@ -7,6 +7,7 @@ import java.util.Map;
 import com.college.account.bean.Department;
 import com.college.account.bean.DeptOrg;
 import com.college.account.bean.Organization;
+import com.college.account.jersey.filter.Session;
 import com.college.util.Cause;
 
 
@@ -42,6 +43,7 @@ public class DaoDeptOrgService extends  DaoService<DeptOrg>{
 		}
 		
 		DeptOrg deptorg = new DeptOrg( department, organization, new Date(), operId);
+		deptorg.setId(Session.getOperId());
 		
 		create(deptorg);
 		

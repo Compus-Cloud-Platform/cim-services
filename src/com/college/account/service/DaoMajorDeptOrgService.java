@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.college.account.bean.Major;
 import com.college.account.bean.MajorDeptOrg;
+import com.college.account.jersey.filter.Session;
 import com.college.util.Cause;
 import com.college.util.Obj2Map;
 
@@ -40,6 +41,7 @@ public class DaoMajorDeptOrgService extends  DaoService<MajorDeptOrg>{
 		}
 		
 		MajorDeptOrg majordept = new MajorDeptOrg(majorId, deptOrgId, new Date(), operId);
+		majordept.setId(Session.getOperId());
 		
 		Integer id = create(majordept);
 		

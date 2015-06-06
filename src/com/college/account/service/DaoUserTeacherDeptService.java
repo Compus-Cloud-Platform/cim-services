@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.college.account.bean.UserTeacherDept;
+import com.college.account.jersey.filter.Session;
 import com.college.util.Cause;
 
 public class DaoUserTeacherDeptService extends  DaoService<UserTeacherDept>{
@@ -27,6 +28,7 @@ public class DaoUserTeacherDeptService extends  DaoService<UserTeacherDept>{
 		}
 		
 		UserTeacherDept userteacherdept = new UserTeacherDept(userId, relationId, new Date(), operId);
+		userteacherdept.setId(Session.getOperId());
 		
 		Integer id = create(userteacherdept);
 		

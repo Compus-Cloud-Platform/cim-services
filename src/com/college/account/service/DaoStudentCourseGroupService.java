@@ -12,6 +12,7 @@ import org.codehaus.jackson.map.JsonMappingException;
 import com.college.account.bean.StudentCourseGroup;
 import com.college.account.bean.TeacherCourseGroup;
 import com.college.account.bean.Users;
+import com.college.account.jersey.filter.Session;
 import com.college.util.Cause;
 import com.college.util.JacksonUtils;
 import com.college.util.Obj2Map;
@@ -57,6 +58,7 @@ public class DaoStudentCourseGroupService extends  DaoService<StudentCourseGroup
 		}
 		
 		StudentCourseGroup studentcoursegroup = new StudentCourseGroup(users, teachercoursegroup, new Date(), operId);
+		studentcoursegroup.setId(Session.getOperId());
 		
 		Integer tempid = create(studentcoursegroup);
 	

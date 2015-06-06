@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.college.account.bean.Department;
+import com.college.account.jersey.filter.Session;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
 import com.college.util.Obj2Map;
@@ -41,6 +42,7 @@ public class DaoDepartmentService extends  DaoService<Department>{
 		}
 
 		department.setCreateTime(new Date());
+		department.setId(Session.getOperId());
 		
 		Integer id = create(department);
 		

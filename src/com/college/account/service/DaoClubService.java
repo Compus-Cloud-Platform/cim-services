@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.college.account.bean.Club;
+import com.college.account.jersey.filter.Session;
 import com.college.util.Cause;
 import com.college.util.Json2Obj;
 import com.college.util.Obj2Map;
@@ -40,6 +41,7 @@ public class DaoClubService extends  DaoService<Club>{
 		}
 
 		club.setCreateTime(new Date());
+		club.setId(Session.getOperId());
 		
 		Integer id = create(club);
 		
