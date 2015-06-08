@@ -77,14 +77,14 @@ public class DaoStudentCourseService extends  DaoService<StudentCourse>{
 	
 	public String upd(Integer id, String jsonString, Integer operId){
 		
-		StudentCourse studentcoursefind = null;
-		StudentCourse studentcourse = searchByid(id, tablename);
+		StudentCourse studentcourse = null;
+		StudentCourse studentcoursefind = searchByid(id, tablename);
 		
-		if(null == studentcourse){
+		if(null == studentcoursefind){
 			return Cause.getFailcode(STUDENTCOURSEIDNOTFIND, "Id", "id not find");
 		}
 		
-		studentcoursefind = (StudentCourse)Json2Obj.getObj(jsonString, StudentCourse.class);
+		studentcourse = (StudentCourse)Json2Obj.getObj(jsonString, StudentCourse.class);
 		
 		Json2Obj.updateObject(studentcourse, studentcoursefind);
 		
