@@ -5,7 +5,7 @@ import java.util.Date;
 public class StudentCourseGroup {
 	
 	private Integer id;
-	private Users users;
+	private Users user;
 	private TeacherCourseGroup teacherCourseGroup;
 	private Date createTime;
 	private Integer operId;
@@ -14,7 +14,7 @@ public class StudentCourseGroup {
 			TeacherCourseGroup teacherCourseGroup, Date createTime,
 			Integer operId) {
 		super();
-		this.users = users;
+		this.user = users;
 		this.teacherCourseGroup = teacherCourseGroup;
 		this.createTime = createTime;
 		this.operId = operId;
@@ -31,11 +31,11 @@ public class StudentCourseGroup {
 	}
 
 	public Users getUsers() {
-		return users;
+		return user;
 	}
 
 	public void setUsers(Users users) {
-		this.users = users;
+		this.user = users;
 	}
 
 	public TeacherCourseGroup getTeacherCourseGroup() {
