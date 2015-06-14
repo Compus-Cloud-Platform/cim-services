@@ -1,6 +1,5 @@
 package com.college.account.service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,9 +9,6 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
 
 import com.college.account.bean.Users;
 import com.college.account.jersey.filter.Session;
@@ -260,14 +256,12 @@ public class DaoUsersService extends DaoService<Users>{
 		users.setLoginPassword(result);
 		
 		update(users);
-		
-		
+	
 		return Cause.getIdentifyingCode(result);
 	}
 	
-	public String updatePasswd(String loginId, String jsonString) throws JsonParseException, JsonMappingException, IOException{
+	public String updatePasswd(String loginId, String jsonString) throws Exception{
 		
-
 		@SuppressWarnings("unchecked")
 		Map<String,String> map = JacksonUtils.objectMapper.readValue(jsonString, Map.class);
 		
