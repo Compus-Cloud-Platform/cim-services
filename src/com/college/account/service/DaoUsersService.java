@@ -1,13 +1,18 @@
 package com.college.account.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
 
 import com.college.account.bean.Users;
 import com.college.account.jersey.filter.Session;
@@ -27,7 +32,8 @@ public class DaoUsersService extends DaoService<Users>{
 	public static int USEORGIDWRONG = 1005;
 	public static int USEPOSIDWRONG = 1006;
 	public static int USEIDNOTEXIST = 1007;
-	public static int USELOGIDNOTUPT = 1007;
+	public static int USELOGIDNOTUPT = 1008;
+	public static int USELOGIDINDERROR = 1009;
 	
 	public static String tablename = "Users";
 	
@@ -235,4 +241,59 @@ public class DaoUsersService extends DaoService<Users>{
 		
 		return Cause.getStringDataPage(list, Users.class, totalfind);
 	}
+	
+	public String forgetPasswd(String loginId){
+		
+		Users users = searchByFeild(tablename, "loginId", loginId);
+		
+		if(null == users){
+			return Cause.getFailcode(USELOGINIDNOTEXIST, "name", "name not exist");
+		}
+		
+		Random random = new Random();
+
+		String result="";
+
+		for(int i=0;i<6;i++){
+			result+=random.nextInt(10);
+		}
+		users.setLoginPassword(result);
+		
+		update(users);
+		
+		
+		return Cause.getIdentifyingCode(result);
+	}
+	
+	public String updatePasswd(String loginId, String jsonString) throws JsonParseException, JsonMappingException, IOException{
+		
+
+		@SuppressWarnings("unchecked")
+		Map<String,String> map = JacksonUtils.objectMapper.readValue(jsonString, Map.class);
+		
+		if(null == map.get("Indentifyingcode") || null == map.get("newpassword")){
+			return Cause.getFailcode(USELOGINLOSTNAMEORID, "param error", "Indentifyingcode or newpassword not null");
+		}
+		
+		Users users = searchByFeild(tablename, "loginId", loginId);
+		
+		if(null == users){
+			return Cause.getFailcode(USELOGINIDNOTEXIST, "name", "name not exist");
+		}
+		
+		if(!users.getLoginPassword().equals(map.get("Indentifyingcode").toString())){
+			return Cause.getFailcode(USELOGIDINDERROR, "Indentifyingcode", "Indentifyingcode wrong");
+		}
+		
+		users.setLoginPassword(Md5Util.md5calc(map.get("newpassword").toString()));
+		
+		update(users);
+		
+		List<Object> list = new ArrayList<Object>(1);
+        
+        list.add(users);
+		
+		return Cause.getStringData(list, Users.class);
+	}
+	
 }

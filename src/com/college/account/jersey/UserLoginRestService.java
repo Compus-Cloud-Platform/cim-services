@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import org.apache.log4j.Logger;
@@ -33,6 +34,45 @@ public class UserLoginRestService {
 		try {
 		    
 		    String s = p.login(jsonString, request, servletResponse);
+			
+			return s;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(1000, "", "system error");
+	}
+	
+	@POST
+	@Path("/forget/{loginId}")
+	public String forgetPasswd(@PathParam("loginId")  String loginId){
+
+		try {
+		    
+		    String s = p.forgetPasswd(loginId);
+			
+			return s;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e);
+		}
+		return Cause.getFailcode(1000, "", "system error");
+		
+	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON) 
+	@Path("/identify/{loginId}")
+	public String identifyingCode(@PathParam("loginId")  String loginId,
+			                      String jsonString ){
+		
+		//return null;//Indentifyingcode
+		
+		try {
+		    
+		    String s = p.updatePasswd(loginId, jsonString);
 			
 			return s;
 			

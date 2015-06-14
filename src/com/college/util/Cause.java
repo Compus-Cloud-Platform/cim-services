@@ -140,5 +140,14 @@ public class Cause {
 		}
 		return null;
 	}
+	
+	static public String getIdentifyingCode(String code){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ack", "success");
+		map.put("Indentifyingcode", code);
+
+		return JacksonUtils.getJsonString(map);
+	}
 
 }
