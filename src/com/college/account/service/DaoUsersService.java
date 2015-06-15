@@ -17,6 +17,8 @@ import com.college.util.JacksonUtils;
 import com.college.util.Json2Obj;
 import com.college.util.Md5Util;
 import com.college.util.ServiceFactoryBean;
+import com.college.util.email.MailSenderInfo;
+import com.college.util.email.SimpleMailSender;
 
 
 public class DaoUsersService extends DaoService<Users>{
@@ -30,6 +32,7 @@ public class DaoUsersService extends DaoService<Users>{
 	public static int USEIDNOTEXIST = 1007;
 	public static int USELOGIDNOTUPT = 1008;
 	public static int USELOGIDINDERROR = 1009;
+	public static int USELOGIDEMAILFAIL = 1010;
 	
 	public static String tablename = "Users";
 	
@@ -253,8 +256,23 @@ public class DaoUsersService extends DaoService<Users>{
 		for(int i=0;i<6;i++){
 			result+=random.nextInt(10);
 		}
-		users.setLoginPassword(result);
 		
+		MailSenderInfo mailInfo = new MailSenderInfo();    
+	    mailInfo.setMailServerHost("smtp.sina.com");    
+	    mailInfo.setMailServerPort("25");    
+	    mailInfo.setValidate(true);    
+	    mailInfo.setUserName("colleage_service@sina.com");    
+	    mailInfo.setPassword("colleage");//您的邮箱密码    
+	    mailInfo.setFromAddress("colleage_service@sina.com");    
+	    mailInfo.setToAddress(users.getEmail());    
+	    mailInfo.setSubject("重置密码");    
+	    mailInfo.setContent("你的验证码为"+result);    
+	    SimpleMailSender sms = new SimpleMailSender();   
+	    if(!sms.sendTextMail(mailInfo)){
+	    	return Cause.getFailcode(USELOGIDEMAILFAIL, "email", "email send fail");
+	    }
+		
+	    users.setLoginPassword(result);
 		update(users);
 	
 		return Cause.getIdentifyingCode(result);

@@ -68,8 +68,6 @@ public class UserLoginRestService {
 	public String identifyingCode(@PathParam("loginId")  String loginId,
 			                      String jsonString ){
 		
-		//return null;//Indentifyingcode
-		
 		try {
 		    
 		    String s = p.updatePasswd(loginId, jsonString);
